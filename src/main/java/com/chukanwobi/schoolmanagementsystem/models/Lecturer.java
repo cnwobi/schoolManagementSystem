@@ -1,9 +1,12 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@Data
 public class Lecturer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +20,11 @@ public class Lecturer {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "lecturer")
     private List<CourseConduction> coursesConducted = new ArrayList<>();
+
+
+    public Lecturer addCoursesConducted(CourseConduction courseConduction){
+        courseConduction.setLecturer(this);
+        this.coursesConducted.add(courseConduction);
+        return this;
+    }
 }

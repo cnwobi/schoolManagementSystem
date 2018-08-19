@@ -1,9 +1,12 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,4 +19,9 @@ public class Enrollment {
     private Course course;
     @ManyToMany(mappedBy = "enrollments")
     private List<Assessment> assessments;
+
+    public Enrollment(Student student, Course course) {
+        this.student = student;
+        this.course = course;
+    }
 }
