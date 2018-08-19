@@ -1,19 +1,23 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Enrollment {
+@Data
+public class CourseAssessment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private Semester semester;
     @ManyToOne
-    private Student student;
-    @ManyToOne
     private Course course;
-    @ManyToMany(mappedBy = "enrollments")
-    private List<Assessment> assessments;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseAssessment")
+    private List<Assessment> assessments = new ArrayList<>();
+
 }

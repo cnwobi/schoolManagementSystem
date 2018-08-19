@@ -12,13 +12,12 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    //leave the logic for now
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "perquisite_of")
     private Course theCourse;
 
     @OneToMany(mappedBy = "theCourse")
-
     private Set<Course> prerequisites =  new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
@@ -26,5 +25,8 @@ public class Course {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<Enrollment> enrollmentList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
+    private List<CourseAssessment> courseAssesments = new ArrayList<>();
 
 }
