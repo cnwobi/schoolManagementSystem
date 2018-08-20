@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="common-header">
+    <meta name="viewport" content="
+      width=device-width,
+      initial-scale=1,
+      minimum-scale=1,
+      maximum-scale=1
+    " />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="/webjars/materializecss/1.0.0-rc.2/css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<!--navigation-->
+<nav th:fragment="common-navbar">
+
+    <ul>
+        <a href="#">
+            <li>Home</li>
+        </a>
+        <a href="#">
+            <li> Sign In</li>
+        </a>
+        <a href="#">
+            <li> About Us</li>
+
+        </a>
+    </ul>
+
+</nav>
+
+
+</html>

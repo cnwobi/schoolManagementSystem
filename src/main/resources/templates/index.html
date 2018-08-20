@@ -1,15 +1,50 @@
 <!DOCTYPE html>
+
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8"/>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Source+Sans+Pro" rel="stylesheet">
-</head>
-<body>
-<h1>I work</h1>
+<head th:replace="common/header :: common-header"/>
 
-<p>Testing live reloading to see the effect</p>
+<body>
+
+<nav th:replace="common/header::common-navbar"/>
+
+
+
+<div class="grid-container">
+    <div class="username"><span>Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
+    <table class="highlight grid-100">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Campus</th>
+            <th></th>
+
+
+        </tr>
+        <tr th:each="lecturer:${lecturers}">
+            <td th:text="${lecturer.id}">1</td>
+            <td th:text="${lecturer.image}">Null</td>
+            <td th:text="${lecturer.firstName}">John</td>
+            <td th:text="${lecturer.surname}">Doe</td>
+            <td th:text="${lecturer.email}">j.doe@yahoo.com</td>
+            <td th:text="${lecturer.campus}"> Melbourne</td>
+            <td><a href="#" th:href="@{'/profile/'+${lecturer.id}+'/show/'}" th:text="${'View Details'}">View Details</a> </td>
+
+
+        </tr>
+
+
+        </thead>
+
+
+    </table>
+
+</div>
 </body>
 
 </html>

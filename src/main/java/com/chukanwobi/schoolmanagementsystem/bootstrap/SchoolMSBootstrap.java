@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,18 +55,32 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     CourseConduction courseConduction = new CourseConduction();
     courseConduction.setCapacity(60);
     courseConduction.setSemester(Semester.FIRST);
+    courseConduction.setYear(Year.of(2014));
     courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
     courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
     courseConductions.add(courseConduction);
 
 
 
+
         CourseConduction courseConduction1 = new CourseConduction();
         courseConduction1.setCapacity(150);
+        courseConduction1.setYear(Year.of(2017));
         courseConduction1.setSemester(Semester.SECOND);
         courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction1.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
         courseConductions.add(courseConduction1);
+
+
+
+        CourseConduction courseConduction2 = new CourseConduction();
+        courseConduction2.setCapacity(200);
+        courseConduction2.setSemester(Semester.SECOND);
+        courseConduction2.setYear(Year.of(2018));
+        courseConduction2.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
+        courseConduction2.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
+        courseConductions.add(courseConduction2);
+
         return courseConductions;
     }
 

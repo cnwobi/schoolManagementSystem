@@ -11,7 +11,8 @@ public class IndexControllerTest {
     public void setUp() throws Exception {
     }
     @Test
-    public void getId(){
+    public void getIndex(){
+
 
     }
 }

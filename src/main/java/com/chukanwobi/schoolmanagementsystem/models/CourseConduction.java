@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.Year;
 
 @Entity
 @Data
@@ -19,6 +20,7 @@ public class CourseConduction {
     @ManyToOne
     private Course course;
 
+    private Year year;
     public CourseConduction() {
     }
 
