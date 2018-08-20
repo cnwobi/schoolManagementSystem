@@ -18,4 +18,14 @@ public class CourseConduction {
     private Lecturer lecturer;
     @ManyToOne
     private Course course;
+
+    public CourseConduction() {
+    }
+
+    public CourseConduction(Integer capacity, Lecturer lecturer, Course course) {
+
+        this.capacity = capacity;
+        this.lecturer = lecturer;
+        this.course = course;
+    }
 }

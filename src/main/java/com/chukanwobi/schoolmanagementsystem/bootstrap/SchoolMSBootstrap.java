@@ -1,7 +1,10 @@
 package com.chukanwobi.schoolmanagementsystem.bootstrap;
 
 import com.chukanwobi.schoolmanagementsystem.models.Course;
+import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
+import com.chukanwobi.schoolmanagementsystem.models.Semester;
+import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseRepository;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
@@ -19,39 +22,51 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     private LecturerRepository lecturerRepository;
     private StudentRepository studentRepository;
     private CourseRepository courseRepository;
+    private CourseConductionRepo courseConductionRepo;
 
-    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepository courseRepository) {
+    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository,
+                             CourseRepository courseRepository,CourseConductionRepo courseConductionRepo) {
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.courseConductionRepo = courseConductionRepo;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
+          courseConductionRepo.saveAll(getCourseConductions());
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
-        lecturerRepository.saveAll(getLecturers());
 
     }
 
 
-    private List<Lecturer> getLecturers() {
+    private List<CourseConduction> getCourseConductions(){
+        List<CourseConduction> courseConductions = new ArrayList<>();
         List<Lecturer> lecturers = new ArrayList<>();
-        Lecturer lecturer1 = new Lecturer();
-        lecturer1.setFirstName("Fabian");
-        lecturer1.setSurname("Onyeuka");
-        lecturer1.setCampus("FUTO");
-        lecturer1.setEmail("f.onyeuka@futo.co.ng");
-        lecturers.add(lecturer1);
+        lecturerRepository.findAll().iterator()
+                .forEachRemaining(lecturer -> lecturers.add(lecturer));
 
-        Lecturer lecturer2 = new Lecturer();
-        lecturer2.setFirstName("Dennis");
-        lecturer2.setSurname("Ezechi");
-        lecturer2.setCampus("FUTMINNA");
-        lecturer2.setEmail("d.ezechi@futminna.co.ng");
-        lecturers.add(lecturer2);
+        List<Course> courses = new ArrayList<>();
 
-        return lecturers;
+        courseRepository.findAll().iterator().forEachRemaining(course -> courses.add(course));
+
+    CourseConduction courseConduction = new CourseConduction();
+    courseConduction.setCapacity(60);
+    courseConduction.setSemester(Semester.FIRST);
+    courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
+    courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
+    courseConductions.add(courseConduction);
+
+
+
+        CourseConduction courseConduction1 = new CourseConduction();
+        courseConduction1.setCapacity(150);
+        courseConduction1.setSemester(Semester.SECOND);
+        courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
+        courseConduction1.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
+        courseConductions.add(courseConduction1);
+        return courseConductions;
     }
 
 
