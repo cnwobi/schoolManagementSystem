@@ -31,8 +31,19 @@
 
     </aside>
     <section class="grid-70">
+        <article class="grid-45 profile">
+            <header> Basic Profile</header>
+            <div>Lecturer ID:<span th:text="${lecturer.id}"> 1</span> </div>
+            <div>Full name:<span th:text="${lecturer.firstName+' '+lecturer.surname}"> Chuka Nwobi</span> </div>
 
-        <article class="grid-50">
+
+            <div>Email Address:<span th:text="${lecturer.email}"> c.nwobi@outlook.com</span> </div>
+            <div>Campus<span th:text="${lecturer.campus}"> Mt. Helen</span> </div>
+            <div>Password<span> <a href="#">reset password</a></span> </div>
+
+        </article>
+        <!--end of profile article tage-->
+        <article class="grid-5">
 
             <h1></h1>
 

@@ -37,12 +37,12 @@ IndexController indexController;
         lecturers.add(new Lecturer());
 
 
-        when(lecturerService.getRecipes()).thenReturn(lecturers);
+        when(lecturerService.getLecturers()).thenReturn(lecturers);
 
         ArgumentCaptor<List<Lecturer>> listArgumentCaptor = ArgumentCaptor.forClass(List.class);
         String viewName = indexController.getIndex(model);
         assertEquals("index",viewName);
-        verify(lecturerService,times(1)).getRecipes();
+        verify(lecturerService,times(1)).getLecturers();
         verify(model,times(1)).addAttribute(eq("lecturers"),listArgumentCaptor.capture());
         List<Lecturer> setInController = listArgumentCaptor.getValue();
         assertEquals(2,setInController.size());

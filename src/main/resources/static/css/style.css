@@ -60,7 +60,7 @@ table{
 
 }
 
-.courseList{
+.courseList, .profile{
     margin: 0;
     margin-top: 12%;
 
@@ -68,7 +68,7 @@ table{
     border: solid #D4D6D5 thin;
     background-color: #EFEDE2;
 }
-.courseList header{
+.courseList header,.profile header{
     font-weight: bolder;
     text-align: center;
     padding-right: 0;
@@ -79,10 +79,25 @@ table{
     color: #53A6BB;
     font-weight: bolder;
 }
-.courseList .capacity{
+.courseList .capacity, .caption{
     font-weight: bolder;
 }
 .courseList .course_tile{
     border-bottom: solid #D4D6D5 thin;
 
+}
+
+.profile div{
+
+    font-weight: bolder;
+    padding: 2%;
+}
+.profile div span a:hover{
+    color: red;
+}
+.profile div span{
+
+    float: right;
+    font-weight: 100;
+    margin-left: 20%;
 }
