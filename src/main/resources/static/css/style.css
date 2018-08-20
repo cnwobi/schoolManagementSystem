@@ -79,3 +79,10 @@ table{
     color: #53A6BB;
     font-weight: bolder;
 }
+.courseList .capacity{
+    font-weight: bolder;
+}
+.courseList .course_tile{
+    border-bottom: solid #D4D6D5 thin;
+
+}
