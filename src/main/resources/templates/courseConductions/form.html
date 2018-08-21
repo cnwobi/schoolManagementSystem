@@ -39,12 +39,13 @@
         <article class="grid-100 profile course_view_form">
             <header> Basic Profile</header>
             <form th:object="${class}" class="course-capacity">
-                <div >Course Title:<span class="title"> Advanced Thermodynamics</span> </div>
+                <div >Course Title:<span class="title" th:text="${class.course.title}"> Advanced Thermodynamics</span> </div>
+                <div th:unless="${class.course.departmentalCodes==null}">Course Code<span th:text="${class.course.departmentalCodes+'00'+class.course.id}"> 2017</span> </div>
                 <div>Capacity:<input type="number" class="form-text" placeholder="Please enter capacity" th:field="*{capacity}"> </div>
 
 
-                <div>Semester:<span> Second</span> </div>
-                <div>Year:<span> 2017</span> </div>
+                <div>Semester:<span th:text="${#strings.capitalize(class.semester.toString().toLowerCase())}"> Second</span> </div>
+                <div>Year:<span th:text="${class.year}"> 2017</span> </div>
                 <button> Submit </button>
             </form>
 
