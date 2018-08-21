@@ -33,7 +33,7 @@
             <td th:text="${lecturer.surname}">Doe</td>
             <td th:text="${lecturer.email}">j.doe@yahoo.com</td>
             <td th:text="${lecturer.campus}"> Melbourne</td>
-            <td><a href="#" th:href="@{'/profile/'+${lecturer.id}+'/show/'}" th:text="${'View Details'}">View Details</a> </td>
+            <td><a href="#" th:href="@{'/lecturer/'+${lecturer.id}+'/view/courses'}" th:text="${'View Details'}">View Details</a> </td>
 
 
         </tr>
