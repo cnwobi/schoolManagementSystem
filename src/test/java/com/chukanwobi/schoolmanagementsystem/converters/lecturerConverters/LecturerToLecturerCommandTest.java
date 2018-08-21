@@ -70,7 +70,7 @@ public void testConvert(){
 
         LecturerCommand lecturerCommand = converter.convert(lecturer);
         assertEquals(lecturer.getId(),lecturerCommand.getId());
-        assertEquals(lecturer.getCampus(),lecturerCommand.getCampus());
+        assertEquals(CAMPUS,lecturerCommand.getCampus());
         assertEquals(lecturer.getEmail(),lecturerCommand.getEmail());
         assertEquals(lecturer.getFirstName(),lecturerCommand.getFirstName());
         assertEquals(lecturer.getSurname(),lecturerCommand.getSurname());
