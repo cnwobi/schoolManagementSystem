@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface LecturerService {
     List<Lecturer> getLecturers();
+
     LecturerCommand findLecturerById(Long Id);
     CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id, Long lecturerid);
     List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId);

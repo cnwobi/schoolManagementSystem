@@ -4,7 +4,7 @@ insert into course(title,DEPARTMENTAL_CODES ) values ('	Advanced Software Engine
 insert into course(title,DEPARTMENTAL_CODES ) values ('	Advanced Thermodynamics','PHY');
 
 
-insert into lecturer(campus,email,first_name,surname)  VALUES ('FUTO',
-'f.onyeuka@futo.co.ng','Fabian','Onyeka');
-insert into lecturer(campus,email,first_name,surname)  VALUES ('FUTMINNA',
-'d.ezechi@futo.co.ng','Dennis','Ezechi');
+insert into lecturer(campus,email,first_name,surname,username)  VALUES ('FUTO',
+'f.onyeuka@futo.co.ng','Fabian','Onyeka','fabian');
+insert into lecturer(campus,email,first_name,surname,username)  VALUES ('FUTMINNA',
+'d.ezechi@futo.co.ng','Dennis','Ezechi','denco');
