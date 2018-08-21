@@ -75,7 +75,7 @@ table{
     padding-left: 0;
     border-bottom: solid #D4D6D5 thin;
 }
-.courseList .title{
+.courseList .title,.profile div span.title{
     color: #53A6BB;
     font-weight: bolder;
 }
@@ -102,11 +102,13 @@ table{
     margin-left: 20%;
 }
 
-.dashboard h1{
+.dashboard h1, .edit_conduction h1{
     text-align: center;
     margin-bottom: 4%;
 }
-
+.edit_conduction h1{
+    margin-left: 34%
+}
 .course_tile a{
     float: right;
 }
@@ -115,4 +117,85 @@ table{
     display: block;
     padding: 2%;
     margin: 2%;
+}
+.form-text{
+
+    border-radius: 4px;
+    float: right;
+}
+
+input {
+    border: 3px solid white;
+    -webkit-box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+    -moz-box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+    box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+    padding: 5px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+    height: auto
+}
+input:not([type=submit]):not([type=file]) {
+    /* omg so much cleaner */
+    font-family: 'Economica', sans-serif;
+    font-weight: bolder;
+}
+input[type="number"]::placeholder{
+    font-size: 90%;
+    font-style: italic;
+
+}
+
+.course-capacity button{
+    display: block;
+    text-align: center;
+
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    color:black;
+
+    text-decoration: none;
+    background-color: #d1cbab;
+    padding:10px 5px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 5px solid #429000;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.15);;
+    padding:10px 5px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 5px solid #f5f4ed;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.15);
+    width: 24%;
+    margin-left: 43%;
+    margin-bottom: 2%;
+    font-size: larger;
+}
+
+.course-capacity button:active{
+    position: relative;
+    top:3px;
+    left:2px;
+    box-shadow: 0px 0px;
+}
+
+.course-capacity button:hover{
+    border: 5px solid #e9e6d7;
+    background-color: #fff;
+    color:#a79b5f;
+    font-weight: bold;
 }

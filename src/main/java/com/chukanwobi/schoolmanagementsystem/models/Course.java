@@ -17,6 +17,9 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Enumerated(value = EnumType.STRING)
+
+    private DepartmentalCodes departmentalCodes;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "perquisite_of")
@@ -112,6 +115,14 @@ public class Course {
 
     public void setCourseConductions(List<CourseConduction> courseConductions) {
         this.courseConductions = courseConductions;
+    }
+
+    public DepartmentalCodes getDepartmentalCodes() {
+        return departmentalCodes;
+    }
+
+    public void setDepartmentalCodes(DepartmentalCodes departmentalCodes) {
+        this.departmentalCodes = departmentalCodes;
     }
 
     public void setEnrollmentList(List<Enrollment> enrollmentList) {

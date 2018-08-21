@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class CourseConductionImpl implements CourseConductionService {
@@ -19,6 +21,23 @@ public class CourseConductionImpl implements CourseConductionService {
     public CourseConductionImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand converter) {
         this.courseConductionRepo = courseConductionRepo;
         this.converter = converter;
+    }
+
+    @Override
+    public CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id,Long lecturerId) {
+        Optional<CourseConduction> optionalCourseConduction = courseConductionRepo.findById(Long.valueOf(id));
+
+        if (!optionalCourseConduction.isPresent()){
+            throw new RuntimeException("Class with Id: " + id+" was not found");
+        }
+
+        if(optionalCourseConduction.get().getLecturer().getId()!=lecturerId){
+            throw new RuntimeException("You do not teach this class");
+        }
+
+
+
+        return converter.convert(optionalCourseConduction.get());
     }
 
     @Override

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-forms"/>
+<body>
+<nav th:replace="common/header::common-navbar"/>
+<div class="grid-container grid-parent grid-100 edit_conduction">
+    <div class="username"><span>Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
+    <h1 >Editing Course  Capacity</h1>
+
+    <aside class="grid-25 ">
+
+        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+
+
+
+
+    </aside>
+
+    <section class="grid-70">
+
+        <article class="grid-100 profile course_view_form">
+            <header> Basic Profile</header>
+            <form th:object="${class}" class="course-capacity">
+                <div>Course Title:<span class="title"> Advanced Thermodynamics</span> </div>
+                <div>Capacity:<input type="number" class="form-text" placeholder="Please enter capacity" th:field="*{capacity}"> </div>
+
+
+                <div>Semester:<span> Second</span> </div>
+                <div>Year:<span> 2017</span> </div>
+                <button> Submit </button>
+            </form>
+
+        </article>
+
+
+    </section>
+
+
+</div>
+
+<!-- end of container-->
+
+</body>
+</html>

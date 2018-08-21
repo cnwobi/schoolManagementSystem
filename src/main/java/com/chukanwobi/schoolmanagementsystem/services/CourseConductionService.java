@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CourseConductionService {
 List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId);
+CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id,Long lecturerid);
 }

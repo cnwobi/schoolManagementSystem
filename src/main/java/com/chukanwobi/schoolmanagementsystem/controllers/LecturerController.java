@@ -26,4 +26,11 @@ public class LecturerController {
         return "lecturer/courseview";
     }
 
+    @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
+    public String editClassCapacity(@PathVariable String lecturerId,@PathVariable String classId,Model model){
+       model.addAttribute("class",courseConductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId),Long.valueOf(lecturerId)));
+       return "courseConductions/form";
+
+    }
+
 }

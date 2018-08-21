@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,5 +22,9 @@ public class IndexController {
 model.addAttribute("lecturers",lecturerService.getLecturers());
         return "index";
     }
-
+    @GetMapping("/view")
+    public String courseView()
+    {
+        return "courseConductions/form";
+    }
 }
