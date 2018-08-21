@@ -25,6 +25,7 @@ public class LecturerToLecturerCommand implements Converter<Lecturer, LecturerCo
         lecturerCommand.setFirstName(lecturer.getFirstName());
         lecturerCommand.setPassword(lecturer.getPassword());
         lecturerCommand.setSurname(lecturer.getSurname());
+        lecturerCommand.setUserName(lecturer.getUsername());
 
         if(lecturer.getCoursesConducted()!=null && lecturer.getCoursesConducted().size()>0){
             lecturer.getCoursesConducted().forEach(courseConduction -> lecturerCommand.getCoursesConducted().add(courseConduction));

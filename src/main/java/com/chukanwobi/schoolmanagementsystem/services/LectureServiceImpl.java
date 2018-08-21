@@ -87,4 +87,20 @@ private CourseConductionRepo courseConductionRepo;
                 .forEach(courseConductionCommand ->conductionCommandList1.add(courseConductionCommand) );
         return conductionCommandList1;
     }
+
+    @Override
+    public LecturerCommand findLecturerByUsername(String username) {
+
+        Optional<Lecturer> lecturerOptional = lecturerRepository.findLecturerByUsername(username);
+        if(!lecturerOptional.isPresent()){
+            throw new RuntimeException("Lecturer with username: "+username+" was not found");
+        }
+
+        return converter.convert(lecturerOptional.get());
+
+    }
+
+
+
+
 }

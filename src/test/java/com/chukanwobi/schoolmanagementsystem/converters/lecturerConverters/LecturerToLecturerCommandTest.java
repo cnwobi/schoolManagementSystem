@@ -21,7 +21,7 @@ public class LecturerToLecturerCommandTest {
     private static final String PASSWORD = "password";
     private static final Long COURSE_CONDUCTION_ID = 1l;
     private static final Long COURSE_CONDUCTION_ID_2 = 2l;
-
+    private static final String USERNAME = "d.john";
 
     @Before
     public void setUp() throws Exception {
@@ -46,7 +46,7 @@ public void testConvert(){
         lecturer.setFirstName(FIRST_NAME);
         lecturer.setSurname(SURNAME);
         lecturer.setPassword(PASSWORD);
-
+         lecturer.setUsername(USERNAME);
         //course conducted
         Course course = new Course();
         course.setTitle("James Ibori");
@@ -79,6 +79,7 @@ public void testConvert(){
         assertEquals(lecturer,lecturerCommand.getCoursesConducted().get(0).getLecturer());
         assertEquals(lecturer,lecturerCommand.getCoursesConducted().get(1).getLecturer());
         assertEquals(COURSE_CONDUCTION_ID,lecturerCommand.getCoursesConducted().get(0).getId());
+        assertEquals(USERNAME,lecturerCommand.getUserName());
 
     }
 }

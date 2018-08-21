@@ -11,4 +11,5 @@ public interface LecturerService {
     LecturerCommand findLecturerById(Long Id);
     CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id, Long lecturerid);
     List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId);
+    LecturerCommand findLecturerByUsername(String username);
 }

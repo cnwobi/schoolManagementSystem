@@ -9,6 +9,7 @@ import java.util.List;
 public class LecturerCommand {
     private Long id;
     private Byte[] image;
+    private String userName;
     private String firstName;
     private String surname;
     private String email;
