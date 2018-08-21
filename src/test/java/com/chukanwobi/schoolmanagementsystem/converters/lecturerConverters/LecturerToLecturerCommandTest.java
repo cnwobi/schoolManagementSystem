@@ -41,7 +41,7 @@ public class LecturerToLecturerCommandTest {
 public void testConvert(){
         Lecturer lecturer = new Lecturer();
         lecturer.setId(ID);
-        //lecturer.setCampus(CAMPUS);
+        lecturer.setCampus(CAMPUS);
         lecturer.setEmail(EMAIL);
         lecturer.setFirstName(FIRST_NAME);
         lecturer.setSurname(SURNAME);
