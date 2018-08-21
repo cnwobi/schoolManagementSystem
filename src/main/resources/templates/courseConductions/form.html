@@ -11,13 +11,12 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-
     <link rel="stylesheet" type="text/css" href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Economica" rel="stylesheet">
+
+    <title>Edit Course Capacity</title>
 </head>
 <body>
 <nav th:replace="common/header::common-navbar"/>
@@ -37,7 +36,7 @@
     <section class="grid-70">
 
         <article class="grid-100 profile course_view_form">
-            <header> Basic Profile</header>
+            <header> Course Profile</header>
             <form th:object="${class}" class="course-capacity">
                 <div >Course Title:<span class="title" th:text="${class.course.title}"> Advanced Thermodynamics</span> </div>
                 <div th:unless="${class.course.departmentalCodes==null}">Course Code<span th:text="${class.course.departmentalCodes+'00'+class.course.id}"> 2017</span> </div>
