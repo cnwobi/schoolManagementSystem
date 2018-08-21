@@ -92,7 +92,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
         CourseConduction courseConduction4 = new CourseConduction();
         courseConduction4.setCapacity(130);
-        courseConduction4.setSemester(Semester.SECOND);
+        courseConduction4.setSemester(Semester.THIRD);
         courseConduction4.setYear(Year.of(2018));
         courseConduction4.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction4.setCourse(courses.stream().filter(course -> course.getId()==3).findFirst().get());

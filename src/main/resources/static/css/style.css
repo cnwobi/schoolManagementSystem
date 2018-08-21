@@ -62,7 +62,7 @@ table{
 
 .courseList, .profile{
     margin: 0;
-    margin-top: 12%;
+
 
     border-radius: 12px;
     border: solid #D4D6D5 thin;
@@ -92,7 +92,7 @@ table{
     font-weight: bolder;
     padding: 2%;
 }
-.profile div span a:hover{
+.profile div span a:hover,.course_tile a:hover{
     color: red;
 }
 .profile div span{
@@ -100,4 +100,19 @@ table{
     float: right;
     font-weight: 100;
     margin-left: 20%;
+}
+
+.dashboard h1{
+    text-align: center;
+    margin-bottom: 4%;
+}
+
+.course_tile a{
+    float: right;
+}
+.course_tile{
+
+    display: block;
+    padding: 2%;
+    margin: 2%;
 }
