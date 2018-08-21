@@ -17,14 +17,9 @@ public class IndexController {
         this.lecturerService = lecturerService;
     }
 
-    @GetMapping({"","/","/index"})
-    public String getIndex(Model model){
-model.addAttribute("lecturers",lecturerService.getLecturers());
+    @GetMapping({"", "/", "/index"})
+    public String getIndex(Model model) {
+        model.addAttribute("lecturers", lecturerService.getLecturers());
         return "index";
-    }
-    @GetMapping("/view")
-    public String courseView()
-    {
-        return "courseConductions/form";
     }
 }
