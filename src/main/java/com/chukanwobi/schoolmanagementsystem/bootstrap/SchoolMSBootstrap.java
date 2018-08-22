@@ -1,9 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.bootstrap;
 
-import com.chukanwobi.schoolmanagementsystem.models.Course;
-import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
-import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
-import com.chukanwobi.schoolmanagementsystem.models.Semester;
+import com.chukanwobi.schoolmanagementsystem.models.*;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseRepository;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
@@ -14,8 +11,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -35,8 +31,8 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-
           courseConductionRepo.saveAll(getCourseConductions());
+          courseRepository.saveAll(getCoursesWithPrerequisites());
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
 
     }
@@ -101,5 +97,30 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         return courseConductions;
     }
 
+public List<Course> getCoursesWithPrerequisites(){
+        Course course1 = new Course("Introduction to mathematics", DepartmentalCodes.MTH);
+        Course course2 = new Course("Introduction to mathematics 2", DepartmentalCodes.MTH);
+        Course course3 = new Course("Advanced mathematics",DepartmentalCodes.MTH);
+        Course course4 =  new Course("Basic Chemistry",DepartmentalCodes.CHM);
+        Course course5 = new Course("Advanced Chemistry",DepartmentalCodes.CHM);
 
+        //set prerequisites
+    course2.getPrerequisitesCollection().add(course1);
+    course3.getPrerequisitesCollection().add(course2);
+
+    course5.getPrerequisitesCollection().add(course4);
+    course5.getPrerequisitesCollection().add(course1);
+    course5.getPrerequisitesCollection().add(course2);
+
+    log.debug(course5.getPrerequisitesCollection().toString());
+    List<Course> courseHashSet = new ArrayList<>();
+
+    courseHashSet.add(course1);
+    courseHashSet.add(course2);
+    courseHashSet.add(course3);
+    courseHashSet.add(course4);
+    courseHashSet.add(course5);
+    log.debug(courseHashSet.toString());
+    return courseHashSet;
+}
 }

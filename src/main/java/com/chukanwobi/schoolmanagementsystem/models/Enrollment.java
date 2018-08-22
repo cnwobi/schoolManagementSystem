@@ -24,4 +24,7 @@ public class Enrollment {
         this.student = student;
         this.course = course;
     }
+
+    public Enrollment() {
+    }
 }

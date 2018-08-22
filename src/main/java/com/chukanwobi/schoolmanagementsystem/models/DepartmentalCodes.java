@@ -1,5 +1,5 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
 public enum DepartmentalCodes {
-    ITECH,ENG,HLT,CSE,PHY
+    ITECH,ENG,HLT,CSE,PHY,MTH,CHM
 }

@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -23,15 +20,18 @@ public class Course {
 
     private DepartmentalCodes departmentalCodes;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "perquisite_of")
-    private Course theCourse;
 
-    @OneToMany(mappedBy = "theCourse")
-    private Set<Course> prerequisites =  new HashSet<>();
+@ManyToMany(mappedBy = "prerequisitesCollection")
+  private List<Course> isAPrerequisiteOfCollection;
+
+
+    @ManyToMany()
+    @JoinTable(name = "course_prerequisite",joinColumns =  {@JoinColumn(name = "is_a_prerequisite_of_id")},
+            inverseJoinColumns =  @JoinColumn(name = "prerequisite_id"))
+    private List<Course> prerequisitesCollection = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
-    private List<CourseConduction> courseConductions = new ArrayList<>();
+    private List<CourseConduction> courseConductionList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<Enrollment> enrollmentList = new ArrayList<>();
@@ -42,16 +42,16 @@ public class Course {
     public Course() {
     }
 
-    //Bi directionals
-
-    public Course setDependentCourse(Course course){
-        course.setTheCourse(this);
-        this.prerequisites.add(course);
-        return this;
+    public Course(String title, DepartmentalCodes departmentalCodes) {
+        this.title = title;
+        this.departmentalCodes = departmentalCodes;
     }
+//Bi directionals
+
+
  public Course addCourseConductions(CourseConduction courseConduction){
         courseConduction.setCourse(this);
-        this.courseConductions.add(courseConduction);
+        this.courseConductionList.add(courseConduction);
         return this;
  }
 
