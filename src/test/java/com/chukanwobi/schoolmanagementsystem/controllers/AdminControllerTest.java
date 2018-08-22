@@ -19,5 +19,6 @@ public class AdminControllerTest {
 
     @Test
     public void getCoursesLecturedByLecturerId() {
+
     }
 }
