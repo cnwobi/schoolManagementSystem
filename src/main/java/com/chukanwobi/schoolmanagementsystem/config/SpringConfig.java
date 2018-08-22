@@ -40,7 +40,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
               .formLogin()
                     .loginPage("/login")
                     .defaultSuccessUrl("/default")
-
+           .and()
+                .exceptionHandling().accessDeniedPage("/denied")
 
         .and()
                 .cors().disable();

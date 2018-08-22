@@ -50,4 +50,9 @@ public class IndexController {
         }
       return "/error";
     }
+
+@GetMapping("/denied")
+    public String getError403Page(){
+        return "error/error403";
+}
 }
