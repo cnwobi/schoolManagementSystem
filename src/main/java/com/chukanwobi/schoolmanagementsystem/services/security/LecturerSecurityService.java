@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@Qualifier("Lecturer")
 public class LecturerSecurityService implements UserDetailsService {
     private LecturerRepository lecturerRepository;
 

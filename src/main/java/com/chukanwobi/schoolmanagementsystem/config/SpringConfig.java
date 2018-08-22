@@ -31,22 +31,23 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http
-              .authorizeRequests()
-                    .antMatchers(PUBLIC_MATCHERS).permitAll()
-                     .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers("/lecturer/**").hasAnyRole("LECTURER","ADMIN").anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/student/**").hasAnyRole("STUDENT","ADMIN")
+                .antMatchers("/lecturer/**").hasAnyRole("LECTURER", "ADMIN").anyRequest().authenticated()
 
-        .and()
-              .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/default")
-        .and()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/default")
+                .and()
                 .exceptionHandling().accessDeniedPage("/denied")
 
-         .and()
+                .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
 
-         .and()
+                .and()
                 .cors().disable();
 
         http.headers().frameOptions().disable();
@@ -56,6 +57,12 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("ADMIN").and()
                 .withUser("denco").password("{noop}password").roles("LECTURER").and()
-                .withUser("fabian").password("{noop}password").roles("LECTURER");
+                .withUser("fabian").password("{noop}password").roles("LECTURER")
+                .and()
+                .withUser("dtrump").password("{noop}password").roles("STUDENT")
+                .and()
+                .withUser("jibori").password("{noop}password").roles("STUDENT")
+                .and()
+                .withUser("bshorten").password("{noop}password").roles("LECTURER");
     }
 }

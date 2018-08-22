@@ -16,7 +16,7 @@ public class Student implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private Byte[] image;
-    private String userName;
+    private String username;
     private String firstName;
     private String surname;
     private String email;
@@ -32,6 +32,14 @@ public class Student implements UserDetails {
         this.enrollmentList.add(enrollment);
         return this;
 
+    }
+
+    public Student(String username, String firstName, String surname, String email, String major) {
+        this.username = username;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.email = email;
+        this.major = major;
     }
 
     @Override

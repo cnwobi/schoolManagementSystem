@@ -114,6 +114,9 @@ public List<Course> getCoursesWithPrerequisites(){
 
     log.debug(course5.getPrerequisitesCollection().toString());
     List<Course> courseHashSet = new ArrayList<>();
+    Student student = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports");
+
+
 
     courseHashSet.add(course1);
     courseHashSet.add(course2);
@@ -123,4 +126,7 @@ public List<Course> getCoursesWithPrerequisites(){
     log.debug(courseHashSet.toString());
     return courseHashSet;
 }
+
+
+
 }

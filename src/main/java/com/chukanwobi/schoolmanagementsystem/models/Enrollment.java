@@ -13,7 +13,7 @@ public class Enrollment {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private Semester semester;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
     @ManyToOne
     private Course course;
@@ -21,6 +21,12 @@ public class Enrollment {
     private List<Assessment> assessments;
 
     public Enrollment(Student student, Course course) {
+        this.student = student;
+        this.course = course;
+    }
+
+    public Enrollment(Semester semester, Student student, Course course) {
+        this.semester = semester;
         this.student = student;
         this.course = course;
     }
