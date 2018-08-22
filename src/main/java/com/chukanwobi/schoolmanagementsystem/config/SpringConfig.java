@@ -7,9 +7,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+
 public class SpringConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
@@ -17,7 +19,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
             "/css/**",
             "/js/**",
             "/images/**",
-             "/login",
+            "/login",
             "/about/**",
             "/contact/**",
             "/error/**/*",
@@ -26,18 +28,21 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
     };
 
     @Override
+
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().
-//                antMatchers("/**").
-        antMatchers(PUBLIC_MATCHERS).
-                permitAll().anyRequest().authenticated();
+              .authorizeRequests()
+                    .antMatchers(PUBLIC_MATCHERS).permitAll()
+                     .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/lecturer/**").hasAnyRole("LECTURER","ADMIN").anyRequest().authenticated()
+
+        .and()
+              .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/default")
 
 
-
-        http .csrf().ignoringAntMatchers("/h2-console/**").and().formLogin()
-                .loginPage("/login")
-                .and()
+        .and()
                 .cors().disable();
 
         http.headers().frameOptions().disable();
@@ -45,8 +50,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	 auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("LECTURER").and()
-     .withUser("denco").password("{noop}password").roles("LECTURER").and()
-             .withUser("fabian").password("{noop}password").roles("LECTURER");
+        auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("ADMIN").and()
+                .withUser("denco").password("{noop}password").roles("LECTURER").and()
+                .withUser("fabian").password("{noop}password").roles("LECTURER");
     }
 }

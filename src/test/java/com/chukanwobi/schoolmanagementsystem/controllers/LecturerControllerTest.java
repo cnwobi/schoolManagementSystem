@@ -9,7 +9,11 @@ import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -17,6 +21,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -30,11 +36,15 @@ public class LecturerControllerTest {
     LecturerController controller;
     LecturerToLecturerCommand converterLecturer;
     CourseConductionToCourseConductionCommand conductionConverter;
+    Authentication authentication;
+    SecurityContext securityContext;
 
     MockMvc mockMvc;
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        authentication = Mockito.mock(Authentication.class);
+        securityContext = Mockito.mock(SecurityContext.class);
         controller = new LecturerController(lecturerService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
@@ -43,17 +53,25 @@ public class LecturerControllerTest {
 
     @Test
     public void testGetCourseView() throws Exception {
+
+
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
+
         Lecturer lecturer = new Lecturer();
         lecturer.setId(1l);
         CourseConduction courseConduction = new CourseConduction();
         courseConduction.setId(2l);
         courseConduction.setLecturer(lecturer);
+        lecturer.setUsername("Test");
         List<CourseConductionCommand> conductionCommandList = new ArrayList<>();
 
         conductionCommandList.add(conductionConverter.convert(courseConduction));
 
-        when(lecturerService.findLecturerById(1l)).thenReturn(converterLecturer.convert(lecturer));
+        when(lecturerService.findLecturerByUsername(any())).thenReturn(converterLecturer.convert(lecturer));
         when(lecturerService.findCourseConductionByLecturerId(1l)).thenReturn(conductionCommandList);
+        when(lecturerService.findLecturerById(any())).thenReturn(converterLecturer.convert(lecturer));
+
 
         mockMvc.perform(get("/lecturer/1/view/courses")).andExpect(status().isOk())
                 .andExpect(view().name("lecturer/courseview"))

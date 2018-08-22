@@ -2,6 +2,7 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
+import com.chukanwobi.schoolmanagementsystem.services.security.LecturerSecurityService;
 import lombok.extern.slf4j.Slf4j;
 import netscape.security.Principal;
 import org.springframework.security.core.Authentication;
@@ -17,16 +18,24 @@ public class LecturerController {
 
     private final LecturerService lecturerService;
 
-    public LecturerController( LecturerService lecturerService) {
 
+    public LecturerController(LecturerService lecturerService) {
         this.lecturerService = lecturerService;
+
+    }
+
+    @GetMapping("/lecturer")
+    public String loadLecturerDetails(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
+        return "redirect:/lecturer/"+command.getId()+"/view/courses";
     }
 
     @GetMapping("/lecturer/{id}/view/courses")
-    public String getCourseView( @PathVariable String id , Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
+    public String getCourseView( @PathVariable String id , Model model,Authentication auth){
+        auth = SecurityContextHolder.getContext().getAuthentication();
 
+        LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
         if(Long.valueOf(id)!=command.getId()){
            return "redirect:/lecturer/"+command.getId()+"/view/courses";
         }

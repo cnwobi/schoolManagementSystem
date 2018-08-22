@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
@@ -18,8 +21,33 @@ public class IndexController {
     }
 
     @GetMapping({"", "/", "/index"})
-    public String getIndex(Model model) {
+    public String getIndex(HttpServletRequest request) {
+        if (request.isUserInRole("LECTURER")){
+            return "redirect:/lecturer/";
+        }
+        if(request.isUserInRole("ADMIN")){
+            return "redirect:/admin";
+        }
+        return "/error";
+    }
+
+    @GetMapping("/admin")
+    public String getLecturers(Model model){
         model.addAttribute("lecturers", lecturerService.getLecturers());
         return "index";
+    }
+
+
+
+
+    @RequestMapping("/default")
+    public String defaultAfterLogin(HttpServletRequest request){
+        if (request.isUserInRole("LECTURER")){
+            return "redirect:/lecturer/";
+        }
+        if(request.isUserInRole("ADMIN")){
+            return "redirect:/admin";
+        }
+      return "/error";
     }
 }
