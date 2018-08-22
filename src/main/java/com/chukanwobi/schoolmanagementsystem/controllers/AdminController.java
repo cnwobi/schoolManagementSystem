@@ -18,7 +18,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/lecturer/{id}/view/courses")
-    public String getCoursesLecturedByLecturer(@PathVariable String id , Model model, Authentication auth){
+    public String getCoursesLecturedByLecturerId(@PathVariable String id , Model model, Authentication auth){
         auth = SecurityContextHolder.getContext().getAuthentication();
         boolean hasAdminRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
         if(hasAdminRole){
@@ -29,4 +29,6 @@ public class AdminController {
         }
         return "/error";
     }
+
+
 }

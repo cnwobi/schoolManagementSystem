@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Setter
+@Getter
 @Entity
 @EqualsAndHashCode(of="id")
 public class Course {
@@ -68,71 +70,6 @@ public class Course {
     protected boolean canEqual(Object other) {
         return other instanceof Course;
     }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Course getTheCourse() {
-        return this.theCourse;
-    }
-
-    public Set<Course> getPrerequisites() {
-        return this.prerequisites;
-    }
-
-    public List<CourseConduction> getCourseConductions() {
-        return this.courseConductions;
-    }
-
-    public List<Enrollment> getEnrollmentList() {
-        return this.enrollmentList;
-    }
-
-    public List<CourseAssessment> getCourseAssesments() {
-        return this.courseAssesments;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setTheCourse(Course theCourse) {
-        this.theCourse = theCourse;
-    }
-
-    public void setPrerequisites(Set<Course> prerequisites) {
-        this.prerequisites = prerequisites;
-    }
-
-    public void setCourseConductions(List<CourseConduction> courseConductions) {
-        this.courseConductions = courseConductions;
-    }
-
-    public DepartmentalCodes getDepartmentalCodes() {
-        return departmentalCodes;
-    }
-
-    public void setDepartmentalCodes(DepartmentalCodes departmentalCodes) {
-        this.departmentalCodes = departmentalCodes;
-    }
-
-    public void setEnrollmentList(List<Enrollment> enrollmentList) {
-        this.enrollmentList = enrollmentList;
-    }
-
-    public void setCourseAssesments(List<CourseAssessment> courseAssesments) {
-        this.courseAssesments = courseAssesments;
-    }
-
 
 
 }

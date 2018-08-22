@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,15 +37,17 @@ public class LecturerControllerTest {
     LecturerController controller;
     LecturerToLecturerCommand converterLecturer;
     CourseConductionToCourseConductionCommand conductionConverter;
+   @Mock
     Authentication authentication;
+   @Mock
     SecurityContext securityContext;
 
     MockMvc mockMvc;
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        authentication = Mockito.mock(Authentication.class);
-        securityContext = Mockito.mock(SecurityContext.class);
+
+
         controller = new LecturerController(lecturerService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
@@ -79,13 +82,18 @@ public class LecturerControllerTest {
     }
 
     @Test
-    public void testEditClassCapacity() {
-        CourseConductionCommand courseConduction = new CourseConductionCommand();
-        courseConduction.setId(1l);
+    public void testEditClassCapacity() throws Exception {
+        CourseConduction courseConduction = new CourseConduction();
 
 
+        when(lecturerService.findCourseConductionByIdAndLecturerId(2l,4l)).thenReturn(conductionConverter.convert(
+                courseConduction));
+
+        mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("class"))
+                .andExpect(view().name("courseConductions/form"));
 
 
-
-    }
+            }
 }

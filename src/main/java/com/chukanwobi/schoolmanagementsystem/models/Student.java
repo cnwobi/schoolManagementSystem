@@ -14,8 +14,8 @@ import java.util.List;
 public class Student implements UserDetails {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Byte[] image;
     private Long Id;
+    private Byte[] image;
     private String userName;
     private String firstName;
     private String surname;

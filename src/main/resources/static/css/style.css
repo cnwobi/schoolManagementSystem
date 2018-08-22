@@ -190,13 +190,15 @@ input[type="number"]::placeholder{
     box-shadow: 0px 0px;
 }
 
-.course-capacity button:hover{
+.course-capacity button:hover, .error-404 input[type="button"]:hover{
     border: 5px solid #e9e6d7;
     background-color: #fff;
     color:#a79b5f;
     font-weight: bold;
 }
-
+.error-404 input[type="button"]:hover{
+    color: #53A6BB;
+}
 /*---error 404 page styles--*/
 
 section.error-404{
@@ -216,7 +218,7 @@ h1.error-404{
 .error-404 input[type="button"]{
     border: 5px solid  #d1cbab;
     background-color: #f5f4ed;
-    color: #56A8FF;
+
     font-size: 100%;
     margin-left: 37%;
     margin-bottom: 20%;

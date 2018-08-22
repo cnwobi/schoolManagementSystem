@@ -10,7 +10,7 @@ public interface LecturerService {
     List<Lecturer> getLecturers();
 
     LecturerCommand findLecturerById(Long Id);
-    CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id, Long lecturerid);
+    CourseConductionCommand findCourseConductionByIdAndLecturerId(Long CourseConductionId, Long lecturerId);
     List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId);
     LecturerCommand findLecturerByUsername(String username);
 }
