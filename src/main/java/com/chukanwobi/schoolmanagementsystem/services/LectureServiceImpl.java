@@ -53,40 +53,8 @@ private CourseConductionRepo courseConductionRepo;
         return converter.convert(lecturerOptional.get());
     }
 
-    @Override
-    public CourseConductionCommand findCourseConductionByIdAndLecturerId(Long id,Long lecturerId) {
-        Optional<CourseConduction> optionalCourseConduction = courseConductionRepo.findById(Long.valueOf(id));
-
-        if (!optionalCourseConduction.isPresent()){
-            throw new RuntimeException("Class with Id: " + id+" was not found");
-        }
-
-        if(optionalCourseConduction.get().getLecturer().getId()!=lecturerId){
-            throw new RuntimeException("You do not teach this class");
-        }
 
 
-
-        return conductionConverter.convert(optionalCourseConduction.get());
-    }
-
-
-    @Override
-    public List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId) {
-        List<CourseConductionCommand> conductionCommandList = new ArrayList<>();
-
-        courseConductionRepo.findAll().iterator().forEachRemaining(courseConduction -> conductionCommandList.add(conductionConverter.convert(courseConduction)));
-
-        log.debug("\n\n\n\n\n\n\n\n\n"+conductionCommandList.toString());
-        List<CourseConductionCommand> conductionCommandList1= new ArrayList<>();
-        CourseConductionCommand courseConduction = conductionCommandList.stream().findFirst().get();
-        log.debug(courseConduction.toString());
-
-        conductionCommandList.stream()
-                .filter(courseConductionCommand -> courseConductionCommand.getLecturer().getId()==lecturerId)
-                .forEach(courseConductionCommand ->conductionCommandList1.add(courseConductionCommand) );
-        return conductionCommandList1;
-    }
 
     @Override
     public LecturerCommand findLecturerByUsername(String username) {

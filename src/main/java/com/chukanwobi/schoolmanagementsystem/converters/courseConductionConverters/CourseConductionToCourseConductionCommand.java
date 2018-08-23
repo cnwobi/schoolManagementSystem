@@ -25,7 +25,10 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
         command.setLecturer(courseConduction.getLecturer());
         command.setSemester(courseConduction.getSemester());
         command.setYear(courseConduction.getYear());
-
+        if(courseConduction.getEnrollmentList() !=null && courseConduction.getEnrollmentList().size()>0)
+        {
+            courseConduction.getEnrollmentList().forEach(enrollment -> command.getEnrollments().add(enrollment));
+        }
         return command;
     }
 }

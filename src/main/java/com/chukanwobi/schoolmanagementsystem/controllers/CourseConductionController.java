@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,16 +10,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class CourseConductionController {
-private  LecturerService lecturerService;
+private CourseConductionService conductionService;
 
-    public CourseConductionController(LecturerService lecturerService) {
-        this.lecturerService = lecturerService;
+    public CourseConductionController(CourseConductionService conductionService) {
+        this.conductionService = conductionService;
     }
 
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String viewCourseConduction(@PathVariable String lecturerId, @PathVariable String classId, Model model){
 
-    model.addAttribute("class",lecturerService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId),Long.valueOf(lecturerId)));
+    model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId),Long.valueOf(lecturerId)));
     return "courseConduction/form";
     }
 }

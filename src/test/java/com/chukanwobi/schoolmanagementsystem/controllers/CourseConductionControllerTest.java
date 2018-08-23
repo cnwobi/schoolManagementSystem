@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
+import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class CourseConductionControllerTest {
 @Mock
-    LecturerService lecturerService;
+    CourseConductionService conductionService;
+
+
+
     CourseConductionToCourseConductionCommand conductionConverter;;
     MockMvc mockMvc;
     CourseConductionController controller;
@@ -28,7 +32,7 @@ public class CourseConductionControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        controller = new CourseConductionController(lecturerService);
+        controller = new CourseConductionController(conductionService);
         conductionConverter = new CourseConductionToCourseConductionCommand();
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
@@ -38,7 +42,7 @@ public class CourseConductionControllerTest {
         CourseConduction courseConduction = new CourseConduction();
 
 
-        when(lecturerService.findCourseConductionByIdAndLecturerId(2l,4l)).thenReturn(conductionConverter.convert(
+        when(conductionService.findCourseConductionByIdAndLecturerId(2l,4l)).thenReturn(conductionConverter.convert(
                 courseConduction));
 
         mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))

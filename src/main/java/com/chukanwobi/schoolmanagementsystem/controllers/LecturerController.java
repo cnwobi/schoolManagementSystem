@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import com.chukanwobi.schoolmanagementsystem.services.security.LecturerSecurityService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +19,11 @@ public class LecturerController {
 
     private final LecturerService lecturerService;
 
+  private  final CourseConductionService conductionService;
 
-    public LecturerController(LecturerService lecturerService) {
+    public LecturerController(LecturerService lecturerService, CourseConductionService conductionService) {
         this.lecturerService = lecturerService;
-
+        this.conductionService = conductionService;
     }
 
     @GetMapping("/lecturer")
@@ -40,7 +42,7 @@ public class LecturerController {
            return "redirect:/lecturer/"+command.getId()+"/view/courses";
         }
         log.debug("memn");
-        model.addAttribute("coursesConducted", lecturerService.findCourseConductionByLecturerId(command.getId()));
+        model.addAttribute("coursesConducted",conductionService .findCourseConductionByLecturerId(command.getId()));
         model.addAttribute("lecturer",lecturerService.findLecturerById(command.getId()));
         return "lecturer/dashboard";
     }

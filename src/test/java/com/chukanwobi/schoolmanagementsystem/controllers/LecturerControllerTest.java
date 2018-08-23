@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverte
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
+import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +35,9 @@ public class LecturerControllerTest {
     @Mock
     LecturerService lecturerService;
 
+    @Mock
+    CourseConductionService conductionService;
+
     LecturerController controller;
     LecturerToLecturerCommand converterLecturer;
     CourseConductionToCourseConductionCommand conductionConverter;
@@ -48,7 +52,7 @@ public class LecturerControllerTest {
         MockitoAnnotations.initMocks(this);
 
 
-        controller = new LecturerController(lecturerService);
+        controller = new LecturerController(lecturerService,conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
         conductionConverter = new CourseConductionToCourseConductionCommand();
@@ -72,7 +76,7 @@ public class LecturerControllerTest {
         conductionCommandList.add(conductionConverter.convert(courseConduction));
 
         when(lecturerService.findLecturerByUsername(any())).thenReturn(converterLecturer.convert(lecturer));
-        when(lecturerService.findCourseConductionByLecturerId(1l)).thenReturn(conductionCommandList);
+        when(conductionService.findCourseConductionByLecturerId(1l)).thenReturn(conductionCommandList);
         when(lecturerService.findLecturerById(any())).thenReturn(converterLecturer.convert(lecturer));
 
 

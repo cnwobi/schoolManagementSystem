@@ -1,14 +1,13 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
-import com.chukanwobi.schoolmanagementsystem.models.Course;
-import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
-import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
-import com.chukanwobi.schoolmanagementsystem.models.Semester;
+import com.chukanwobi.schoolmanagementsystem.models.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +19,7 @@ public class CourseConductionToCourseConductionCommandTest {
     private static final Lecturer LECTURER = new Lecturer();
     private static final Course COURSE= new Course();
     private static final Year YEAR = Year.of(2011);
-
+    private static final List<Enrollment>  ENROLLMENT_LIST = new ArrayList<>();
     @Before
     public void setUp() throws Exception {
    converter = new CourseConductionToCourseConductionCommand();
@@ -38,6 +37,15 @@ public class CourseConductionToCourseConductionCommandTest {
         courseConduction.setCourse(COURSE);
         courseConduction.setLecturer(LECTURER);
 
+        Enrollment enrollment = new Enrollment();
+        enrollment.setId(2l);
+
+        Enrollment enrollment1 = new Enrollment();
+        enrollment.setId(3l);
+
+        ENROLLMENT_LIST.add(enrollment);
+        ENROLLMENT_LIST.add(enrollment1);
+courseConduction.setEnrollmentList(ENROLLMENT_LIST);
 
         CourseConductionCommand command = converter.convert(courseConduction);
 
@@ -47,7 +55,8 @@ public class CourseConductionToCourseConductionCommandTest {
         assertEquals(INTEGER_CAPACITY,command.getCapacity());
         assertEquals(COURSE,command.getCourse());
         assertEquals(LECTURER,command.getLecturer());
-
+       assertEquals(ENROLLMENT_LIST.size(),command.getEnrollments().size());
+       assertEquals(ENROLLMENT_LIST.get(0),command.getEnrollments().get(0));
 
 
 
