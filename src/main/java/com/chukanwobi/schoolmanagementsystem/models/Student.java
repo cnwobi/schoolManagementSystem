@@ -23,7 +23,7 @@ public class Student implements UserDetails {
     private String major;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "student")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
     private List<Enrollment> enrollmentList = new ArrayList<>();
 
 

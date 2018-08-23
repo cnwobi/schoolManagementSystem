@@ -24,8 +24,7 @@ public class Assessment {
     joinColumns = @JoinColumn(name = "assessment_id"),
     inverseJoinColumns = @JoinColumn(name = "enrollment_id"))
     private List<Enrollment> enrollments =  new ArrayList<>();*/
-
-    @ManyToOne
-    private CourseAssessment courseAssessment;
+     @OneToOne
+    private CourseConduction courseConduction;
 
 }
