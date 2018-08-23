@@ -75,6 +75,9 @@ table{
     border: solid #D4D6D5 thin;
     background-color: #EFEDE2;
 }
+.courseList{
+    line-height: 2em;
+}
 .courseList header,.profile header{
     font-weight: bolder;
     text-align: center;
@@ -155,9 +158,6 @@ input[type="number"]::placeholder{
     font-style: italic;
 
 }
-input[type="number"]{
-    font-family: 'Economica', sans-serif;
-}
 
 .course-capacity button, input[type="button"]{
     display: block;
@@ -232,6 +232,24 @@ h1.error-404{
     width: 100%;
     height: 100%;
 }
+
+article.course_details{
+    margin-bottom: 5%;
+}
+
+/*Start of profile aside in course view*/
+.profile-aside table, .profile-aside thead,.profile-aside tbody, .profile-aside th, .profile-aside td, .profile-aside tr{
+    display: block;
+    font-size: 100%;
+    border: none;
+
+}
+
+.profile-aside tr{
+    display: inline-block;
+
+}
+/*End of Cours view */
 
 
 /*Class list page*/
