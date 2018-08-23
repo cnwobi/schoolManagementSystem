@@ -1,3 +1,4 @@
+/*
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCodes;
@@ -40,3 +41,4 @@ public class StudentController {
 
 
 }
+*/

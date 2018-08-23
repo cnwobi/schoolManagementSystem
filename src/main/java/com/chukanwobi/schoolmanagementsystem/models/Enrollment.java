@@ -16,19 +16,19 @@ public class Enrollment {
     @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
     @ManyToOne
-    private Course course;
+    private CourseConduction courseConduction;
     @ManyToMany(mappedBy = "enrollments")
     private List<Assessment> assessments;
 
-    public Enrollment(Student student, Course course) {
+    public Enrollment(Student student, CourseConduction courseConduction) {
         this.student = student;
-        this.course = course;
+        this.courseConduction = courseConduction;
     }
 
-    public Enrollment(Semester semester, Student student, Course course) {
+    public Enrollment(Semester semester, Student student, CourseConduction course) {
         this.semester = semester;
         this.student = student;
-        this.course = course;
+        this.courseConduction = course;
     }
 
     public Enrollment() {

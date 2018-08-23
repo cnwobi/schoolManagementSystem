@@ -33,8 +33,7 @@ public class Course {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<CourseConduction> courseConductionList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
-    private List<Enrollment> enrollmentList = new ArrayList<>();
+
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<CourseAssessment> courseAssesments = new ArrayList<>();
@@ -52,12 +51,6 @@ public class Course {
  public Course addCourseConductions(CourseConduction courseConduction){
         courseConduction.setCourse(this);
         this.courseConductionList.add(courseConduction);
-        return this;
- }
-
- public Course addEnrollment(Enrollment enrollment){
-        enrollment.setCourse(this);
-        this.enrollmentList.add(enrollment);
         return this;
  }
 
