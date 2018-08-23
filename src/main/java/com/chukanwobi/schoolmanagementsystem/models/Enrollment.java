@@ -17,8 +17,8 @@ public class Enrollment {
     private Student student;
     @ManyToOne
     private CourseConduction courseConduction;
-    @ManyToMany(mappedBy = "enrollments")
-    private List<Assessment> assessments;
+   /* @ManyToMany(mappedBy = "enrollments")
+    private List<Assessment> assessments;*/
 
     public Enrollment(Student student, CourseConduction courseConduction) {
         this.student = student;

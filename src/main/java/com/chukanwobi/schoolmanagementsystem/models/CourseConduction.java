@@ -37,8 +37,11 @@ public class CourseConduction {
     private Course course;
 
     private Year year;
+
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseConduction")
     private List<Enrollment> enrollmentList = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseConduction")
     private List<CourseAssessment> courseAssesments = new ArrayList<>();
 

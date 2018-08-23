@@ -81,19 +81,5 @@ public class LecturerControllerTest {
                 .andExpect(model().attributeExists("lecturer","coursesConducted"));
     }
 
-    @Test
-    public void testEditClassCapacity() throws Exception {
-        CourseConduction courseConduction = new CourseConduction();
 
-
-        when(lecturerService.findCourseConductionByIdAndLecturerId(2l,4l)).thenReturn(conductionConverter.convert(
-                courseConduction));
-
-        mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
-                .andExpect(status().isOk())
-                .andExpect(model().attributeExists("class"))
-                .andExpect(view().name("courseConduction/form"));
-
-
-            }
 }

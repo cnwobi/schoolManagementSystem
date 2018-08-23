@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class CourseConductionController {
-@Autowired
 private  LecturerService lecturerService;
+
+    public CourseConductionController(LecturerService lecturerService) {
+        this.lecturerService = lecturerService;
+    }
 
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String viewCourseConduction(@PathVariable String lecturerId, @PathVariable String classId, Model model){
