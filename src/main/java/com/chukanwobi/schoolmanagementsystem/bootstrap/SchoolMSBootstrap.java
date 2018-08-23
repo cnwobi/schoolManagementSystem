@@ -64,6 +64,8 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     courseConduction.setCapacity(60);
     courseConduction.setSemester(Semester.FIRST);
     courseConduction.setYear(Year.of(2014));
+    courseConduction.getEnrolledStudents().add(student1);
+    courseConduction.getEnrolledStudents().add(student2);
     courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
     courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
 

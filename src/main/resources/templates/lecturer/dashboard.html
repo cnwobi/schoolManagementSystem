@@ -71,7 +71,7 @@
                 <div class="title" th:text="${courseSession.course.title}"> Advanced ThermoDynamics</div>
                 <div><span class="capacity" >Capacity:</span> <span th:text="${courseSession.capacity+' enrolledStudents'}">120 Students</span>
                 </div>
-                <div><span class="capacity">Currently Enrolled :</span><span th:text="${courseSession.enrollments.size()+ ' enrolledStudents'}"></span> </div>
+                <div><span class="capacity">Currently Enrolled :</span><span th:text="${courseSession.enrolledStudents.size()+ ' enrolledStudents'}"></span> </div>
                 <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}">120 Students</span>
                 </div>
                 <div> <span class="capacity" >Year:</span><span th:text="${courseSession.year}"> 2019 </span> <a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity   </a></div>

@@ -26,7 +26,7 @@ public class Student implements UserDetails {
 
 
 
-    @ManyToMany(mappedBy = "enrolledStudents")
+    @ManyToMany(mappedBy = "enrolledStudents", fetch = FetchType.EAGER)
     private Set<CourseConduction> courseConductions;
 
 

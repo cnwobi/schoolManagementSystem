@@ -41,7 +41,7 @@ public class CourseConduction {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "enrollments",joinColumns = @JoinColumn(name = "course_conduction_id"),
     inverseJoinColumns = @JoinColumn(name = "student_id"))
     private Set<Student> enrolledStudents = new HashSet<>();

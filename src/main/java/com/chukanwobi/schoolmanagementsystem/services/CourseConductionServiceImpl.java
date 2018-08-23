@@ -6,6 +6,7 @@ import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@Transactional
 public class CourseConductionServiceImpl implements CourseConductionService{
     private CourseConductionRepo courseConductionRepo;
     private CourseConductionToCourseConductionCommand conductionConverter;
