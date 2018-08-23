@@ -35,8 +35,7 @@ public class Course {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
-    private List<CourseAssessment> courseAssesments = new ArrayList<>();
+
 
     public Course() {
     }
@@ -56,11 +55,7 @@ public class Course {
 
 
 
- public Course addCourseAssements(CourseAssessment courseAssessment){
-        courseAssessment.setCourse(this);
-        this.courseAssesments.add(courseAssessment);
-        return this;
-    }
+
 
     protected boolean canEqual(Object other) {
         return other instanceof Course;

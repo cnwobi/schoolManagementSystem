@@ -39,11 +39,19 @@ public class CourseConduction {
     private Year year;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseConduction")
     private List<Enrollment> enrollmentList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseConduction")
+    private List<CourseAssessment> courseAssesments = new ArrayList<>();
 
 
     public CourseConduction addEnrollment(Enrollment enrollment){
         enrollment.setCourseConduction(this);
         this.enrollmentList.add(enrollment);
+        return this;
+    }
+
+    public CourseConduction addCourseAssements(CourseAssessment courseAssessment){
+        courseAssessment.setCourseConduction(this);
+        this.courseAssesments.add(courseAssessment);
         return this;
     }
 }

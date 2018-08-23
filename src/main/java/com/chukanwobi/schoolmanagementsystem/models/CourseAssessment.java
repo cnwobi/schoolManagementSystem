@@ -15,7 +15,7 @@ public class CourseAssessment {
     @Enumerated(value = EnumType.STRING)
     private Semester semester;
     @ManyToOne
-    private Course course;
+    private CourseConduction courseConduction;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseAssessment")
     private List<Assessment> assessments = new ArrayList<>();

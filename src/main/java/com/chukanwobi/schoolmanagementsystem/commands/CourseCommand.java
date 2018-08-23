@@ -11,8 +11,5 @@ public class CourseCommand {
     private String title;
     private DepartmentalCodes departmentalCodes;
 
-    private List<Course> prerequisitesCollection = new ArrayList<>();
-    private List<CourseConduction> courseConductionList = new ArrayList<>();
-    private List<Enrollment> enrollmentList = new ArrayList<>();
-    private  List<CourseAssessment> courseAssessmentList = new ArrayList<>();
+
 }
