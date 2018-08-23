@@ -45,8 +45,20 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
                 .forEachRemaining(lecturer -> lecturers.add(lecturer));
 
         List<Course> courses = new ArrayList<>();
+        List<Student> studentsList = new ArrayList<>();
 
         courseRepository.findAll().iterator().forEachRemaining(course -> courses.add(course));
+        studentRepository.findAll().iterator().forEachRemaining(student -> studentsList.add(student));
+
+       Student student1 = studentsList.stream().filter(student -> student.getId()==1).findFirst().get();
+       Student student2 = studentsList.stream().filter(student -> student.getId()==2).findFirst().get();
+       Student student3 = studentsList.stream().filter(student -> student.getId()==3).findFirst().get();
+       Student student4 = studentsList.stream().filter(student -> student.getId()==4).findFirst().get();
+       Student student5 = studentsList.stream().filter(student -> student.getId()==5).findFirst().get();
+       Student student6= studentsList.stream().filter(student -> student.getId()==6).findFirst().get();
+
+
+
 
     CourseConduction courseConduction = new CourseConduction();
     courseConduction.setCapacity(60);
@@ -54,8 +66,8 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     courseConduction.setYear(Year.of(2014));
     courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
     courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
-    courseConductions.add(courseConduction);
 
+    courseConductions.add(courseConduction);
 
 
 
@@ -65,6 +77,10 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction1.setSemester(Semester.SECOND);
         courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction1.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
+
+
+
+
         courseConductions.add(courseConduction1);
 
 
@@ -93,6 +109,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction4.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction4.setCourse(courses.stream().filter(course -> course.getId()==3).findFirst().get());
         courseConductions.add(courseConduction4);
+
 
         return courseConductions;
     }

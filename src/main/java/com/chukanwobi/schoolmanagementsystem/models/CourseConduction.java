@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -39,19 +39,22 @@ public class CourseConduction {
     private Year year;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "courseConduction")
-    private List<Enrollment> enrollmentList = new ArrayList<>();
+
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "enrollments",joinColumns = @JoinColumn(name = "course_conduction_id"),
+    inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private Set<Student> enrolledStudents = new HashSet<>();
+
 
 
     @OneToOne
     private Assessment assessment;
 
 
-    public CourseConduction addEnrollment(Enrollment enrollment){
-        enrollment.setCourseConduction(this);
-        this.enrollmentList.add(enrollment);
+    public CourseConduction addStudent(Student student){
+        enrolledStudents.add(student);
         return this;
     }
-
 
 }

@@ -7,7 +7,9 @@ import org.junit.Test;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +21,7 @@ public class CourseConductionToCourseConductionCommandTest {
     private static final Lecturer LECTURER = new Lecturer();
     private static final Course COURSE= new Course();
     private static final Year YEAR = Year.of(2011);
-    private static final List<Enrollment>  ENROLLMENT_LIST = new ArrayList<>();
+    private static final Set<Student> ENROLLED_STUDENTS = new HashSet<>();
     @Before
     public void setUp() throws Exception {
    converter = new CourseConductionToCourseConductionCommand();
@@ -37,15 +39,18 @@ public class CourseConductionToCourseConductionCommandTest {
         courseConduction.setCourse(COURSE);
         courseConduction.setLecturer(LECTURER);
 
-        Enrollment enrollment = new Enrollment();
-        enrollment.setId(2l);
 
-        Enrollment enrollment1 = new Enrollment();
-        enrollment.setId(3l);
+  Student student = new Student();
+  student.setId(1l);
 
-        ENROLLMENT_LIST.add(enrollment);
-        ENROLLMENT_LIST.add(enrollment1);
-courseConduction.setEnrollmentList(ENROLLMENT_LIST);
+  Student student1 = new Student();
+  student1.setId(2l);
+
+
+        ENROLLED_STUDENTS.add(student);
+
+        ENROLLED_STUDENTS.add(student1);
+courseConduction.setEnrolledStudents(ENROLLED_STUDENTS);
 
         CourseConductionCommand command = converter.convert(courseConduction);
 
@@ -55,8 +60,8 @@ courseConduction.setEnrollmentList(ENROLLMENT_LIST);
         assertEquals(INTEGER_CAPACITY,command.getCapacity());
         assertEquals(COURSE,command.getCourse());
         assertEquals(LECTURER,command.getLecturer());
-       assertEquals(ENROLLMENT_LIST.size(),command.getEnrollments().size());
-       assertEquals(ENROLLMENT_LIST.get(0),command.getEnrollments().get(0));
+       assertEquals(ENROLLED_STUDENTS.size(),command.getEnrolledStudents().size());
+
 
 
 

@@ -10,6 +10,7 @@ import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@Transactional
 public class LectureServiceImpl implements LecturerService {
 
 private LecturerRepository lecturerRepository;

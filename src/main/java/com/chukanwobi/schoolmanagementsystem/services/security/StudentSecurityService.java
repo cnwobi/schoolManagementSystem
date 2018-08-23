@@ -26,6 +26,7 @@ public class StudentSecurityService implements UserDetailsService {
     if(!optionalStudent.isPresent()){
         throw new UsernameNotFoundException("Student not found");
     }
+
     return optionalStudent.get();
     }
 }

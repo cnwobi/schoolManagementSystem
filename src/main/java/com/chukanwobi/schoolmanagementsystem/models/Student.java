@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -23,15 +24,13 @@ public class Student implements UserDetails {
     private String major;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
-    private List<Enrollment> enrollmentList = new ArrayList<>();
 
 
-    public Student enroll(Enrollment enrollment){
-        enrollment.setStudent(this);
-        this.enrollmentList.add(enrollment);
-        return this;
+    @ManyToMany(mappedBy = "enrolledStudents")
+    private Set<CourseConduction> courseConductions;
 
+
+    public Student() {
     }
 
     public Student(String username, String firstName, String surname, String email, String major) {
