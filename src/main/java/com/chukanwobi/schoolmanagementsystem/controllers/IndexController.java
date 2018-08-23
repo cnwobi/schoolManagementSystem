@@ -1,8 +1,11 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,13 +46,16 @@ public class IndexController {
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request){
         if (request.isUserInRole("LECTURER")){
-            return "redirect:/lecturer/";
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
+            return "redirect:/lecturer/"+command.getId()+"/view/courses";
+
         }
         if(request.isUserInRole("ADMIN")){
             return "redirect:/admin";
         }
         if(request.isUserInRole("STUDENT")){
-            return "redirect:/student";
+            return "redirect:/student/";
         }
       return "/error";
     }

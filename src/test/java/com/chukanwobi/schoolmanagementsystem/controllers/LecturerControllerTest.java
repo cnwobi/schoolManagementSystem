@@ -77,7 +77,7 @@ public class LecturerControllerTest {
 
 
         mockMvc.perform(get("/lecturer/1/view/courses")).andExpect(status().isOk())
-                .andExpect(view().name("lecturer/courseview"))
+                .andExpect(view().name("lecturer/dashboard"))
                 .andExpect(model().attributeExists("lecturer","coursesConducted"));
     }
 

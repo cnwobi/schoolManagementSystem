@@ -39,16 +39,12 @@ public class LecturerController {
         if(Long.valueOf(id)!=command.getId()){
            return "redirect:/lecturer/"+command.getId()+"/view/courses";
         }
+        log.debug("memn");
         model.addAttribute("coursesConducted", lecturerService.findCourseConductionByLecturerId(command.getId()));
         model.addAttribute("lecturer",lecturerService.findLecturerById(command.getId()));
-        return "lecturer/courseview";
+        return "lecturer/dashboard";
     }
 
-    @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
-    public String editClassCapacity(@PathVariable String lecturerId,@PathVariable String classId,Model model){
-       model.addAttribute("class",lecturerService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId),Long.valueOf(lecturerId)));
-       return "courseConduction/form";
 
-    }
 
 }

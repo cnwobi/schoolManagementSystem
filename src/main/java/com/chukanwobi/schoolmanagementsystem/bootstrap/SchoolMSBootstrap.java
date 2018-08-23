@@ -2,7 +2,7 @@ package com.chukanwobi.schoolmanagementsystem.bootstrap;
 
 import com.chukanwobi.schoolmanagementsystem.models.*;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
-import com.chukanwobi.schoolmanagementsystem.repositories.CourseRepository;
+import com.chukanwobi.schoolmanagementsystem.repositories.CourseRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +18,11 @@ import java.util.*;
 public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private LecturerRepository lecturerRepository;
     private StudentRepository studentRepository;
-    private CourseRepository courseRepository;
+    private CourseRepo courseRepository;
     private CourseConductionRepo courseConductionRepo;
 
     public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository,
-                             CourseRepository courseRepository,CourseConductionRepo courseConductionRepo) {
+                             CourseRepo courseRepository, CourseConductionRepo courseConductionRepo) {
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
