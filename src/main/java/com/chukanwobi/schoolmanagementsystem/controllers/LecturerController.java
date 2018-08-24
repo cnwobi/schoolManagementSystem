@@ -1,11 +1,14 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
+import com.chukanwobi.schoolmanagementsystem.services.EnrollmentService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,8 @@ public class LecturerController {
     private  LecturerService lecturerService;
 
   private  CourseConductionService conductionService;
+  @Autowired
+  private EnrollmentService enrollmentService;
 
 
 
@@ -73,7 +78,7 @@ public class LecturerController {
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
 
-        model.addAttribute("students",conductionService.findCourseConductionById(Long.valueOf(classId)).getEnrolledStudents());
+        model.addAttribute("enrollments",enrollmentService.findEnrollmentsByClassId(Long.valueOf(classId)));
 
         return "lecturer/class/students";
 }

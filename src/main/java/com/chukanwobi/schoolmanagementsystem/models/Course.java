@@ -18,7 +18,7 @@ public class Course {
     private String title;
     @Enumerated(value = EnumType.STRING)
 
-    private DepartmentalCodes departmentalCodes;
+    private DepartmentalCode departmentalCode;
 
 
 @ManyToMany(mappedBy = "prerequisitesCollection")
@@ -40,9 +40,9 @@ public class Course {
     public Course() {
     }
 
-    public Course(String title, DepartmentalCodes departmentalCodes) {
+    public Course(String title, DepartmentalCode departmentalCode) {
         this.title = title;
-        this.departmentalCodes = departmentalCodes;
+        this.departmentalCode = departmentalCode;
     }
 //Bi directionals
 

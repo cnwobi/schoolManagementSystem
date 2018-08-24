@@ -1,13 +1,11 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
-import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCodes;
+import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCode;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import com.chukanwobi.schoolmanagementsystem.services.CourseService;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +28,9 @@ public class StudentController {
 
     }
 
-    @GetMapping("students/view/course/{departmentalCodes}")
-    public String viewCourseByDepartmentalCodes(@PathVariable DepartmentalCodes departmentalCodes,Model model){
-       model.addAttribute("coursesInDepartment" ,courseService.getCoursesByDeparmentalCodes(departmentalCodes));
+    @GetMapping("students/view/course/{departmentalCode}")
+    public String viewCourseByDepartmentalCodes(@PathVariable DepartmentalCode departmentalCode, Model model){
+       model.addAttribute("coursesInDepartment" ,courseService.getCoursesByDeparmentalCodes(departmentalCode));
 
        return "courses/view/department";
 

@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.Synchronized;
@@ -14,6 +15,11 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
 
    @Autowired
     private StudentToStudentCommand converter;
+    private EnrollmentToEnrollmentCommand enrollmentConverter;
+
+    {
+        enrollmentConverter = new EnrollmentToEnrollmentCommand();
+    }
 
     @Override
     @Synchronized
@@ -30,9 +36,10 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
         command.setLecturer(courseConduction.getLecturer());
         command.setSemester(courseConduction.getSemester());
         command.setYear(courseConduction.getYear());
-        if(courseConduction.getEnrolledStudents() !=null && courseConduction.getEnrolledStudents().size()>0)
+        if(courseConduction.getEnrollments() !=null && courseConduction.getEnrollments().size()>0)
         {
-            courseConduction.getEnrolledStudents().forEach(student -> command.getEnrolledStudents().add(converter.convert(student)));
+            courseConduction.getEnrollments().forEach(enrollment -> command.getEnrollments().add(enrollmentConverter.convert(enrollment)));
+
         }
         return command;
     }

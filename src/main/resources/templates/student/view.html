@@ -73,10 +73,10 @@
         <article class="grid-50 courseList">
             <header> Courses You Enrolled In</header>
 
-            <div th:remove="all" class="course_tile" th:each="courseSession:${student.courseConductions}">
+            <div th:remove="all" class="course_tile" th:each="courseSession:${student.getEnrollments}">
 
                 <div class="title" th:text="${courseSession.course.title}"> Advanced ThermoDynamics</div>
-                <div><span class="capacity" >Capacity:</span> <span th:text="${courseSession.capacity+' enrolledStudents'}">120 Students</span>
+                <div><span class="capacity" >Capacity:</span> <span th:text="${courseSession.capacity+' enrollments'}">120 Students</span>
                 </div>
                 <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}">120 Students</span>
                 </div>

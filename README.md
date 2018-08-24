@@ -1,6 +1,6 @@
 # Student management System
 Still in development
-The application will allow the enrolledStudents to view the courses they are enrolled in and the marks they have obtained in each enrolled courses for a semester. The application will allow the teacher to see the courses they are conducting in a semester, the enrolledStudents who are enrolled in his/her courses and the assessment marks the enrolledStudents have obtained in those courses. Additionally, they will be allowed to upload assessment marks for the enrolledStudents.
+The application will allow the enrollments to view the courses they are enrolled in and the marks they have obtained in each enrolled courses for a semester. The application will allow the teacher to see the courses they are conducting in a semester, the enrollments who are enrolled in his/her courses and the assessment marks the enrollments have obtained in those courses. Additionally, they will be allowed to upload assessment marks for the enrollments.
 
 
 

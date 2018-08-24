@@ -16,11 +16,11 @@ public class Assessment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal assessmentOne;
-    private BigDecimal assessmentTwo;
+    private Double assessmentOne;
+    private Double assessmentTwo;
 
 
      @OneToOne
-    private CourseConduction courseConduction;
+    private Enrollment enrollment;
 
 }

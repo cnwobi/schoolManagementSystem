@@ -15,16 +15,17 @@ import static org.junit.Assert.*;
 
 public class CourseConductionToCourseConductionCommandTest {
     CourseConductionToCourseConductionCommand converter;
-    private static  final Long ID = 1l;
+    private static final Long ID = 1l;
     private static final Semester SEMESTER = Semester.FIRST;
     private static final Integer INTEGER_CAPACITY = 150;
     private static final Lecturer LECTURER = new Lecturer();
-    private static final Course COURSE= new Course();
+    private static final Course COURSE = new Course();
     private static final Year YEAR = Year.of(2011);
-    private static final Set<Student> ENROLLED_STUDENTS = new HashSet<>();
+    private static final List<Enrollment> ENROLLMENTS = new ArrayList<>();
+
     @Before
     public void setUp() throws Exception {
-   converter = new CourseConductionToCourseConductionCommand();
+        converter = new CourseConductionToCourseConductionCommand();
 
     }
 
@@ -40,29 +41,25 @@ public class CourseConductionToCourseConductionCommandTest {
         courseConduction.setLecturer(LECTURER);
 
 
-  Student student = new Student();
-  student.setId(1l);
+        Enrollment enrollment = new Enrollment();
+        enrollment.setId(1l);
+        Enrollment enrollment1 = new Enrollment();
+        enrollment1.setId(2l);
+        ENROLLMENTS.add(enrollment);
+        ENROLLMENTS.add(enrollment1);
 
-  Student student1 = new Student();
-  student1.setId(2l);
 
-
-        ENROLLED_STUDENTS.add(student);
-
-        ENROLLED_STUDENTS.add(student1);
-courseConduction.setEnrolledStudents(ENROLLED_STUDENTS);
+        courseConduction.setEnrollments(ENROLLMENTS);
 
         CourseConductionCommand command = converter.convert(courseConduction);
 
-        assertEquals(ID,command.getId());
-        assertEquals(YEAR,command.getYear());
-        assertEquals(SEMESTER,command.getSemester());
-        assertEquals(INTEGER_CAPACITY,command.getCapacity());
-        assertEquals(COURSE,command.getCourse());
-        assertEquals(LECTURER,command.getLecturer());
-       assertEquals(ENROLLED_STUDENTS.size(),command.getEnrolledStudents().size());
-
-
+        assertEquals(ID, command.getId());
+        assertEquals(YEAR, command.getYear());
+        assertEquals(SEMESTER, command.getSemester());
+        assertEquals(INTEGER_CAPACITY, command.getCapacity());
+        assertEquals(COURSE, command.getCourse());
+        assertEquals(LECTURER, command.getLecturer());
+        assertEquals(ENROLLMENTS.size(), command.getEnrollments().size());
 
 
     }

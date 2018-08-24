@@ -21,7 +21,7 @@ public class CourseToCourseCommand implements Converter<Course, CourseCommand> {
         CourseCommand command = new CourseCommand();
         command.setTitle(course.getTitle());
         command.setId(course.getId());
-        command.setDepartmentalCodes(course.getDepartmentalCodes());
+        command.setDepartmentalCode(course.getDepartmentalCode());
 
         return command;
     }

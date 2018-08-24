@@ -57,6 +57,12 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
        Student student5 = studentsList.stream().filter(student -> student.getId()==5).findFirst().get();
        Student student6= studentsList.stream().filter(student -> student.getId()==6).findFirst().get();
 
+       Enrollment enrollment1 = new Enrollment(student1,new Assessment());
+       Enrollment enrollment2 = new Enrollment(student2, new Assessment());
+       Enrollment enrollment3 = new Enrollment(student3,new Assessment());
+       Enrollment enrollment4 = new Enrollment(student4,new Assessment());
+       Enrollment enrollment5 = new Enrollment(student5, new Assessment());
+       Enrollment enrollment6 = new Enrollment(student6,new Assessment());
 
 
 
@@ -64,8 +70,9 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     courseConduction.setCapacity(60);
     courseConduction.setSemester(Semester.FIRST);
     courseConduction.setYear(Year.of(2014));
-    courseConduction.getEnrolledStudents().add(student1);
-    courseConduction.getEnrolledStudents().add(student2);
+
+    courseConduction.addEnrollment(enrollment1);
+    courseConduction.addEnrollment(enrollment2);
     courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
     courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
 
@@ -79,6 +86,11 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction1.setSemester(Semester.SECOND);
         courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction1.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
+        courseConduction1.addEnrollment(enrollment1);
+        courseConduction.addEnrollment(enrollment2);
+        courseConduction.addEnrollment(enrollment3);
+        courseConduction.addEnrollment(enrollment4);
+        courseConduction.addEnrollment(enrollment5);
 
 
 
@@ -117,11 +129,11 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     }
 
 public List<Course> getCoursesWithPrerequisites(){
-        Course course1 = new Course("Introduction to mathematics", DepartmentalCodes.MTH);
-        Course course2 = new Course("Introduction to mathematics 2", DepartmentalCodes.MTH);
-        Course course3 = new Course("Advanced mathematics",DepartmentalCodes.MTH);
-        Course course4 =  new Course("Basic Chemistry",DepartmentalCodes.CHM);
-        Course course5 = new Course("Advanced Chemistry",DepartmentalCodes.CHM);
+        Course course1 = new Course("Introduction to mathematics", DepartmentalCode.MTH);
+        Course course2 = new Course("Introduction to mathematics 2", DepartmentalCode.MTH);
+        Course course3 = new Course("Advanced mathematics", DepartmentalCode.MTH);
+        Course course4 =  new Course("Basic Chemistry", DepartmentalCode.CHM);
+        Course course5 = new Course("Advanced Chemistry", DepartmentalCode.CHM);
 
         //set prerequisites
     course2.getPrerequisitesCollection().add(course1);

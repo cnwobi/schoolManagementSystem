@@ -1,7 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseCommand;
-import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCodes;
+import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +21,7 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public List<CourseCommand> getCoursesByDeparmentalCodes(DepartmentalCodes departmentalCodes) {
+    public List<CourseCommand> getCoursesByDeparmentalCodes(DepartmentalCode departmentalCode) {
         return null;
     }
 }

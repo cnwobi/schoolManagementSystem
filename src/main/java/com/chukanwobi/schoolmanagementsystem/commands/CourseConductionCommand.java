@@ -1,16 +1,15 @@
 package com.chukanwobi.schoolmanagementsystem.commands;
 
-import com.chukanwobi.schoolmanagementsystem.models.Course;
+import com.chukanwobi.schoolmanagementsystem.models.*;
 
-import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
-import com.chukanwobi.schoolmanagementsystem.models.Semester;
-import com.chukanwobi.schoolmanagementsystem.models.Student;
 import lombok.Data;
 
 import java.time.Year;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -23,7 +22,7 @@ public class CourseConductionCommand {
     private Course course;
     private Year  year;
 
-    private Set<StudentCommand> enrolledStudents = new HashSet<>();
+    private List<EnrollmentCommand> enrollments = new ArrayList<>();
     public CourseConductionCommand() {
     }
 }

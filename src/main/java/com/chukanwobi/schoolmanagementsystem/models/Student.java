@@ -1,6 +1,5 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,8 +25,8 @@ public class Student implements UserDetails {
 
 
 
-    @ManyToMany(mappedBy = "enrolledStudents", fetch = FetchType.EAGER)
-    private Set<CourseConduction> courseConductions;
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
+    private Set<Enrollment> enrollments = new HashSet<>();
 
 
     public Student() {

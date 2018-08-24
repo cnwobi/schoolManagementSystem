@@ -1,7 +1,7 @@
-insert into course(title,	DEPARTMENTAL_CODES  	) values ('Designing Autonomous Robots','ITECH');
-insert into course(title,	DEPARTMENTAL_CODES ) values ('	Introduction to Nuclear Physics','PHY');
-insert into course(title,DEPARTMENTAL_CODES ) values ('	Advanced Software Engineering Design','ITECH');
-insert into course(title,DEPARTMENTAL_CODES ) values ('	Advanced Thermodynamics','PHY');
+insert into course(title,	DEPARTMENTAL_CODE 	) values ('Designing Autonomous Robots','ITECH');
+insert into course(title,	DEPARTMENTAL_CODE ) values ('	Introduction to Nuclear Physics','PHY');
+insert into course(title,DEPARTMENTAL_CODE ) values ('	Advanced Software Engineering Design','ITECH');
+insert into course(title,DEPARTMENTAL_CODE ) values ('	Advanced Thermodynamics','PHY');
 
 
 insert into lecturer(campus,email,first_name,surname,username)  VALUES ('FUTO',
