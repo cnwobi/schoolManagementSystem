@@ -16,10 +16,10 @@ private CourseConductionService conductionService;
         this.conductionService = conductionService;
     }
 
-    @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
+   /* @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String viewCourseConduction(@PathVariable String lecturerId, @PathVariable String classId, Model model){
 
     model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId),Long.valueOf(lecturerId)));
     return "courseConduction/form";
-    }
+    }*/
 }

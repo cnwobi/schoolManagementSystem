@@ -2,6 +2,8 @@ package com.chukanwobi.schoolmanagementsystem.services;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.exceptions.NotFoundException;
+import com.chukanwobi.schoolmanagementsystem.models.Course;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,17 @@ public class CourseConductionServiceImpl implements CourseConductionService{
     public CourseConductionServiceImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand conductionConverter) {
         this.courseConductionRepo = courseConductionRepo;
         this.conductionConverter = conductionConverter;
+    }
+
+
+    @Override
+    public CourseConductionCommand findCourseConductionById(Long classId) {
+        Optional<CourseConduction> optionalCourse = courseConductionRepo.findById(classId);
+        if(!optionalCourse.isPresent()){
+            throw new NotFoundException("Course Conduction (lecturer class) with Id: " +classId+" was not found");
+        }
+
+        return conductionConverter.convert(optionalCourse.get());
     }
 
     @Override
@@ -53,7 +66,6 @@ public class CourseConductionServiceImpl implements CourseConductionService{
         if(optionalCourseConduction.get().getLecturer().getId()!=lecturerId){
             throw new RuntimeException("You do not teach this class");
         }
-
 
 
         return conductionConverter.convert(optionalCourseConduction.get());

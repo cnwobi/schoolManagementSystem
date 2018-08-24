@@ -6,9 +6,13 @@ import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverte
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
+import com.chukanwobi.schoolmanagementsystem.models.Student;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +27,9 @@ public class LectureServiceImpl implements LecturerService {
 
 private LecturerRepository lecturerRepository;
 private LecturerToLecturerCommand converter;
+@Qualifier("Lecturer")
+@Autowired
+private UserDetailsService userDetailsService;
 private CourseConductionToCourseConductionCommand conductionConverter;
 private CourseConductionRepo courseConductionRepo;
 
@@ -61,12 +68,9 @@ private CourseConductionRepo courseConductionRepo;
     @Override
     public LecturerCommand findLecturerByUsername(String username) {
 
-        Optional<Lecturer> lecturerOptional = lecturerRepository.findLecturerByUsername(username);
-        if(!lecturerOptional.isPresent()){
-            throw new RuntimeException("Lecturer with username: "+username+" was not found");
-        }
+      Lecturer lecturer = (Lecturer) userDetailsService.loadUserByUsername(username);
 
-        return converter.convert(lecturerOptional.get());
+      return converter.convert(lecturer);
 
     }
 
