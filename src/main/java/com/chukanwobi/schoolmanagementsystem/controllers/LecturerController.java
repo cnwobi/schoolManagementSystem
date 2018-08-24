@@ -3,9 +3,9 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
-import com.chukanwobi.schoolmanagementsystem.services.security.LecturerSecurityService;
+
 import lombok.extern.slf4j.Slf4j;
-import netscape.security.Principal;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
