@@ -37,19 +37,4 @@ public class CourseConductionControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
-    @Test
-    public void testEditClassCapacity() throws Exception {
-        CourseConduction courseConduction = new CourseConduction();
-
-
-        when(conductionService.findCourseConductionByIdAndLecturerId(2l,4l)).thenReturn(conductionConverter.convert(
-                courseConduction));
-
-        mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
-                .andExpect(status().isOk())
-                .andExpect(model().attributeExists("class"))
-                .andExpect(view().name("courseConduction/form"));
-
-
-    }
 }

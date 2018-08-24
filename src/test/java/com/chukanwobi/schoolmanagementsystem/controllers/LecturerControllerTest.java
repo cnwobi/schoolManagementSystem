@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
@@ -41,18 +42,21 @@ public class LecturerControllerTest {
     LecturerController controller;
     LecturerToLecturerCommand converterLecturer;
     CourseConductionToCourseConductionCommand conductionConverter;
-   @Mock
+    @Mock
     Authentication authentication;
-   @Mock
+    @Mock
     SecurityContext securityContext;
-
     MockMvc mockMvc;
+    LecturerCommand command;
+    private static  final Long LONG_ID=4l;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        command = new LecturerCommand();
+        command.setId(3l);
 
-
-        controller = new LecturerController(lecturerService,conductionService);
+        controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
         conductionConverter = new CourseConductionToCourseConductionCommand();
@@ -82,8 +86,37 @@ public class LecturerControllerTest {
 
         mockMvc.perform(get("/lecturer/1/view/courses")).andExpect(status().isOk())
                 .andExpect(view().name("lecturer/dashboard"))
-                .andExpect(model().attributeExists("lecturer","coursesConducted"));
+                .andExpect(model().attributeExists("lecturer", "coursesConducted"));
     }
 
 
+    @Test
+    public void testLoadLecturerDetails() throws Exception {
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
+        when(controller.authenticatedLecturer()).thenReturn(command);
+        when(lecturerService.findLecturerByUsername(anyString())).thenReturn(command);
+        mockMvc.perform(get("/lecturer"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void testEditClassCapacity() throws Exception {
+        CourseConduction courseConduction = new CourseConduction();
+        LecturerCommand lecturerCommand= new LecturerCommand();
+        lecturerCommand.setId(LONG_ID);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
+
+        when(controller.authenticatedLecturer()).thenReturn(lecturerCommand);
+        when(conductionService.findCourseConductionByIdAndLecturerId(2l, 4l)).thenReturn(conductionConverter.convert(
+                courseConduction));
+
+        mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("class"))
+                .andExpect(view().name("courseConduction/form"));
+
+
+    }
 }
