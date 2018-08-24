@@ -65,8 +65,12 @@ public class LecturerController {
         model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "courseConduction/form";
     }
-/*@GetMapping("/lecturer/'+${lecturerId}+'/class/'+${classId}+/'students.html-list")
+
+@GetMapping("/lecturer/'+${lecturerId}+'/class/'+${classId}+/'students-list")
     public String getStudentsInEachClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
-    LecturerCommand command = lecturerService.findLecturerById(Long.valueOf(lecturerId));
-return null;}*/
+        if(Long.valueOf(lecturerId)!= authenticatedLecturer().getId()){
+            throw new RuntimeException("You do not have access to view or edit this class");
+        }
+    LecturerCommand command = lecturerService.findLecturerById(authenticatedLecturer().getId());
+return "lecturer/class/students";}
 }
