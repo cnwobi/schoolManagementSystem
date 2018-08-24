@@ -18,24 +18,25 @@
         <tr>
             <th>ID</th>
             <th>Image</th>
+            <th>Username</th>
             <th>First Name</th>
             <th>Surname</th>
             <th>Email</th>
-            <th>Campus</th>
-            <th></th>
+            <th>Major</th>
+
 
 
         </tr>
-        <tr th:each="lecturer:${lecturers}">
-            <td th:text="${lecturer.id}">1</td>
-            <td ><img th:unless ="${lecturer.image !=null}"  src="/images/no-image-icon.png">
+        <tr th:each="student:${students}">
+            <td th:text="${student.id}">1</td>
+            <td ><img th:unless ="${student.image !=null}"  src="/images/no-image-icon.png">
 
             </td>
-            <td th:text="${lecturer.firstName}">John</td>
-            <td th:text="${lecturer.surname}">Doe</td>
-            <td th:text="${lecturer.email}">j.doe@yahoo.com</td>
-            <td th:text="${lecturer.campus}"> Melbourne</td>
-            <td><a href="#" th:href="@{'/admin/lecturer/'+${lecturer.id}+'/view/courses'}" th:text="${'View Details'}">View Details</a> </td>
+            <td th:text="${student.username}">jdoe</td>
+            <td th:text="${student.firstName}">John</td>
+            <td th:text="${student.surname}">Doe</td>
+            <td th:text="${student.email}">j.doe@yahoo.com</td>
+            <td th:text="${student.major}"> Melbourne</td>
 
 
         </tr>

@@ -10,6 +10,18 @@ public class StudentToStudentCommand implements Converter<Student,StudentCommand
 
     @Override
     public StudentCommand convert(Student student) {
-        return null;
+        if(student==null){
+            return null;
+        }
+    StudentCommand command = new StudentCommand();
+        command.setId(student.getId());
+        command.setUsername(student.getUsername());
+        command.setFirstName(student.getFirstName());
+        command.setSurname(student.getSurname());
+        command.setEmail(student.getEmail());
+        command.setMajor(student.getMajor());
+        command.setPassword(student.getPassword());
+        command.setUsername(student.getUsername());
+        return command;
     }
 }

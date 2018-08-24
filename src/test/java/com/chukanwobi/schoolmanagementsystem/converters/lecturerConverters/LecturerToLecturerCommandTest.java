@@ -13,6 +13,7 @@ public class LecturerToLecturerCommandTest {
     LecturerToLecturerCommand converter;
 
     private static final Long ID = 1l;
+
     private static final String SURNAME = "Doe";
     private static final String FIRST_NAME = "John";
     //private static final Byte[] image;

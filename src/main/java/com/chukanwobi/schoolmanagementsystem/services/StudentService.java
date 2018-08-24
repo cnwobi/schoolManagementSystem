@@ -4,7 +4,8 @@ import com.chukanwobi.schoolmanagementsystem.commands.StudentCommand;
 
 
 import java.util.List;
+import java.util.Set;
 
 public interface StudentService {
-    List<StudentCommand> findStudentsByClassIdAndLecturerId(Long classId, Long lecturerId);
+
 }

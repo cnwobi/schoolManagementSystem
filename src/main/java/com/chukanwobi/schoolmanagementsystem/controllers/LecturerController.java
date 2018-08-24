@@ -35,6 +35,12 @@ public class LecturerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return lecturerService.findLecturerByUsername(auth.getName());
  }
+  private boolean isAuthenticatedId(Long id){
+        if(authenticatedLecturer().getId()!= id){
+            throw new RuntimeException("You do not have access to view or edit this class");
+        }
+        return true;
+  }
 
     @GetMapping("/lecturer")
     public String loadLecturerDetails(){
@@ -59,18 +65,17 @@ public class LecturerController {
 
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String EditClassCapacity(@PathVariable String lecturerId, @PathVariable String classId, Model model){
-        if(Long.valueOf(lecturerId) != authenticatedLecturer().getId()){
-           throw new RuntimeException("You do not have access to view or edit this class");
-        }
-        model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
+        if(isAuthenticatedId(Long.valueOf(lecturerId)))
+            model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "courseConduction/form";
     }
+@GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
+    public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
+        if(isAuthenticatedId(Long.valueOf(lecturerId)))
 
-@GetMapping("/lecturer/'+${lecturerId}+'/class/'+${classId}+/'students-list")
-    public String getStudentsInEachClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
-        if(Long.valueOf(lecturerId)!= authenticatedLecturer().getId()){
-            throw new RuntimeException("You do not have access to view or edit this class");
-        }
-    LecturerCommand command = lecturerService.findLecturerById(authenticatedLecturer().getId());
-return "lecturer/class/students";}
+        model.addAttribute("students",conductionService.findCourseConductionById(Long.valueOf(classId)).getEnrolledStudents());
+
+        return "lecturer/class/students";
+}
+
 }
