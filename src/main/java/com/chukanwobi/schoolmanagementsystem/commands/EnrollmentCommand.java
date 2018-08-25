@@ -14,5 +14,4 @@ public class EnrollmentCommand {
 
     private StudentCommand student;
 
-    private AssessmentCommand assessment;
 }

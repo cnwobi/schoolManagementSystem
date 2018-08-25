@@ -27,16 +27,16 @@
 
 
         </tr>
-        <tr th:each="student:${students}">
-            <td th:text="${student.id}">1</td>
-            <td ><img th:unless ="${student.image !=null}"  src="/images/no-image-icon.png">
+        <tr th:each="enrollment:${enrollments}">
+            <td th:text="${enrollment.student.id}">1</td>
+            <td ><img th:unless ="${enrollment.student.image !=null}"  src="/images/no-image-icon.png">
 
             </td>
-            <td th:text="${student.username}">jdoe</td>
-            <td th:text="${student.firstName}">John</td>
-            <td th:text="${student.surname}">Doe</td>
-            <td th:text="${student.email}">j.doe@yahoo.com</td>
-            <td th:text="${student.major}"> Melbourne</td>
+            <td th:text="${enrollment.student.username}">jdoe</td>
+            <td th:text="${enrollment.student.firstName}">John</td>
+            <td th:text="${enrollment.student.surname}">Doe</td>
+            <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
+            <td th:text="${enrollment.student.major}"> Melbourne</td>
 
 
         </tr>

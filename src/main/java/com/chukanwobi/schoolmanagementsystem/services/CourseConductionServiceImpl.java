@@ -46,7 +46,7 @@ public class CourseConductionServiceImpl implements CourseConductionService{
         log.debug("\n\n\n\n\n\n\n\n\n"+conductionCommandList.toString());
         List<CourseConductionCommand> conductionCommandList1= new ArrayList<>();
         CourseConductionCommand courseConduction = conductionCommandList.stream().findFirst().get();
-        log.debug(courseConduction.toString());
+        log.debug(courseConduction.toString()+"\n\n\n\n\n\n\n\n\n\n\n\n\n In list conduction");
 
         conductionCommandList.stream()
                 .filter(courseConductionCommand -> courseConductionCommand.getLecturer().getId()==lecturerId)

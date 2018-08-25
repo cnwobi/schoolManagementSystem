@@ -79,7 +79,7 @@ public class LecturerController {
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
 
         model.addAttribute("enrollments",enrollmentService.findEnrollmentsByClassId(Long.valueOf(classId)));
-
+  log.debug(enrollmentService.findEnrollmentsByClassId(Long.valueOf(classId)).toString());
         return "lecturer/class/students";
 }
 

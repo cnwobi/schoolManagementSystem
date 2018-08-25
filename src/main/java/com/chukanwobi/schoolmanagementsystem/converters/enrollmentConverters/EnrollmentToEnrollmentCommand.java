@@ -14,12 +14,23 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrollmentToEnrollmentCommand implements Converter<Enrollment,EnrollmentCommand> {
+@Autowired
+private CourseConductionToCourseConductionCommand courseConverter;
+@Autowired
+private AssessmentToAssessmentCommand assessmentConverter;
+@Autowired
+    private StudentToStudentCommand studentConverter;
 
 
-    private AssessmentToAssessmentCommand assessmentConverter;
-    {
-        assessmentConverter = new AssessmentToAssessmentCommand();
+   /* public EnrollmentToEnrollmentCommand(CourseConductionToCourseConductionCommand courseConverter, AssessmentToAssessmentCommand assessmentConverter, StudentToStudentCommand studentConverter) {
+        this.courseConverter = courseConverter;
+        this.assessmentConverter = assessmentConverter;
+        this.studentConverter = studentConverter;
+    }*/
+
+    public EnrollmentToEnrollmentCommand() {
     }
+
 
     @Override
     @Synchronized
@@ -30,7 +41,9 @@ public class EnrollmentToEnrollmentCommand implements Converter<Enrollment,Enrol
         }
         EnrollmentCommand command = new EnrollmentCommand();
         command.setId(enrollment.getId());
-        command.setAssessment(assessmentConverter.convert(enrollment.getAssessment()));
+        command.setCourseConduction(courseConverter.convert(enrollment.getCourseConduction()));
+
+        command.setStudent(studentConverter.convert(enrollment.getStudent()));
         return command;
     }
 }

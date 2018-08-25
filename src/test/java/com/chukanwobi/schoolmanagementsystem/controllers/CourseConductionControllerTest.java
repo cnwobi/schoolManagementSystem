@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;

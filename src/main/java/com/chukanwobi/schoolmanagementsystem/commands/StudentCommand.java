@@ -45,4 +45,11 @@ public class StudentCommand {
     public void setPassword(String password) {
         this.password = password;
     }
+    public boolean isImageNull() {
+
+        if (image ==null){
+            return true;
+        }
+        return false;
+    }
 }
