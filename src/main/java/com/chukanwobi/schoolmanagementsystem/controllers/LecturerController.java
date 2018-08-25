@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
@@ -71,9 +72,10 @@ public class LecturerController {
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String EditClassCapacity(@PathVariable String lecturerId, @PathVariable String classId, Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
-            model.addAttribute("class",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
+            model.addAttribute("courseConduction",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "courseConduction/form";
     }
+    @PostMapping
 @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
