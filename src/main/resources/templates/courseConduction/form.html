@@ -37,15 +37,21 @@
 
         <article class="grid-100 profile course_view_form">
             <header> Class Profile</header>
-            <form th:object="${class}" class="course-capacity">
-                <div >Course Title:<span class="title" th:text="${class.course.title}"> Advanced Thermodynamics</span> </div>
-                <div th:unless="${class.course.departmentalCode==null}">Course Code<span th:text="${class.course.departmentalCode+'00'+class.course.id}"> 2017</span> </div>
+            <form th:object="${courseConduction}" class="course-capacity" method="post">
+                <input type="hidden" th:field="*{id}" >
+                <input type="hidden" th:field="*{semester}" >
+                <input type="hidden" th:field="*{lecturer}">
+                <input type="hidden" th:field="*{course}" >
+                <input type="hidden" th:field="*{year}">
+
+                <div >Course Title:<span class="title" th:text="${courseConduction.course.title}"> Advanced Thermodynamics</span> </div>
+                <div th:unless="${courseConduction.course.departmentalCode==null}">Course Code<span th:text="${courseConduction.course.departmentalCode+'00'+courseConduction.course.id}"> 2017</span> </div>
                 <div>Capacity:<input type="number" class="form-text" placeholder="Please enter capacity" th:field="*{capacity}"> </div>
 
 
-                <div>Semester:<span th:text="${#strings.capitalize(class.semester.toString().toLowerCase())}"> Second</span> </div>
-                <div>Year:<span th:text="${class.year}"> 2017</span> </div>
-                <button> Submit </button>
+                <div>Semester:<span th:text="${#strings.capitalize(courseConduction.semester.toString().toLowerCase())}"> Second</span> </div>
+                <div>Year:<span th:text="${courseConduction.year}"> 2017</span> </div>
+                <button type="submit"> Submit </button>
             </form>
 
         </article>

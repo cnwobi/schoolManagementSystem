@@ -6,6 +6,7 @@ import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.Student
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
 
 
 @Autowired
+
     private EnrollmentToEnrollmentCommand enrollmentConverter;
 
 

@@ -104,7 +104,7 @@ table img{
     font-weight: bolder;
     padding: 2%;
 }
- a:hover {
+.profile div span a:hover,.course_tile a:hover{
     color: red;
 }
 .profile div span{
@@ -114,7 +114,7 @@ table img{
     margin-left: 20%;
 }
 
-.dashboard h1, .edit_conduction h1{
+.dashboard h1, .edit_conduction h1,.dashboard h3{
     text-align: center;
     margin-bottom: 4%;
 }
@@ -186,7 +186,10 @@ input[type="number"]::placeholder{
     margin-left: 43%;
     margin-bottom: 2%;
 }
-
+.course-capacity button, input[type="number"]{
+    font-family: 'Economica', sans-serif;
+  text-align: center;
+}
 
 .course-capacity button:active{
     position: relative;
@@ -258,4 +261,65 @@ article.course_details{
 
 .class_list h1{
     text-align: center;
+}
+
+/*Lecturer view student start*/
+.class-detail{
+
+}
+
+
+/*Lecturer view student start*/
+.class-detail table{
+    margin-top: 85%;
+}
+.class-label{
+    font-weight: bolder;
+    font-size: 15px;
+}
+.table-students h3{
+    text-align: center;
+}
+span.float-left,span.float-right{
+   display: block;
+
+}
+span.float-right{
+
+    float: right;
+}
+span.float-left{
+    float: left;
+    font-weight: bolder;
+}
+.background-login{
+    background: url("/images/uni.jpg");
+background-size: cover;
+    height: 100vh;
+}
+
+.login{
+    margin-top: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color:  #56A8FF;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+.form-actions button{
+    float: right;
+    width: 25%;
+    background: #56A8FF;
+}
+.form-actions button:hover{
+    background: #56A8FF;
 }
