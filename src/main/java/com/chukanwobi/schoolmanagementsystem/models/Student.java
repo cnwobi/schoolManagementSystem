@@ -26,7 +26,7 @@ public class Student implements UserDetails {
 
 
     @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
-    private Set<Enrollment> enrollments = new HashSet<>();
+    private List<Enrollment> enrollments = new ArrayList<>();
 
 
     public Student() {

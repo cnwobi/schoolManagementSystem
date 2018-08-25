@@ -13,37 +13,40 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EnrollmentToEnrollmentCommand implements Converter<Enrollment,EnrollmentCommand> {
-@Autowired
-private CourseConductionToCourseConductionCommand courseConverter;
-@Autowired
-private AssessmentToAssessmentCommand assessmentConverter;
-@Autowired
+public class EnrollmentToEnrollmentCommand implements Converter<Enrollment, EnrollmentCommand> {
+    @Autowired
+    private CourseConductionToCourseConductionCommand courseConverter;
+    @Autowired
+    private AssessmentToAssessmentCommand assessmentConverter;
+    @Autowired
     private StudentToStudentCommand studentConverter;
 
 
-   /* public EnrollmentToEnrollmentCommand(CourseConductionToCourseConductionCommand courseConverter, AssessmentToAssessmentCommand assessmentConverter, StudentToStudentCommand studentConverter) {
+    public EnrollmentToEnrollmentCommand(CourseConductionToCourseConductionCommand courseConverter, AssessmentToAssessmentCommand assessmentConverter, StudentToStudentCommand studentConverter) {
         this.courseConverter = courseConverter;
         this.assessmentConverter = assessmentConverter;
         this.studentConverter = studentConverter;
-    }*/
-
-    public EnrollmentToEnrollmentCommand() {
     }
 
+ /*   public EnrollmentToEnrollmentCommand() {
+    }
+*/
 
     @Override
     @Synchronized
     @Nullable
     public EnrollmentCommand convert(Enrollment enrollment) {
-        if(enrollment==null){
+        if (enrollment == null) {
             return null;
         }
         EnrollmentCommand command = new EnrollmentCommand();
         command.setId(enrollment.getId());
-        command.setCourseConduction(courseConverter.convert(enrollment.getCourseConduction()));
 
-        command.setStudent(studentConverter.convert(enrollment.getStudent()));
+        command.setCourseConduction(enrollment.getCourseConduction());
+
+        command.setAssessment(enrollment.getAssessment());
+
+
         return command;
     }
 }

@@ -18,26 +18,29 @@
         <tr>
             <th>ID</th>
             <th>Image</th>
-            <th>Username</th>
+
             <th>First Name</th>
             <th>Surname</th>
             <th>Email</th>
-            <th>Major</th>
+            <th>Assessment 1</th>
+            <th>Assessment 2</th>
 
 
 
         </tr>
-        <tr th:each="enrollment:${enrollments}">
-            <td th:text="${enrollment.student.id}">1</td>
+        <tr th:each="enrollment,iterator:${courseConduction.enrollments}">
+            <td th:text="${iterator.index+1}">1</td>
             <td ><img th:unless ="${enrollment.student.image !=null}"  src="/images/no-image-icon.png">
 
             </td>
-            <td th:text="${enrollment.student.username}">jdoe</td>
+
             <td th:text="${enrollment.student.firstName}">John</td>
             <td th:text="${enrollment.student.surname}">Doe</td>
             <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
-            <td th:text="${enrollment.student.major}"> Melbourne</td>
-
+            <td th:unless="${enrollment.assessment.assessmentOne<=0}" th:text="${enrollment.assessment.assessmentOne} +' %'"> </td>
+           <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
+            <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
+            <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"></td>
 
         </tr>
 

@@ -78,8 +78,8 @@ public class LecturerController {
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
 
-        model.addAttribute("enrollments",enrollmentService.findEnrollmentsByClassId(Long.valueOf(classId)));
-  log.debug(enrollmentService.findEnrollmentsByClassId(Long.valueOf(classId)).toString());
+        model.addAttribute("courseConduction",conductionService.findCourseConductionById(Long.valueOf(classId)));
+
         return "lecturer/class/students";
 }
 

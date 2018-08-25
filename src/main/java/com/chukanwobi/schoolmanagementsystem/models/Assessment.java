@@ -23,4 +23,14 @@ public class Assessment {
      @OneToOne
     private Enrollment enrollment;
 
+    public Assessment() {
+    }
+
+    public Assessment(Double assessmentOne, Double assessmentTwo) {
+        if(assessmentOne >100 || assessmentTwo > 100){
+            throw new RuntimeException("Assessment one or two is more than 100%");
+        }
+        this.assessmentOne = assessmentOne;
+        this.assessmentTwo = assessmentTwo;
+    }
 }

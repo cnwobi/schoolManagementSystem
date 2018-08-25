@@ -57,12 +57,12 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
        Student student5 = studentsList.stream().filter(student -> student.getId()==5).findFirst().get();
        Student student6= studentsList.stream().filter(student -> student.getId()==6).findFirst().get();
 
-       Enrollment enrollment1 = new Enrollment(student1,new Assessment());
-       Enrollment enrollment2 = new Enrollment(student2, new Assessment());
-       Enrollment enrollment3 = new Enrollment(student3,new Assessment());
-       Enrollment enrollment4 = new Enrollment(student4,new Assessment());
-       Enrollment enrollment5 = new Enrollment(student5, new Assessment());
-       Enrollment enrollment6 = new Enrollment(student6,new Assessment());
+       Enrollment enrollment1 = new Enrollment(student1,new Assessment(40.0,34.5));
+       Enrollment enrollment2 = new Enrollment(student2, new Assessment(12.3,42.3));
+       Enrollment enrollment3 = new Enrollment(student3,new Assessment(34.3,32.4));
+       Enrollment enrollment4 = new Enrollment(student4,new Assessment(98.3,39.3));
+       Enrollment enrollment5 = new Enrollment(student5, new Assessment(34.3,43.3));
+       Enrollment enrollment6 = new Enrollment(student6,new Assessment(32.3,12.1));
 
 
 
@@ -91,6 +91,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction.addEnrollment(enrollment3);
         courseConduction.addEnrollment(enrollment4);
         courseConduction.addEnrollment(enrollment5);
+        courseConduction.addEnrollment(enrollment6);
 
 
 
