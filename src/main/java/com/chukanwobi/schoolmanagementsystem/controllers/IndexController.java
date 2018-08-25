@@ -43,7 +43,7 @@ public class IndexController {
 
 
 
-    @RequestMapping("/default")
+    @GetMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request){
         if (request.isUserInRole("LECTURER")){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
