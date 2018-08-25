@@ -75,7 +75,7 @@ public class LecturerController {
             model.addAttribute("courseConduction",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "courseConduction/form";
     }
-    @PostMapping
+
 @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
