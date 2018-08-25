@@ -18,8 +18,8 @@ public class CourseConductionCommand {
     private Long id;
     private Semester semester;
     private Integer capacity;
-    private Lecturer lecturer;
-    private Course course;
+    private LecturerCommand lecturer;
+    private CourseCommand course;
     private Year  year;
 
     private List<EnrollmentCommand> enrollments = new ArrayList<>();

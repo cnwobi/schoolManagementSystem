@@ -1,7 +1,9 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.Synchronized;
@@ -18,9 +20,13 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
 
 
     private EnrollmentToEnrollmentCommand enrollmentConverter;
+    private LecturerToLecturerCommand lecturerConverter;
+    private CourseToCourseCommand courseToCourseConverter;
 
-    public CourseConductionToCourseConductionCommand(EnrollmentToEnrollmentCommand enrollmentConverter) {
+    public CourseConductionToCourseConductionCommand(EnrollmentToEnrollmentCommand enrollmentConverter, LecturerToLecturerCommand lecturerConverter, CourseToCourseCommand courseToCourseConverter) {
         this.enrollmentConverter = enrollmentConverter;
+        this.lecturerConverter = lecturerConverter;
+        this.courseToCourseConverter = courseToCourseConverter;
     }
 
     @Override
@@ -34,8 +40,8 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
 
         command.setId(courseConduction.getId());
         command.setCapacity(courseConduction.getCapacity());
-        command.setCourse(courseConduction.getCourse());
-        command.setLecturer(courseConduction.getLecturer());
+        command.setCourse(courseToCourseConverter.convert(courseConduction.getCourse()));
+        command.setLecturer(lecturerConverter.convert(courseConduction.getLecturer()));
         command.setSemester(courseConduction.getSemester());
         command.setYear(courseConduction.getYear());
         if(courseConduction.getEnrollments() !=null && courseConduction.getEnrollments().size()>0)

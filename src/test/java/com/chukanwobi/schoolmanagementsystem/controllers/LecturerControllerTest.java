@@ -1,8 +1,10 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.CourseCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
@@ -18,31 +20,31 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
-
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class LecturerControllerTest {
+    private static final Long LONG_ID = 4l;
     @Mock
     LecturerService lecturerService;
-
     @Mock
     CourseConductionService conductionService;
-@Mock
+    @Mock
     EnrollmentToEnrollmentCommand enrollmentCommandConverter;
     LecturerController controller;
+    @Mock
     LecturerToLecturerCommand converterLecturer;
+    @Mock
+    CourseToCourseCommand courseCommandConverter;
+
     CourseConductionToCourseConductionCommand conductionConverter;
     @Mock
     Authentication authentication;
@@ -50,7 +52,6 @@ public class LecturerControllerTest {
     SecurityContext securityContext;
     MockMvc mockMvc;
     LecturerCommand command;
-    private static  final Long LONG_ID=4l;
 
     @Before
     public void setUp() throws Exception {
@@ -61,7 +62,7 @@ public class LecturerControllerTest {
         controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
-        conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter);
+        conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter, converterLecturer,courseCommandConverter );
     }
 
     @Test
@@ -105,12 +106,13 @@ public class LecturerControllerTest {
     @Test
     public void testEditClassCapacity() throws Exception {
         CourseConduction courseConduction = new CourseConduction();
-        LecturerCommand lecturerCommand= new LecturerCommand();
+        LecturerCommand lecturerCommand = new LecturerCommand();
         lecturerCommand.setId(LONG_ID);
         Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
 
         when(controller.authenticatedLecturer()).thenReturn(lecturerCommand);
+        when(courseCommandConverter.convert(courseConduction.getCourse())).thenReturn(new CourseCommand());
         when(conductionService.findCourseConductionByIdAndLecturerId(2l, 4l)).thenReturn(conductionConverter.convert(
                 courseConduction));
 

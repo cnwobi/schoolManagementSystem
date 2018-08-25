@@ -9,4 +9,5 @@ public interface CourseConductionService {
     CourseConductionCommand findCourseConductionById(Long classId);
     List<CourseConductionCommand> findCourseConductionByLecturerId(Long lecturerId);
     CourseConductionCommand findCourseConductionByIdAndLecturerId(Long CourseConductionId, Long lecturerId);
+    CourseConductionCommand saveCourseConductionCommand(CourseConductionCommand conductionCommand);
 }

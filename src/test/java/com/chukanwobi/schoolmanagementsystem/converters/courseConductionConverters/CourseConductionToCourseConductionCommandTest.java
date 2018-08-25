@@ -1,7 +1,9 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,11 @@ public class CourseConductionToCourseConductionCommandTest {
     CourseConductionToCourseConductionCommand converter;
     @Mock
     EnrollmentToEnrollmentCommand enrollmentCommandConverter;
+    @Mock
+    LecturerToLecturerCommand lecturerConverter;
+    @Mock
+    CourseToCourseCommand courseConverter;
+
     private static final Long ID = 1l;
     private static final Semester SEMESTER = Semester.FIRST;
     private static final Integer INTEGER_CAPACITY = 150;
@@ -32,12 +39,12 @@ public class CourseConductionToCourseConductionCommandTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        converter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter);
+        converter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter,lecturerConverter,courseConverter);
 
     }
 
     @Test
-    public void testconvert() {
+    public void testConvert() {
         CourseConduction courseConduction = new CourseConduction();
         courseConduction.setId(ID);
 

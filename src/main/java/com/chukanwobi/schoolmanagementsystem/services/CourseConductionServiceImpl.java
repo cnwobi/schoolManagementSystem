@@ -71,4 +71,10 @@ public class CourseConductionServiceImpl implements CourseConductionService{
         return conductionConverter.convert(optionalCourseConduction.get());
     }
 
+    @Override
+    public CourseConductionCommand saveCourseConductionCommand(CourseConductionCommand conductionCommand) {
+
+
+        return null;
+    }
 }

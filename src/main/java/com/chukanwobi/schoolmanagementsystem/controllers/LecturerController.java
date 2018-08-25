@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
@@ -13,9 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
@@ -75,7 +74,10 @@ public class LecturerController {
             model.addAttribute("courseConduction",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "courseConduction/form";
     }
-
+    @PostMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
+    public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand,@PathVariable String lecturerId,@PathVariable String classId){
+        return null;
+    }
 @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
