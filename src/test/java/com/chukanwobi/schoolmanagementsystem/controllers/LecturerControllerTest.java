@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
@@ -38,7 +39,8 @@ public class LecturerControllerTest {
 
     @Mock
     CourseConductionService conductionService;
-
+@Mock
+    EnrollmentToEnrollmentCommand enrollmentCommandConverter;
     LecturerController controller;
     LecturerToLecturerCommand converterLecturer;
     CourseConductionToCourseConductionCommand conductionConverter;
@@ -59,7 +61,7 @@ public class LecturerControllerTest {
         controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
-        conductionConverter = new CourseConductionToCourseConductionCommand();
+        conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter);
     }
 
     @Test
@@ -114,7 +116,7 @@ public class LecturerControllerTest {
 
         mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("class"))
+                .andExpect(model().attributeExists("courseConduction"))
                 .andExpect(view().name("courseConduction/form"));
 
 

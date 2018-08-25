@@ -15,11 +15,13 @@ import org.springframework.stereotype.Component;
 public class CourseConductionToCourseConductionCommand implements Converter<CourseConduction, CourseConductionCommand> {
 
 
-@Autowired
+
 
     private EnrollmentToEnrollmentCommand enrollmentConverter;
 
-
+    public CourseConductionToCourseConductionCommand(EnrollmentToEnrollmentCommand enrollmentConverter) {
+        this.enrollmentConverter = enrollmentConverter;
+    }
 
     @Override
     @Synchronized
