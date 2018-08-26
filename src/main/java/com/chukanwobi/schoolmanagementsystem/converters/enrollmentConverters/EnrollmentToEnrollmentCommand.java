@@ -2,7 +2,6 @@ package com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters;
 
 
 import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
-import com.chukanwobi.schoolmanagementsystem.converters.assessmentConverters.AssessmentToAssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -12,11 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnrollmentToEnrollmentCommand implements Converter<Enrollment, EnrollmentCommand> {
 
-private AssessmentToAssessmentCommand assessmentCommandConverter;
-
-    public EnrollmentToEnrollmentCommand(AssessmentToAssessmentCommand assessmentCommandConverter) {
-        this.assessmentCommandConverter = assessmentCommandConverter;
-    }
 
     @Override
     @Synchronized
