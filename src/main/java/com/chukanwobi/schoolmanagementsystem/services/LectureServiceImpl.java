@@ -68,7 +68,7 @@ private CourseConductionRepo courseConductionRepo;
     @Override
     public LecturerCommand findLecturerByUsername(String username) {
 
-      Lecturer lecturer = (Lecturer) userDetailsService.loadUserByUsername(username);
+      Lecturer lecturer = (Lecturer)userDetailsService.loadUserByUsername(username);
 
       return converter.convert(lecturer);
 

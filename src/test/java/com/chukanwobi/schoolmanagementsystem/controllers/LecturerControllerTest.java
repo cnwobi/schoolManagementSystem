@@ -19,6 +19,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -44,7 +45,8 @@ public class LecturerControllerTest {
     LecturerToLecturerCommand converterLecturer;
     @Mock
     CourseToCourseCommand courseCommandConverter;
-
+    @Mock
+    UserDetailsService userDetailsService;
     CourseConductionToCourseConductionCommand conductionConverter;
     @Mock
     Authentication authentication;
@@ -105,16 +107,15 @@ public class LecturerControllerTest {
 
     @Test
     public void testEditClassCapacity() throws Exception {
-        CourseConduction courseConduction = new CourseConduction();
+        CourseConductionCommand courseConduction = new CourseConductionCommand();
         LecturerCommand lecturerCommand = new LecturerCommand();
         lecturerCommand.setId(LONG_ID);
         Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
 
         when(controller.authenticatedLecturer()).thenReturn(lecturerCommand);
-        when(courseCommandConverter.convert(courseConduction.getCourse())).thenReturn(new CourseCommand());
-        when(conductionService.findCourseConductionByIdAndLecturerId(2l, 4l)).thenReturn(conductionConverter.convert(
-                courseConduction));
+
+        when(conductionService.findCourseConductionByIdAndLecturerId(2l, 4l)).thenReturn(courseConduction);
 
         mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
                 .andExpect(status().isOk())

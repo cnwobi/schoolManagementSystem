@@ -31,7 +31,7 @@ public class CourseToCourseCommandTest {
         course.setDepartmentalCode(DEPARTMENTAL_CODES);
         course.setTitle(STRING_TITLE);
 
-    CourseCommand command = converter.convert(course);
+         CourseCommand command = converter.convert(course);
         assertEquals(LONG_ID,command.getId());
         assertEquals(DEPARTMENTAL_CODES,command.getDepartmentalCode());
         assertEquals(STRING_TITLE,command.getTitle());
