@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AssessmentToAssessmentCommand implements Converter<Assessment,AssessmentCommand> {
-   @Autowired
-    EnrollmentToEnrollmentCommand enrollmentConverter;
 
     @Override
     @Synchronized

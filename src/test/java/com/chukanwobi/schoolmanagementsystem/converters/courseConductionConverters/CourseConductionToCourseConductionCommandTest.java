@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.assessmentConverters.AssessmentToAssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
@@ -33,7 +34,7 @@ public class CourseConductionToCourseConductionCommandTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        converter = new CourseConductionToCourseConductionCommand(new EnrollmentToEnrollmentCommand(),new LecturerToLecturerCommand(),new CourseToCourseCommand());
+        converter = new CourseConductionToCourseConductionCommand(new EnrollmentToEnrollmentCommand(new AssessmentToAssessmentCommand()),new LecturerToLecturerCommand(),new CourseToCourseCommand());
 
     }
 

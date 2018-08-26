@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.assessmentConverters.AssessmentToAssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.Assessment;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
@@ -21,7 +22,7 @@ private final static Assessment ENROLLMENT = new Assessment();
     @Before
     public void setUp() throws Exception {
 
-enrollmentCommandConverter=new EnrollmentToEnrollmentCommand();
+enrollmentCommandConverter=new EnrollmentToEnrollmentCommand(new AssessmentToAssessmentCommand());
 
     }
 
