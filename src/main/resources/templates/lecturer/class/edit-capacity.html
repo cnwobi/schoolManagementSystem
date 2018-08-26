@@ -37,7 +37,7 @@
 
         <article class="grid-100 profile course_view_form">
             <header> Class Profile</header>
-            <form th:object="${courseConduction}" class="course-capacity" method="post">
+            <form th:object="${courseConduction}" th:action="@{/lecturer/class/edit-capacity}" class="course-capacity" method="post">
                 <input type="hidden" th:field="*{id}" >
                 <input type="hidden" th:field="*{semester}" >
                 <input type="hidden" th:field="*{lecturer}">

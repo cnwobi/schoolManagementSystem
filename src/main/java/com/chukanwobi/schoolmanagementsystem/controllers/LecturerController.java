@@ -14,7 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
+
+
 
 @Controller
 @Slf4j
@@ -69,14 +72,18 @@ public class LecturerController {
 
 
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
-    public String EditClassCapacity(@PathVariable String lecturerId, @PathVariable String classId, Model model){
+    public String EditClassCapacity( @PathVariable String lecturerId, @PathVariable String classId, Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
             model.addAttribute("courseConduction",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
-        return "courseConduction/form";
+        return "lecturer/class/edit-capacity";
     }
-    @PostMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
-    public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand,@PathVariable String lecturerId,@PathVariable String classId){
-        return null;
+    @PostMapping("/lecturer/class/edit-capacity")
+
+
+    public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand){
+
+       CourseConductionCommand courseConductionCommand = conductionService.saveCourseConductionCommand(conductionCommand);
+        return "redirect:/lecturer/"+courseConductionCommand.getLecturer().getId()+"/view/courses";
     }
 @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId,@PathVariable String classId,Model model){

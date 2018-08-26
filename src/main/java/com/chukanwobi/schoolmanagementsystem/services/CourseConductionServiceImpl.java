@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionCommandToCourseConduction;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.exceptions.NotFoundException;
 import com.chukanwobi.schoolmanagementsystem.models.Course;
@@ -20,12 +21,14 @@ import java.util.Optional;
 public class CourseConductionServiceImpl implements CourseConductionService{
     private CourseConductionRepo courseConductionRepo;
     private CourseConductionToCourseConductionCommand conductionConverter;
+    private CourseConductionCommandToCourseConduction commandToCourseConductionConverter;
 
-    public CourseConductionServiceImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand conductionConverter) {
+
+    public CourseConductionServiceImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand conductionConverter, CourseConductionCommandToCourseConduction commandToCourseConductionConverter) {
         this.courseConductionRepo = courseConductionRepo;
         this.conductionConverter = conductionConverter;
+        this.commandToCourseConductionConverter = commandToCourseConductionConverter;
     }
-
 
     @Override
     public CourseConductionCommand findCourseConductionById(Long classId) {
@@ -73,8 +76,10 @@ public class CourseConductionServiceImpl implements CourseConductionService{
 
     @Override
     public CourseConductionCommand saveCourseConductionCommand(CourseConductionCommand conductionCommand) {
+          CourseConduction unsavedCourseConduction = commandToCourseConductionConverter.convert(conductionCommand);
+          CourseConduction savedCourseConduction = courseConductionRepo.save(unsavedCourseConduction);
+          log.debug("Saved courseConduction:"+ savedCourseConduction.getId());
 
-
-        return null;
+        return conductionConverter.convert(savedCourseConduction);
     }
 }
