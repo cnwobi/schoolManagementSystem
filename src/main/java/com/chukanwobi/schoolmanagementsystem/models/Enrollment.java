@@ -10,9 +10,9 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     private CourseConduction courseConduction;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     private Student student;
     @OneToOne(cascade = CascadeType.ALL)
     private Assessment assessment;

@@ -5,9 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.Year;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -42,8 +40,7 @@ public class CourseConduction {
 
 
 
-
-    @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "courseConduction",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Enrollment> enrollments = new ArrayList<>();
 
 
