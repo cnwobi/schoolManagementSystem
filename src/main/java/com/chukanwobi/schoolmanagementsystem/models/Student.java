@@ -25,7 +25,7 @@ public class Student implements UserDetails {
 
 
 
-    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private List<Enrollment> enrollments = new ArrayList<>();
 
 

@@ -46,7 +46,6 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
-
                 .and()
                 .cors().disable();
 

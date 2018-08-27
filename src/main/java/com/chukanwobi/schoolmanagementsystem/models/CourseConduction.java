@@ -43,7 +43,7 @@ public class CourseConduction {
 
 
 
-    @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<Enrollment> enrollments = new ArrayList<>();
 
 
