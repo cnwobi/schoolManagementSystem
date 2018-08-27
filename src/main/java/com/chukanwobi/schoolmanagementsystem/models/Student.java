@@ -32,14 +32,14 @@ public class Student implements UserDetails {
     public Student() {
     }
 
-    public Student(String username, String firstName, String surname, String email, String major, String password,Enrollment enrollment) {
+    public Student(String username, String firstName, String surname, String email, String major, String password) {
         this.username = username;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.major = major;
         this.password = password;
-        addEnrollment(enrollment);
+
 
     }
     public Student addEnrollment(Enrollment enrollment){

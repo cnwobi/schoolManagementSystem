@@ -31,6 +31,9 @@ public class IndexController {
         if(request.isUserInRole("ADMIN")){
             return "redirect:/admin";
         }
+        if(request.isUserInRole("STUDENT")){
+            return "redirect:/student";
+        }
         return "/error";
     }
 

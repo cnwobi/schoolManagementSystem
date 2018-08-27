@@ -52,7 +52,7 @@
     <section class="grid-70">
         <article class="grid-45 profile">
             <header> Basic Profile</header>
-            <div>Lecturer ID:<span th:text="${student.id}"> 1</span> </div>
+            <div>Student ID:<span th:text="${student.id}"> 1</span> </div>
             <div>Full name:<span th:text="${student.firstName+' '+student.surname}"> Chuka Nwobi</span> </div>
 
 
@@ -73,15 +73,17 @@
         <article class="grid-50 courseList">
             <header> Courses You Enrolled In</header>
 
-            <div th:remove="all" class="course_tile" th:each="courseSession:${student.getEnrollments}">
+            <div  class="course_tile" th:each="enrollment:${student.enrollments}">
 
-                <div class="title" th:text="${courseSession.course.title}"> Advanced ThermoDynamics</div>
-                <div><span class="capacity" >Capacity:</span> <span th:text="${courseSession.capacity+' enrollments'}">120 Students</span>
-                </div>
-                <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}">120 Students</span>
-                </div>
-                <div> <span class="capacity" >Year:</span><span th:text="${courseSession.year}"> 2019 </span> <a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity   </a></div>
+                <div class="title" th:text="${enrollment.courseConduction.course.title}"> Advanced ThermoDynamics</div>
 
+                <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(enrollment.courseConduction.semester.toString().toLowerCase())}">120 Students</span>
+                </div>
+                <div> <span class="capacity" >Year:</span><span th:text="${enrollment.courseConduction.year}"> 2019 </span>
+                    <div><span class="capacity" >Assessment 1:</span> <span th:text="${enrollment.assessment.assessmentOne+' %'}">120 Students</span>
+                    </div>
+                    <div><span class="capacity" >Assessment 2:</span> <span th:text="${enrollment.assessment.assessmentTwo+' %'}">120 Students</span>
+                    </div><!--<a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity   </a>--></div>
             </div>
 
 

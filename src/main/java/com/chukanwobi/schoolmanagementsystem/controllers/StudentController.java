@@ -19,10 +19,12 @@ public class StudentController {
     private UserDetailsService studentDetails;
     @Autowired
     private CourseService courseService;
-    @GetMapping("/student/")
+
+    @GetMapping("/student")
     public String getProfileVIew(Model model) {
         Student student = (Student) studentDetails.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("student", student);
+
 
         return "student/view";
 

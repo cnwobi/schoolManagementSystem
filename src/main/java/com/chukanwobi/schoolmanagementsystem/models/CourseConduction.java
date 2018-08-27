@@ -33,9 +33,9 @@ public class CourseConduction {
     @Enumerated(value = EnumType.STRING)
     private Semester semester;
     private Integer capacity;
-    @ManyToOne()
+    @ManyToOne
     private Lecturer lecturer;
-    @ManyToOne()
+    @ManyToOne
     private Course course;
 
     private Year year;
@@ -43,7 +43,7 @@ public class CourseConduction {
 
 
 
-    @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Enrollment> enrollments = new ArrayList<>();
 
 
