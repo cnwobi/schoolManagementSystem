@@ -82,4 +82,16 @@ public class CourseConductionServiceImpl implements CourseConductionService{
 
         return conductionConverter.convert(savedCourseConduction);
     }
+
+    @Override
+    public CourseConductionCommand editCapacityAndSave(CourseConductionCommand conductionCommand) {
+
+
+        CourseConductionCommand courseConductionCommand = findCourseConductionByIdAndLecturerId(conductionCommand.getId(),conductionCommand.getLecturer().getId());
+        courseConductionCommand.setCapacity(conductionCommand.getCapacity());
+
+
+      return saveCourseConductionCommand(courseConductionCommand);
+
+    }
 }

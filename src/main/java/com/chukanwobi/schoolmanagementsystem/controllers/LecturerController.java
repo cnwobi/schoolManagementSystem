@@ -74,6 +74,9 @@ public class LecturerController {
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/editCapacity")
     public String EditClassCapacity( @PathVariable String lecturerId, @PathVariable String classId, Model model){
         if(isAuthenticatedId(Long.valueOf(lecturerId)))
+
+            model.addAttribute("capacity",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()).getCapacity());
+
             model.addAttribute("courseConduction",conductionService.findCourseConductionByIdAndLecturerId(Long.valueOf(classId), authenticatedLecturer().getId()));
         return "lecturer/class/edit-capacity";
     }
@@ -82,7 +85,7 @@ public class LecturerController {
 
     public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand){
 
-       CourseConductionCommand courseConductionCommand = conductionService.saveCourseConductionCommand(conductionCommand);
+       CourseConductionCommand courseConductionCommand = conductionService.editCapacityAndSave(conductionCommand);
         return "redirect:/lecturer/"+courseConductionCommand.getLecturer().getId()+"/view/courses";
     }
 @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")

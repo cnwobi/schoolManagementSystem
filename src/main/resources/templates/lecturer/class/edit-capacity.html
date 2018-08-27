@@ -39,10 +39,13 @@
             <header> Class Profile</header>
             <form th:object="${courseConduction}" th:action="@{/lecturer/class/edit-capacity}" class="course-capacity" method="post">
                 <input type="hidden" th:field="*{id}" >
-                <input type="hidden" th:field="*{semester}" >
-                <input type="hidden" th:field="*{lecturer}">
-                <input type="hidden" th:field="*{course}" >
-                <input type="hidden" th:field="*{year}">
+
+                <input type="hidden" th:field="*{lecturer.id}">
+
+                <!--<input type="hidden" th:field="*{semester}" >
+                <input type="hidden" th:field="*{lecturer}" th:name="${courseConduction.lecturer}">
+                <input type="hidden" th:field="*{course} " th:name="${courseConduction.course}">
+                <input type="hidden" th:field="*{year}">-->
 
                 <div >Course Title:<span class="title" th:text="${courseConduction.course.title}"> Advanced Thermodynamics</span> </div>
                 <div th:unless="${courseConduction.course.departmentalCode==null}">Course Code<span th:text="${courseConduction.course.departmentalCode+'00'+courseConduction.course.id}"> 2017</span> </div>
