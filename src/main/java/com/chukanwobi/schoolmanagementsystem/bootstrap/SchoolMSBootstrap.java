@@ -50,12 +50,15 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseRepository.findAll().iterator().forEachRemaining(course -> courses.add(course));
         studentRepository.findAll().iterator().forEachRemaining(student -> studentsList.add(student));
 
-       Student student1 = studentsList.stream().filter(student -> student.getId()==1).findFirst().get();
-       Student student2 = studentsList.stream().filter(student -> student.getId()==2).findFirst().get();
-       Student student3 = studentsList.stream().filter(student -> student.getId()==3).findFirst().get();
-       Student student4 = studentsList.stream().filter(student -> student.getId()==4).findFirst().get();
-       Student student5 = studentsList.stream().filter(student -> student.getId()==5).findFirst().get();
-       Student student6= studentsList.stream().filter(student -> student.getId()==6).findFirst().get();
+        Student student7 = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports","password");
+       Student student1 = new Student("jhoover","Jonathan","Hoover","j.hoover@fbi.gov.us","Espionage","password");
+
+       Student student2 = new Student("mford","Mark", "Ford","m.ford@mcm.org.au","Computer Science","password");
+       Student student3 = new Student("aread","Andrew","Read","a.read@mit.edu.au","Architecture","password");
+       Student student4 = new Student("shanity","Shawn","Hannity","s.hannity@foxnews.com","Journalism","password");
+       Student student5 = new Student("dtrump","Donald","Trump","d.trump@gmail.com","Mechanical Engineering","password");
+       Student student6= new Student("rlarossa","Rebecca","Larossa","r.larossa@thegrange.edu.au","Teaching","password");
+
 
        Enrollment enrollment1 = new Enrollment(student1,new Assessment(40.0,34.5));
        Enrollment enrollment2 = new Enrollment(student2, new Assessment(12.3,42.3));
@@ -146,7 +149,7 @@ public List<Course> getCoursesWithPrerequisites(){
 
     log.debug(course5.getPrerequisitesCollection().toString());
     List<Course> courseHashSet = new ArrayList<>();
-    Student student = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports");
+
 
 
 

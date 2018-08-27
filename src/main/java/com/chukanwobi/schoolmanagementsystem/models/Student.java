@@ -32,12 +32,14 @@ public class Student implements UserDetails {
     public Student() {
     }
 
-    public Student(String username, String firstName, String surname, String email, String major) {
+    public Student(String username, String firstName, String surname, String email, String major, String password) {
         this.username = username;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.major = major;
+        this.password = password;
+
     }
 
     @Override

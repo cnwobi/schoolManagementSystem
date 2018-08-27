@@ -14,7 +14,7 @@ public class Enrollment {
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     private CourseConduction courseConduction;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
     @OneToOne(cascade = CascadeType.ALL)
     private Assessment assessment;

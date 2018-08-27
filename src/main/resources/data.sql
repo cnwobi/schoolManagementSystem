@@ -13,5 +13,4 @@ INSERT INTO student(first_name,surname,username,email,major) values ('Chuka','Nw
 INSERT INTO student(first_name,surname,username,email,major) values ('James','Ibori','jibori','jibori@gmail.com','Electrical Engineering');
 INSERT INTO student(first_name,surname,username,email,major) values ('Nancy','Paloci','pnancy','p.nancy@gmail.com','History');
 INSERT INTO student(first_name,surname,username,email,major) values ('Bill','Shorten','bshorten','b.shorten@gmail.com', 'Chemical Engineering');
-INSERT INTO student(first_name,surname,username,email,major) values ('Donald','Trump','dtrump','d.trump@gmail.com','Mechanical Engineering');
 INSERT INTO student(first_name,surname,username,email,major) values ('Chuka','Uwama','huwama','h.uwama@gmail.com','Medicine');
