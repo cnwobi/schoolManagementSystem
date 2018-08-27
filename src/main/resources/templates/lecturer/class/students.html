@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="common/header :: common-header"/>
 
@@ -10,7 +11,7 @@
 <nav th:replace="common/header::common-navbar"/>
 
 <div class="grid-container grid-container grid-parent grid-100  ">
-    <div class="username grid-100"><span class="float-left" th:text="${'[**'+courseConduction.course.title+'--Semester:'+#strings.capitalize(#strings.toLowerCase(courseConduction.semester))+'--Year:'+courseConduction.year+'**]'} "> </span><span class="float-right">Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
+    <div class="username grid-100"><span class="float-left" th:text="${'[**'+courseConduction.course.title+'--Semester:'+#strings.capitalize(#strings.toLowerCase(courseConduction.semester))+'--Year:'+courseConduction.year+'**]'} "> </span><span class="float-right" th:text="${#authentication+'['+#authorization+']'}">Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
   <!--  <aside class="grid-25 profile-aside class-detail">
 
         <table>

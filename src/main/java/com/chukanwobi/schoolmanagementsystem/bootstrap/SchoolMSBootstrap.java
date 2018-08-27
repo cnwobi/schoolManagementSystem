@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.repositories.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.Year;
@@ -129,12 +130,13 @@ public List<Course> getCoursesWithPrerequisites(){
     return courseHashSet;
 }
 public List<Student> studentList(){
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    Student student7 = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports","password");
+    Student student7 = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports",bCryptPasswordEncoder.encode("password"));
 
-    Student student1 = new Student("jhoover","Jonathan","Hoover","j.hoover@fbi.gov.us","Espionage","password");
+    Student student1 = new Student("jhoover","Jonathan","Hoover","j.hoover@fbi.gov.us","Espionage",bCryptPasswordEncoder.encode("password"));
 
-    Student student2 = new Student("mford","Mark", "Ford","m.ford@mcm.org.au","Computer Science","password");
+    Student student2 = new Student("mford","Mark", "Ford","m.ford@mcm.org.au","Computer Science",bCryptPasswordEncoder.encode("password"));
     Student student3 = new Student("aread","Andrew","Read","a.read@mit.edu.au","Architecture","password");
     Student student4 = new Student("shanity","Shawn","Hannity","s.hannity@foxnews.com","Journalism","password");
     Student student5 = new Student("dtrump","Donald","Trump","d.trump@gmail.com","Mechanical Engineering","password");
@@ -151,7 +153,7 @@ public List<Enrollment> enrollments(){
     Enrollment enrollment4 = new Enrollment(new Assessment(98.3,39.3));
     Enrollment enrollment5 = new Enrollment( new Assessment(34.3,43.3));
     Enrollment enrollment6 = new Enrollment(new Assessment(32.3,12.1));
-
+    Enrollment enrollment7 = new Enrollment(new Assessment());
    List<CourseConduction> courseConductions = new ArrayList<>();
 
    courseConductionRepo.findAll().forEach(courseConduction -> courseConductions.add(courseConduction));
@@ -168,8 +170,7 @@ public List<Enrollment> enrollments(){
      enrollment4.addCourseConduction(courseConduction2);
      enrollment5.addCourseConduction(courseConduction2);
      enrollment6.addCourseConduction(courseConduction4);
-
-
+     enrollment7.addCourseConduction(courseConduction3);
    List<Student> studentList = new ArrayList<>();
    studentRepository.findAll().forEach(student -> studentList.add(student));
    log.debug("\n\n\n\n\n\n\n\n\nThe student list size is: "+studentList.size());

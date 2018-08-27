@@ -76,8 +76,6 @@ public class LecturerController {
         return "lecturer/class/edit-capacity";
     }
     @PostMapping("/lecturer/class/edit-capacity")
-
-
     public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand){
 
        CourseConductionCommand courseConductionCommand = conductionService.editCapacityAndSave(conductionCommand);
