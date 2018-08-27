@@ -25,23 +25,28 @@ public class Student implements UserDetails {
 
 
 
-    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Enrollment> enrollments = new ArrayList<>();
 
 
     public Student() {
     }
 
-    public Student(String username, String firstName, String surname, String email, String major, String password) {
+    public Student(String username, String firstName, String surname, String email, String major, String password,Enrollment enrollment) {
         this.username = username;
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
         this.major = major;
         this.password = password;
+        addEnrollment(enrollment);
 
     }
-
+    public Student addEnrollment(Enrollment enrollment){
+        enrollments.add(enrollment);
+        enrollment.setStudent(this);
+        return this;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

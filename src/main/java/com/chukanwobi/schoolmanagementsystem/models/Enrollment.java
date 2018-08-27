@@ -12,9 +12,9 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private CourseConduction courseConduction;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student student;
     @OneToOne(cascade = CascadeType.ALL)
     private Assessment assessment;
@@ -24,6 +24,10 @@ public class Enrollment {
 
     public Enrollment(Student student) {
         this.student = student;
+    }
+
+    public Enrollment(Assessment assessment) {
+        this.assessment = assessment;
     }
 
     public Enrollment(Student student, Assessment assessment) {

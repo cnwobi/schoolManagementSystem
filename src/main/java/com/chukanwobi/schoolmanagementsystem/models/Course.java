@@ -25,7 +25,7 @@ public class Course {
   private List<Course> isAPrerequisiteOfCollection;
 
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name = "course_prerequisite",joinColumns =  {@JoinColumn(name = "is_a_prerequisite_of_id")},
             inverseJoinColumns =  @JoinColumn(name = "prerequisite_id"))
     private List<Course> prerequisitesCollection = new ArrayList<>();

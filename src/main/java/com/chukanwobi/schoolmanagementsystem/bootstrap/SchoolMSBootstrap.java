@@ -1,10 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.bootstrap;
 
 import com.chukanwobi.schoolmanagementsystem.models.*;
-import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
-import com.chukanwobi.schoolmanagementsystem.repositories.CourseRepo;
-import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
-import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
+import com.chukanwobi.schoolmanagementsystem.repositories.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,6 +17,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     private StudentRepository studentRepository;
     private CourseRepo courseRepository;
     private CourseConductionRepo courseConductionRepo;
+    private EnrollmentRepo enrollmentRepo;
 
     public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository,
                              CourseRepo courseRepository, CourseConductionRepo courseConductionRepo) {
@@ -31,9 +29,12 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-          courseConductionRepo.saveAll(getCourseConductions());
+        studentRepository.saveAll(studentListWithEnrollment());
           courseRepository.saveAll(getCoursesWithPrerequisites());
+       /* courseConductionRepo.saveAll(getCourseConductions());*/
+/*
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
+*/
 
     }
 
@@ -46,26 +47,11 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
         List<Course> courses = new ArrayList<>();
         List<Student> studentsList = new ArrayList<>();
-
         courseRepository.findAll().iterator().forEachRemaining(course -> courses.add(course));
-        studentRepository.findAll().iterator().forEachRemaining(student -> studentsList.add(student));
-
-        Student student7 = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports","password");
-       Student student1 = new Student("jhoover","Jonathan","Hoover","j.hoover@fbi.gov.us","Espionage","password");
-
-       Student student2 = new Student("mford","Mark", "Ford","m.ford@mcm.org.au","Computer Science","password");
-       Student student3 = new Student("aread","Andrew","Read","a.read@mit.edu.au","Architecture","password");
-       Student student4 = new Student("shanity","Shawn","Hannity","s.hannity@foxnews.com","Journalism","password");
-       Student student5 = new Student("dtrump","Donald","Trump","d.trump@gmail.com","Mechanical Engineering","password");
-       Student student6= new Student("rlarossa","Rebecca","Larossa","r.larossa@thegrange.edu.au","Teaching","password");
 
 
-       Enrollment enrollment1 = new Enrollment(student1,new Assessment(40.0,34.5));
-       Enrollment enrollment2 = new Enrollment(student2, new Assessment(12.3,42.3));
-       Enrollment enrollment3 = new Enrollment(student3,new Assessment(34.3,32.4));
-       Enrollment enrollment4 = new Enrollment(student4,new Assessment(98.3,39.3));
-       Enrollment enrollment5 = new Enrollment(student5, new Assessment(34.3,43.3));
-       Enrollment enrollment6 = new Enrollment(student6,new Assessment(32.3,12.1));
+
+
 
 
 
@@ -73,9 +59,8 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     courseConduction.setCapacity(60);
     courseConduction.setSemester(Semester.FIRST);
     courseConduction.setYear(Year.of(2014));
-
-    courseConduction.addEnrollment(enrollment1);
-    courseConduction.addEnrollment(enrollment2);
+   /* courseConduction.addEnrollment(enrollment1);
+    courseConduction.addEnrollment(enrollment2);*/
     courseConduction.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==1).findFirst().get());
     courseConduction.setCourse(courses.stream().filter(course -> course.getId()==1).findFirst().get());
 
@@ -89,14 +74,14 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction1.setSemester(Semester.SECOND);
         courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId()==2).findFirst().get());
         courseConduction1.setCourse(courses.stream().filter(course -> course.getId()==2).findFirst().get());
-        courseConduction1.addEnrollment(enrollment1);
+        /*courseConduction1.addEnrollment(enrollment1);
         courseConduction.addEnrollment(enrollment2);
         courseConduction.addEnrollment(enrollment3);
         courseConduction.addEnrollment(enrollment4);
         courseConduction.addEnrollment(enrollment5);
         courseConduction.addEnrollment(enrollment6);
 
-
+*/
 
 
         courseConductions.add(courseConduction1);
@@ -147,7 +132,7 @@ public List<Course> getCoursesWithPrerequisites(){
     course5.getPrerequisitesCollection().add(course1);
     course5.getPrerequisitesCollection().add(course2);
 
-    log.debug(course5.getPrerequisitesCollection().toString());
+
     List<Course> courseHashSet = new ArrayList<>();
 
 
@@ -158,10 +143,30 @@ public List<Course> getCoursesWithPrerequisites(){
     courseHashSet.add(course3);
     courseHashSet.add(course4);
     courseHashSet.add(course5);
-    log.debug(courseHashSet.toString());
+
     return courseHashSet;
 }
 
+private List<Student> studentListWithEnrollment(){
+    Enrollment enrollment1 = new Enrollment(new Assessment(40.0,34.5));
+    Enrollment enrollment2 = new Enrollment( new Assessment(12.3,42.3));
+    Enrollment enrollment3 = new Enrollment(new Assessment(34.3,32.4));
+    Enrollment enrollment4 = new Enrollment(new Assessment(98.3,39.3));
+    Enrollment enrollment5 = new Enrollment( new Assessment(34.3,43.3));
+    Enrollment enrollment6 = new Enrollment(new Assessment(32.3,12.1));
 
+    Student student7 = new Student("eokoli","Okoli","Emeka","e.okoli@gmail.com","Health Sports","password",enrollment1);
+
+    Student student1 = new Student("jhoover","Jonathan","Hoover","j.hoover@fbi.gov.us","Espionage","password",enrollment1);
+
+    Student student2 = new Student("mford","Mark", "Ford","m.ford@mcm.org.au","Computer Science","password",enrollment2);
+    Student student3 = new Student("aread","Andrew","Read","a.read@mit.edu.au","Architecture","password",enrollment3);
+    Student student4 = new Student("shanity","Shawn","Hannity","s.hannity@foxnews.com","Journalism","password",enrollment4);
+    Student student5 = new Student("dtrump","Donald","Trump","d.trump@gmail.com","Mechanical Engineering","password",enrollment5);
+    Student student6= new Student("rlarossa","Rebecca","Larossa","r.larossa@thegrange.edu.au","Teaching","password",enrollment6);
+
+    List<Student> studentList = new ArrayList<>(Arrays.asList(student1,student2,student3,student4,student5,student6));
+    return studentList;
+}
 
 }
