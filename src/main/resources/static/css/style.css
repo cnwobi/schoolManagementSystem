@@ -8,8 +8,29 @@ body {
 .grid-container{
     margin-top: 65px
 }
+.right{
+    float:right;
+}
+/*Theme colours*/
+
+.color{
+    background-color: #0747A6;
+    color: white;
+}
+
+.color-light{
+    background-color: #2684FF;
+    color: white;
+}
+
+.color-dark{
+    background-color: #0747A6;
+    color: white;
+
+}
+
 nav{
-    background-color: #56A8FF;
+    background-color: #0747A6;
     width: 100%;
     line-height: inherit;
     position: fixed;
@@ -267,7 +288,13 @@ article.course_details{
 .class-detail{
 
 }
+article.classes{
+    padding: 0;
 
+    margin: 0;
+
+    box-shadow: 5px 5px 15px #aaaaaa;
+}
 
 /*Lecturer view student start*/
 .class-detail table{
@@ -322,4 +349,38 @@ input:-webkit-autofill {
 }
 .form-actions button:hover{
     background: #56A8FF;
+}
+
+.dashboard-main{
+    padding: 3%;
+
+    border: 1px solid lightgrey;
+}
+.dashboard-main > header > h4{
+    padding-left: .5rem;
+    font-size: x-large;
+    font-weight: bolder;
+
+    margin: 0;
+
+}
+.dashboard-main   table  a:hover{
+
+    color:deeppink ;
+}
+div.header{
+    padding: 5px;
+}
+.course-title{
+
+}
+
+.course-title{
+    color: #0747A6 !important;
+    font-weight: bolder;
+}
+
+.dashboard > h5{
+    font-weight: bolder;
+    padding-bottom: 5%;
 }

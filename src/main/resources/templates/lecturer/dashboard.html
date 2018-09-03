@@ -30,8 +30,8 @@
 <nav th:replace="common/header::common-navbar"/>
 
 <div class="grid-container grid-parent grid-100 dashboard">
-    <div class="username"><span>Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
-    <h1>Welcome to Your Dash Board</h1>
+
+    <h5>Lecturer's Dashboard</h5>
     <aside class="grid-25 profile-aside">
 
         <table class="">
@@ -63,10 +63,10 @@
 
 
 
-        <article class="grid-100 courseList">
+      <!--  <article class="grid-100 ">
             <header> Courses You Lecture</header>
 
-            <div class="course_tile" th:each="courseSession:${coursesConducted}">
+            <div class="" th:each="courseSession:${coursesConducted}">
 
                 <div class="title" th:text="${courseSession.course.title}"> Advanced ThermoDynamics</div>
                 <div><span class="capacity" >Capacity:</span> <span th:text="${courseSession.capacity+' enrollments'}">120 Students</span>
@@ -74,12 +74,43 @@
                 <div><span class="capacity">Currently Enrolled :</span><span th:text="${courseSession.enrollments.size()+ ' enrollments'}"></span><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a> </div>
                 <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}">120 Students</span>
                 </div>
-                <div> <span class="capacity" >Year:</span><span th:text="${courseSession.year}"> 2019 </span> <a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity   </a></div>
+                <div> <span class="capacity" >Year:</span><span th:text="${courseSession.year}"> 2019 </span> Edit Capacity   </a></div>
 
             </div>
 
 
-        </article>
+        </article>-->
+        <article class="grid-100 classes">
+            <div class="header color"> <header > Classes</header></div>
+
+            <div class="dashboard-main">
+
+              <table >
+<tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Capacity</th>
+    <th>Currently Enrolled</th>
+    <th></th>
+<th></th>
+</tr>
+                  <tr th:each="courseSession,iterator:${coursesConducted}">
+                      <td  th:text="${iterator.index+1}"></td>
+                       <td  class="course-title">
+                           <a th:text="${courseSession.course.title}" href="#" > </a>
+                       </td>
+                      <td th:text="${courseSession.capacity}"></td>
+                      <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
+                      <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
+                      <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity</a> </td>
+                      <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a></td>
+                  </tr>
+
+
+              </table>
+
+            </div>
+                    </article>
 
     </section>
 

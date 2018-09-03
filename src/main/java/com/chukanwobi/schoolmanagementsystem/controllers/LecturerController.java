@@ -1,8 +1,10 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
+import com.chukanwobi.schoolmanagementsystem.services.EnrollmentService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -24,14 +26,16 @@ public class LecturerController {
     private  LecturerService lecturerService;
 
   private  CourseConductionService conductionService;
+  private EnrollmentService enrollmentService;
 
 
 
 
 
-    public LecturerController(LecturerService lecturerService, CourseConductionService conductionService) {
+    public LecturerController(LecturerService lecturerService, CourseConductionService conductionService,EnrollmentService enrollmentService) {
         this.lecturerService = lecturerService;
         this.conductionService = conductionService;
+        this.enrollmentService = enrollmentService;
     }
 
     public LecturerCommand authenticatedLecturer(){
@@ -89,5 +93,11 @@ public class LecturerController {
 
         return "lecturer/class/students";
 }
-
+@GetMapping("lecturer/{lecturerId}/class/{courseConductionId}/student/{studentId}/upload-grades")
+public String EditorUploadGrades(@PathVariable String courseConductionId,@PathVariable String studentId,Model model){
+  EnrollmentCommand command = enrollmentService.findEnrollmentByCourseConductionIdAndStudentId(Long.valueOf(courseConductionId),Long.valueOf(studentId));
+  if(isAuthenticatedId(Long.valueOf(command.getCourseConduction().getLecturer().getId())))
+model.addAttribute("enrollment",command);
+  return "lecturer/class/upload-grades";
+}
 }

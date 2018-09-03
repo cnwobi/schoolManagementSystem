@@ -142,7 +142,7 @@ public List<Student> studentList(){
     Student student5 = new Student("dtrump","Donald","Trump","d.trump@gmail.com","Mechanical Engineering","password");
     Student student6= new Student("rlarossa","Rebecca","Larossa","r.larossa@thegrange.edu.au","Teaching","password");
 
-    List<Student> studentList = new ArrayList<>(Arrays.asList(student1,student2,student3,student4,student5,student6));
+    List<Student> studentList = new ArrayList<>(Arrays.asList(student1,student2,student3,student4,student5,student6,student7));
     return studentList;
 }
 

@@ -10,6 +10,7 @@ import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.Lectu
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
+import com.chukanwobi.schoolmanagementsystem.services.EnrollmentService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,8 @@ public class LecturerControllerTest {
     @Mock
     CourseConductionService conductionService;
     @Mock
+    EnrollmentService enrollmentService;
+    @Mock
     EnrollmentToEnrollmentCommand enrollmentCommandConverter;
     LecturerController controller;
     @Mock
@@ -61,7 +64,7 @@ public class LecturerControllerTest {
         command = new LecturerCommand();
         command.setId(3l);
 
-        controller = new LecturerController(lecturerService, conductionService);
+        controller = new LecturerController(lecturerService, conductionService,enrollmentService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
         conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter, converterLecturer,courseCommandConverter );
