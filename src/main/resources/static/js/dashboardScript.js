@@ -9,12 +9,12 @@ $(function () {
        }
    }
    console.log(this);
-    $(this).addClass('active');
+   $(this).addClass('active');
    $('.course-table').hide(function () {
 $(this).removeClass('active');
-      $('#'+ panelToShow).show(function () {
+      $('#'+ panelToShow).show(200,function () {
           $(this).addClass('active');
-          
+
       });
    });
 
