@@ -9,6 +9,7 @@ public class AssessmentCommand {
     private Long id;
     private Double assessmentOne;
     private Double assessmentTwo;
+    private Long enrollmentId;
 
 
 }

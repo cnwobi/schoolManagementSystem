@@ -4,10 +4,13 @@ import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionCommandToCourseConduction;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.exceptions.NotFoundException;
+import com.chukanwobi.schoolmanagementsystem.models.Assessment;
 import com.chukanwobi.schoolmanagementsystem.models.Course;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
+import com.chukanwobi.schoolmanagementsystem.repositories.AssessmentRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +25,8 @@ public class CourseConductionServiceImpl implements CourseConductionService{
     private CourseConductionRepo courseConductionRepo;
     private CourseConductionToCourseConductionCommand conductionConverter;
     private CourseConductionCommandToCourseConduction commandToCourseConductionConverter;
-
+@Autowired
+    private AssessmentRepo assessmentRepo;
 
     public CourseConductionServiceImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand conductionConverter, CourseConductionCommandToCourseConduction commandToCourseConductionConverter) {
         this.courseConductionRepo = courseConductionRepo;
@@ -92,6 +96,11 @@ public class CourseConductionServiceImpl implements CourseConductionService{
 
 
       return saveCourseConductionCommand(courseConductionCommand);
+
+    }
+
+    @Override
+    public void uploadGrades(CourseConductionCommand courseConduction) {
 
     }
 }

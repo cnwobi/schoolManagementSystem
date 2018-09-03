@@ -32,6 +32,10 @@
       </aside>-->
     <div class="grid-100 table-students ">
         <h3 th:text="${''}"></h3>
+        <form th:object="${courseConduction}" th:action="@{/lecturer/class/upload-grades}" method="post">
+            <input type="hidden" th:field="*{id}" >
+            <input type="hidden" th:field="*{lecturer.id}">
+
         <table class="highlight ">
             <thead>
             <tr>
@@ -49,33 +53,45 @@
             </tr>
             </thead>
 
-            <tr th:each="enrollment,iterator:${enrollments}">
-                <form th:object="${enrollmentCommand}">
+            <tr th:each="enrollment,iterator:${courseConduction.enrollments}">
+                <input type="hidden" th:field="*{enrollments[__${iterator.index}__].assessment.id}">
+
                 <td th:text="${iterator.index+1}">1</td>
                 <td ><img th:unless ="${enrollment.student.image !=null}"  src="/images/no-image-icon.png">
 
                 </td>
 
                 <td th:text="${enrollment.student.firstName}">John</td>
+
                 <td th:text="${enrollment.student.surname}">Doe</td>
                 <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
-                <td><input type="number"th:field="*{assessment.assessmentOne}" th:value="${enrollment.assessment.assessmentOne}"></td>
-                <td><input type="number"th:field="*{assessment.assessmentTwo}" th:value="${enrollment.assessment.assessmentTwo}"></td>
-                <!--<input type="hidden" th:field="*{enrollments[__${iterator.index}__].courseConduction.course}">-->
-                </form>
-                    <!--   <td th:unless="${enrollment.assessment.assessmentOne<=0}" th:text="${enrollment.assessment.assessmentOne} +' %'"> </td>
-                       <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
-                       <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
-                       <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"><</td>-->
+                <td><input type="number" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentOne}">
+
+                </td>
+                <td><input type="number" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentTwo}"></td>
+
+                <input type="hidden" th:field="*{enrollments[__${iterator.index}__].assessment.id}">
+                <input type="hidden" th:field="*{enrollments[__${iterator.index}__].assessment.id}">
+
+                <!--  <td><input type="number"th:field="*{enrollments[__${iterator.index}__].assessment.assessmentTwo}"></td>
+                  <input type="hidden" th:field="*{enrollments[__${iterator.index}__].courseConduction.course}">-->
+
+             <!--   <td th:unless="${enrollment.assessment.assessmentOne<=0}" th:text="${enrollment.assessment.assessmentOne} +' %'"> </td>
+                <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
+                <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
+                <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"><</td>-->
                 <!--<td><a th:href="@{'/lecturer/class/'+${courseConduction.id}+'/upload-grades/'}"> Upload Grades</a></td>-->
 
             </tr>
 
 
-</form>
+
+
 
 
         </table>
+            <button class="button" type="submit"></button>
+        </form>
     </div>
 
 </div>

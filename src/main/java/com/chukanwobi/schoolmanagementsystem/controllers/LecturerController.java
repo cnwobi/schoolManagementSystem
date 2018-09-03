@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.AssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -108,8 +110,14 @@ public class LecturerController {
         CourseConductionCommand command = conductionService.findCourseConductionById(Long.valueOf(courseConductionId));
         if (isAuthenticatedId(Long.valueOf(command.getLecturer().getId())))
 model.addAttribute("courseConduction",command);
-        model.addAttribute("enrollments",command.getEnrollments());
-        model.addAttribute("enrollmentCommand",new EnrollmentCommand());
-        return "lecturer/class/upload-grades";
+
+       return "lecturer/class/upload-grades";
+    }
+
+    @PostMapping("/lecturer/class/upload-grades")
+    public String postUploadGrades(@ModelAttribute CourseConductionCommand conductionCommand) {
+lecturerService.uploadGrades(conductionCommand);
+
+        return "redirect:/lecturer/" + conductionCommand.getLecturer().getId() + "/class/"+conductionCommand.getId()+"/students-list";
     }
 }

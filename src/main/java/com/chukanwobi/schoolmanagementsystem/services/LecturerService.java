@@ -14,6 +14,6 @@ public interface LecturerService {
     
 
     LecturerCommand findLecturerByUsername(String username);
-
+void uploadGrades(CourseConductionCommand conductionCommand);
 
 }

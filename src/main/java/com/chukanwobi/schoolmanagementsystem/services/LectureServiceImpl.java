@@ -4,9 +4,11 @@ import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.models.Assessment;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
+import com.chukanwobi.schoolmanagementsystem.repositories.AssessmentRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
 import com.chukanwobi.schoolmanagementsystem.repositories.LecturerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +34,8 @@ private LecturerToLecturerCommand converter;
 private UserDetailsService userDetailsService;
 private CourseConductionToCourseConductionCommand conductionConverter;
 private CourseConductionRepo courseConductionRepo;
+@Autowired
+private AssessmentRepo assessmentRepo;
 
     public LectureServiceImpl(LecturerRepository lecturerRepository,
                               LecturerToLecturerCommand converter,
@@ -73,6 +77,15 @@ private CourseConductionRepo courseConductionRepo;
       return converter.convert(lecturer);
 
     }
+@Override
+    public void uploadGrades(CourseConductionCommand conductionCommand){
+    List<Assessment> assessments =  new ArrayList<>();
+    conductionCommand.getEnrollments().forEach(enrollmentCommand ->assessments.add(enrollmentCommand.getAssessment()) );
+    List<Assessment> savedAssessments= new ArrayList<>();
 
+    assessmentRepo.saveAll(assessments).forEach(assessment -> savedAssessments.add(assessment));
+    savedAssessments.size();
+
+}
 
 }
