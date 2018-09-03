@@ -3,91 +3,50 @@
 
 <html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:fragment="common-header-forms">
-    <meta name="viewport" content="
-      width=device-width,
-      initial-scale=1,
-      minimum-scale=1,
-      maximum-scale=1
-    " />
-    <meta charset="UTF-8">
-
-
-
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-
-    <link rel="stylesheet" type="text/css" href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Economica" rel="stylesheet">
-    <title th:text="${student.firstName+' profile & courses '}">Profile & Course view</title>
-</head>
-<body>
+<head th:replace="common/header::common-header"/>
 
 <nav th:replace="common/header::common-navbar"/>
 
 <div class="grid-container grid-parent grid-100 dashboard">
     <div class="username"><span>Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
-    <h1>Welcome to Your Dash Board</h1>
-    <aside class="grid-25 ">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-
-        Why do we use it?
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at
-        its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-        opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
-        packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-        will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
-        accident, sometimes on purpose (injected humour and the like).
-
-    </aside>
-    <section class="grid-70">
-        <article class="grid-45 profile">
-            <header> Basic Profile</header>
-            <div>Student ID:<span th:text="${student.id}"> 1</span> </div>
-            <div>Full name:<span th:text="${student.firstName+' '+student.surname}"> Chuka Nwobi</span> </div>
+    <h1 th:text="${'Welcome '+student.firstName}">Welcome to Your Dash Board</h1>
+    <section class="grid-50">
 
 
-            <div>Email Address:<span th:text="${student.email}"> c.nwobi@outlook.com</span> </div>
-            <div>Major<span th:text="${student.major}"> Mt. Helen</span> </div>
-            <div>Password<span> <a href="#">reset password</a></span> </div>
+        <article class="grid-100 classes">
+            <div class="header-dashboard color"> Your Grades</div>
 
-        </article>
-        <!--end of profile article tage-->
-        <article class="grid-5">
+            <div class="dashboard-main">
 
-            <h1></h1>
+                <table class="highlight">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+
+                        <th> Task 1</th>
+                        <th> Task  2</th>
+                        <th>Semester</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr th:each="enrollment,iterator:${student.enrollments}">
+                        <td  th:text="${iterator.index+1}"></td>
+                        <td  class="course-title">
+                            <a th:text="${enrollment.courseConduction.course.title}" href="#" > </a>
+                        </td>
+
+                        <td th:text="${enrollment.assessment.assessmentOne} +' %'"></td>
+                        <td th:text="${enrollment.assessment.assessmentTwo}+ ' %'"></td>
+                        <td th:text="${enrollment.courseConduction.semester}"></td>
+
+                        <td th:text="${enrollment.courseConduction.year}"></td>
+                    </tr>
 
 
-        </article>
+                </table>
 
-
-        <article class="grid-50 courseList">
-            <header> Courses You Enrolled In</header>
-
-            <div  class="course_tile" th:each="enrollment:${student.enrollments}">
-
-                <div class="title" th:text="${enrollment.courseConduction.course.title}"> Advanced ThermoDynamics</div>
-
-                <div><span class="capacity" >Semester:</span> <span th:text="${#strings.capitalize(enrollment.courseConduction.semester.toString().toLowerCase())}">120 Students</span>
-                </div>
-                <div> <span class="capacity" >Year:</span><span th:text="${enrollment.courseConduction.year}"> 2019 </span>
-                    <div><span class="capacity" >Assessment 1:</span> <span th:text="${enrollment.assessment.assessmentOne+' %'}">120 Students</span>
-                    </div>
-                    <div><span class="capacity" >Assessment 2:</span> <span th:text="${enrollment.assessment.assessmentTwo+' %'}">120 Students</span>
-                    </div><!--<a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity   </a>--></div>
             </div>
-
-
         </article>
+
 
     </section>
 
