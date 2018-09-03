@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import util.CurrentSemesterUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,8 @@ public class LecturerController {
 
         model.addAttribute("coursesConducted", conductionService.findCourseConductionByLecturerId(authenticatedLecturer().getId()));
         model.addAttribute("lecturer", lecturerService.findLecturerById(authenticatedLecturer().getId()));
+
+        model.addAttribute("currentSemester",CurrentSemesterUtil.getInstance().calculateCurrentSemester());
         return "lecturer/dashboard";
     }
 

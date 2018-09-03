@@ -2,6 +2,8 @@ package com.chukanwobi.schoolmanagementsystem.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.ApplicationListener;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,6 +24,7 @@ public class Student implements UserDetails {
     private String email;
     private String major;
     private String password;
+    private Semester currentSemester;
 
 
 
@@ -90,4 +93,6 @@ public class Student implements UserDetails {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 }
