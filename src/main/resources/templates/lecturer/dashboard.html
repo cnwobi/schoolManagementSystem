@@ -61,19 +61,19 @@
     </aside>
     <section class="grid-70">
 <div class="course-tabs grid-100">
-    <ul class="grid-35">
-        <li class="left ">Current Courses </li>
-        <li class="right active">Previous Courses</li>
+    <ul class="grid-35 timeline">
+        <li class="left " rel="current">Current Courses </li>
+        <li class="right active " rel="all_courses">Previous Courses</li>
     </ul>
 
 </div>
 
         <article class="grid-100 classes">
-            <div class="header-dashboard color"> Your Current Classes</div>
+            <div class="header-dashboard color"> Your Classes</div>
 
             <div class="dashboard-main">
 
-              <table class="" >
+              <table class="course-table active" id="all_courses">
 <tr>
     <th>Id</th>
     <th>Title</th>
@@ -101,7 +101,7 @@
 
               </table>
 
-                <table class="" >
+                <table class="course-table active" id="current">
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
@@ -136,6 +136,9 @@
 
 </div>
 </body>
-<script src="/webjars/materializecss/1.0.0-rc.2/js/materialize.js"/>
+<script src="/webjars/jquery/3.3.1-1/jquery.js"></script>
+<script src="/js/dashboardScript.js"></script>
+
+
 
 </html>

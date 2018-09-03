@@ -432,6 +432,7 @@ button.submit-grades:active{
     background-color: #0747A6;
 }
 .header-dashboard{
+    color: #0747A6;
     text-align: center;
 }
 .course-tabs{
@@ -448,10 +449,17 @@ button.submit-grades:active{
     background-color: #2684FF;
     color: white;
     padding: 3%;
+
 }
 
 .course-tabs li.active{
     background-color: #0747A6;
     color: white;
 
+}
+.dashboard-main table{
+    display: none ;
+}
+.dashboard-main table.active{
+    display: table ;
 }
