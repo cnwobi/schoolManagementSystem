@@ -384,3 +384,16 @@ div.header{
     font-weight: bolder;
     padding-bottom: 5%;
 }
+
+button{
+
+    background-color: #0747A6;
+    color: white;
+    padding: 1%;
+}
+
+.table-students  button{
+   margin: 1%;
+    border: none;
+    
+}

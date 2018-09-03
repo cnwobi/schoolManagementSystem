@@ -123,7 +123,7 @@ public class LecturerControllerTest {
         mockMvc.perform(get("/lecturer/4/class/2/editCapacity"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("courseConduction"))
-                .andExpect(view().name("courseConduction/form"));
+                .andExpect(view().name("lecturer/class/edit-capacity"));
 
 
     }

@@ -65,10 +65,10 @@
 
                 <td th:text="${enrollment.student.surname}">Doe</td>
                 <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
-                <td><input type="number" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentOne}">
+                <td><input type="number" min="0.0" max="100" step="any" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentOne}">
 
                 </td>
-                <td><input type="number" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentTwo}"></td>
+                <td><input type="number" min="0.0" max="100" step="any" th:field="*{enrollments[__${iterator.index}__].assessment.assessmentTwo}"></td>
 
                 <input type="hidden" th:field="*{enrollments[__${iterator.index}__].assessment.id}">
                 <input type="hidden" th:field="*{enrollments[__${iterator.index}__].assessment.id}">
@@ -90,7 +90,7 @@
 
 
         </table>
-            <button class="button" type="submit"></button>
+            <button  type="submit"> Submit</button>
         </form>
     </div>
 
