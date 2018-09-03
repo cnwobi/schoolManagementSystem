@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import util.CurrentSemesterUtil;
 
+
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +72,7 @@ public class LecturerController {
         model.addAttribute("lecturer", lecturerService.findLecturerById(authenticatedLecturer().getId()));
 
         model.addAttribute("currentSemester",CurrentSemesterUtil.getInstance().calculateCurrentSemester());
+        model.addAttribute("currentYear",Year.now().toString());
         return "lecturer/dashboard";
     }
 

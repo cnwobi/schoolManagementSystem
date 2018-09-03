@@ -33,7 +33,7 @@
 
     <h5>Lecturer's Dashboard</h5>
 
-    <div th:text="${'current semester '+ currentSemester}"></div>
+   <!-- <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>-->
     <aside class="grid-25 profile-aside">
 
         <table class="">
@@ -60,10 +60,16 @@
 
     </aside>
     <section class="grid-70">
+<div class="course-tabs grid-100">
+    <ul class="grid-35">
+        <li class="left ">Current Courses </li>
+        <li class="right active">Previous Courses</li>
+    </ul>
 
+</div>
 
         <article class="grid-100 classes">
-            <div class="header-dashboard color"> Your Classes</div>
+            <div class="header-dashboard color"> Your Current Classes</div>
 
             <div class="dashboard-main">
 
@@ -73,6 +79,8 @@
     <th>Title</th>
     <th>Capacity</th>
     <th>Currently Enrolled</th>
+    <th>Semester</th>
+    <th>Year</th>
     <th></th>
 <th></th>
 </tr>
@@ -84,6 +92,8 @@
                       <td th:text="${courseSession.capacity}"></td>
                       <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
                       <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
+                      <td th:text="${courseSession.semester}" ></td>
+                      <td th:text="${courseSession.year}">knm</td>
                       <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity</a> </td>
                       <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a></td>
                   </tr>
@@ -93,7 +103,7 @@
 
             </div>
                     </article>
-
+</div>
     </section>
 
 </div>

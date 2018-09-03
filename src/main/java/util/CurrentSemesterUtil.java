@@ -2,8 +2,10 @@ package util;
 
 import com.chukanwobi.schoolmanagementsystem.models.Semester;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 
+import java.time.Year;
 import java.util.Calendar;
 
 public class CurrentSemesterUtil {
@@ -32,8 +34,12 @@ public class CurrentSemesterUtil {
 
         }
 
-        return null;
+        return Semester.BREAK;
 
 
+    }
+
+    public Year getCurrentYear(){
+return Year.now();
     }
 }

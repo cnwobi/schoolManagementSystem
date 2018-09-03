@@ -13,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import util.CurrentSemesterUtil;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,9 +27,13 @@ public class CourseConductionServiceImpl implements CourseConductionService{
     private CourseConductionRepo courseConductionRepo;
     private CourseConductionToCourseConductionCommand conductionConverter;
     private CourseConductionCommandToCourseConduction commandToCourseConductionConverter;
-@Autowired
-    private AssessmentRepo assessmentRepo;
 
+
+  private CurrentSemesterUtil currentSemesterUtil;
+
+    {
+        currentSemesterUtil = CurrentSemesterUtil.getInstance();
+    }
     public CourseConductionServiceImpl(CourseConductionRepo courseConductionRepo, CourseConductionToCourseConductionCommand conductionConverter, CourseConductionCommandToCourseConduction commandToCourseConductionConverter) {
         this.courseConductionRepo = courseConductionRepo;
         this.conductionConverter = conductionConverter;
@@ -102,5 +108,15 @@ public class CourseConductionServiceImpl implements CourseConductionService{
     @Override
     public void uploadGrades(CourseConductionCommand courseConduction) {
 
+    }
+
+    @Override
+    public List<CourseConductionCommand> returnCourseConductionByCurrentSemesterAndYear(Long lecturerId) {
+       List<CourseConductionCommand> commandList = findCourseConductionByLecturerId(Long.valueOf(lecturerId));
+       List<CourseConductionCommand> currentCourseConduction = new ArrayList<>();
+
+       commandList.stream().filter(conductionCommand -> conductionCommand.getSemester()==currentSemesterUtil.calculateCurrentSemester()&& conductionCommand.getYear()== Year.now()).forEach(conductionCommand -> currentCourseConduction.add(conductionCommand));
+
+        return commandList;
     }
 }
