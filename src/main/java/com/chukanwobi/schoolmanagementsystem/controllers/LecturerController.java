@@ -73,6 +73,7 @@ public class LecturerController {
 
         model.addAttribute("currentSemester",CurrentSemesterUtil.getInstance().calculateCurrentSemester());
         model.addAttribute("currentYear",Year.now().toString());
+        model.addAttribute("currentCourses",conductionService.returnCourseConductionByCurrentSemesterAndYear(authenticatedLecturer().getId()));
         return "lecturer/dashboard";
     }
 

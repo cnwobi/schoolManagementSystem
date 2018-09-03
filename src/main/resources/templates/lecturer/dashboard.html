@@ -33,7 +33,7 @@
 
     <h5>Lecturer's Dashboard</h5>
 
-   <!-- <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>-->
+    <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>
     <aside class="grid-25 profile-aside">
 
         <table class="">
@@ -73,7 +73,7 @@
 
             <div class="dashboard-main">
 
-              <table >
+              <table class="" >
 <tr>
     <th>Id</th>
     <th>Title</th>
@@ -101,9 +101,37 @@
 
               </table>
 
+                <table class="" >
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Capacity</th>
+                        <th>Currently Enrolled</th>
+                        <th>Semester</th>
+                        <th>Year</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="courseSession,iterator:${currentCourses}">
+                        <td  th:text="${iterator.index+1}"></td>
+                        <td  class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#" > </a>
+                        </td>
+                        <td th:text="${courseSession.capacity}"></td>
+                        <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
+                        <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
+                        <td th:text="${courseSession.semester}" ></td>
+                        <td th:text="${courseSession.year}">knm</td>
+                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity</a> </td>
+                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a></td>
+                    </tr>
+
+
+                </table>
+
             </div>
                     </article>
-</div>
+
     </section>
 
 </div>

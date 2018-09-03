@@ -113,10 +113,12 @@ public class CourseConductionServiceImpl implements CourseConductionService{
     @Override
     public List<CourseConductionCommand> returnCourseConductionByCurrentSemesterAndYear(Long lecturerId) {
        List<CourseConductionCommand> commandList = findCourseConductionByLecturerId(Long.valueOf(lecturerId));
-       List<CourseConductionCommand> currentCourseConduction = new ArrayList<>();
+       List<CourseConductionCommand> currentCourseConductionBySemester = new ArrayList<>();
+       List<CourseConductionCommand> currentCourseCOnductionByYear = new ArrayList<>();
 
-       commandList.stream().filter(conductionCommand -> conductionCommand.getSemester()==currentSemesterUtil.calculateCurrentSemester()&& conductionCommand.getYear()== Year.now()).forEach(conductionCommand -> currentCourseConduction.add(conductionCommand));
+       commandList.stream().filter(conductionCommand -> conductionCommand.getSemester()==currentSemesterUtil.calculateCurrentSemester()).forEach(conductionCommand -> currentCourseConductionBySemester.add(conductionCommand));
+       currentCourseConductionBySemester.stream().filter(conductionCommand -> conductionCommand.getYear().toString().equalsIgnoreCase(Year.now().toString())).forEach(conductionCommand -> currentCourseCOnductionByYear.add(conductionCommand));
 
-        return commandList;
+        return currentCourseCOnductionByYear;
     }
 }
