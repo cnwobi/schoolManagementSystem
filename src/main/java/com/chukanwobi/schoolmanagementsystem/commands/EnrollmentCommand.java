@@ -12,9 +12,7 @@ public class EnrollmentCommand {
 
 
     private Long id;
-
     private CourseConduction courseConduction;
-
     private Student student;
     private Assessment assessment;
 }

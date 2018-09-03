@@ -61,9 +61,7 @@
                 <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
                 <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
                 <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"></td>
-                <td><a th:href="@{'/lecturer/'
-                +${courseConduction.lecturer.id}+'/class/'+${courseConduction.id}+
-                '/student/'+${enrollment.student.id}+'/upload-grades/'}"> Upload Grades</a></td>
+                <td><a th:href="@{'/lecturer/class/'+${courseConduction.id}+'/upload-grades/'}"> Upload Grades</a></td>
 
             </tr>
 

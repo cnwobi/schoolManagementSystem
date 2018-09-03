@@ -1,10 +1,84 @@
 <!DOCTYPE html>
 
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="common/header :: common-header"/>
 
+
 <body>
+
 <nav th:replace="common/header::common-navbar"/>
+
+<div class="grid-container grid-container grid-parent grid-100  ">
+    <div class="username grid-100"><span class="float-left" th:text="${'[**'+courseConduction.course.title+'--Semester:'+#strings.capitalize(#strings.toLowerCase(courseConduction.semester))+'--Year:'+courseConduction.year+'**]'} "> </span><span class="float-right" th:text="${#authentication+'['+#authorization+']'}">Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
+    <!--  <aside class="grid-25 profile-aside class-detail">
+
+          <table>
+
+              <tr>
+                  <td> <span class="class-label">Class ID:</span><span th:text="${courseConduction.id}"> 1</span> </td>
+                  <td> <span class="class-label">Title:</span>  <span th:text="${courseConduction.course.getTitle()}">Chuka </span>  </td>
+                  <td><span class="class-label">Capacity:</span><span th:text="${courseConduction.capacity}"> c.nwobi@outlook.com</span></td>
+                  <td> <span class="class-label">Semester:</span><span th:text="${courseConduction.enrollments.size()+' students'}"> Mt. Helen</span></td>
+                  <td>   <span class="class-label">Number of Enrolled Students:</span><span th:text="${courseConduction.capacity - courseConduction.enrollments.size()+ 'seats'}"></span> </td>
+
+
+          </table>
+
+
+
+
+      </aside>-->
+    <div class="grid-100 table-students ">
+        <h3 th:text="${''}"></h3>
+        <table class="highlight ">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Assessment 1</th>
+                <th>Assessment 2</th>
+                <th></th>
+
+
+            </tr>
+            </thead>
+
+            <tr th:each="enrollment,iterator:${enrollments}">
+                <form th:object="${enrollmentCommand}">
+                <td th:text="${iterator.index+1}">1</td>
+                <td ><img th:unless ="${enrollment.student.image !=null}"  src="/images/no-image-icon.png">
+
+                </td>
+
+                <td th:text="${enrollment.student.firstName}">John</td>
+                <td th:text="${enrollment.student.surname}">Doe</td>
+                <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
+                <td><input type="number"th:field="*{assessment.assessmentOne}" th:value="${enrollment.assessment.assessmentOne}"></td>
+                <td><input type="number"th:field="*{assessment.assessmentTwo}" th:value="${enrollment.assessment.assessmentTwo}"></td>
+                <!--<input type="hidden" th:field="*{enrollments[__${iterator.index}__].courseConduction.course}">-->
+                </form>
+                    <!--   <td th:unless="${enrollment.assessment.assessmentOne<=0}" th:text="${enrollment.assessment.assessmentOne} +' %'"> </td>
+                       <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
+                       <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
+                       <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"><</td>-->
+                <!--<td><a th:href="@{'/lecturer/class/'+${courseConduction.id}+'/upload-grades/'}"> Upload Grades</a></td>-->
+
+            </tr>
+
+
+</form>
+
+
+        </table>
+    </div>
+
+</div>
 </body>
+
 </html>
