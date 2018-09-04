@@ -10,6 +10,7 @@ $(function () {
    }
    console.log(this);
    $(this).addClass('active');
+
    $('.course-table').hide(function () {
 $(this).removeClass('active');
       $('#'+ panelToShow).show(200,function () {
