@@ -122,4 +122,15 @@ public class CourseConductionServiceImpl implements CourseConductionService{
 
         return currentCourseConductions;
     }
+
+    @Override
+    public List<CourseConductionCommand> returnPastCourses(Long lecturerId) {
+        List<CourseConductionCommand> commandList = findCourseConductionByLecturerId(Long.valueOf(lecturerId));
+        List<CourseConductionCommand> pastCourseConductions = new ArrayList<>(commandList);
+
+        commandList.stream().filter(conductionCommand -> conductionCommand.getSemester()==currentSemesterUtil.calculateCurrentSemester()&& conductionCommand.getYear().toString().equalsIgnoreCase(Year.now().toString()))
+                .forEach(conductionCommand ->pastCourseConductions.remove(conductionCommand) );
+
+        return pastCourseConductions;
+    }
 }

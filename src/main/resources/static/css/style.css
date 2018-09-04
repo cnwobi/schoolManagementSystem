@@ -446,15 +446,22 @@ button.submit-grades:active{
 }
 
 .course-tabs li{
+    font-size: .9vw;
     background-color: #2684FF;
     color: white;
-    padding: 3%;
+    margin-right: 1%;
+    padding: 1vw;
 
 }
 
 .course-tabs li.active{
     background-color: #0747A6;
     color: white;
+    display: inline-block;
+
+}
+.course-tabs li:hover{
+    background-color: #0747A6;
 
 }
 .dashboard-main table{
@@ -462,4 +469,11 @@ button.submit-grades:active{
 }
 .dashboard-main table.active{
     display: table ;
+}
+div.page-title{
+    font-weight: lighter;
+    font-size: 2vw;
+    padding: 1vw;
+    margin-top: 10vh;
+    margin-bottom: 1vh;
 }

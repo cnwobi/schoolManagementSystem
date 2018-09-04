@@ -13,5 +13,6 @@ public interface CourseConductionService {
     CourseConductionCommand saveCourseConductionCommand(CourseConductionCommand conductionCommand);
     CourseConductionCommand editCapacityAndSave(CourseConductionCommand conductionCommand);
     List<CourseConductionCommand> returnCourseConductionByCurrentSemesterAndYear(Long lecturerId);
+    List<CourseConductionCommand> returnPastCourses(Long lecturerId);
     void uploadGrades(CourseConductionCommand courseConduction);
 }

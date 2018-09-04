@@ -45,6 +45,10 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/default")
                 .and()
                 .exceptionHandling().accessDeniedPage("/denied")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
 
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")

@@ -20,8 +20,7 @@ import util.CurrentSemesterUtil;
 
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Controller
@@ -74,6 +73,7 @@ public class LecturerController {
         model.addAttribute("currentSemester",CurrentSemesterUtil.getInstance().calculateCurrentSemester());
         model.addAttribute("currentYear",Year.now().toString());
         model.addAttribute("currentCourses",conductionService.returnCourseConductionByCurrentSemesterAndYear(authenticatedLecturer().getId()));
+        model.addAttribute("pastCourses",conductionService.returnPastCourses(authenticatedLecturer().getId()));
         return "lecturer/dashboard";
     }
 

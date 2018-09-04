@@ -19,6 +19,11 @@ private CourseConductionService conductionService;
         this.lecturerService = lecturerService;
         this.conductionService = conductionService;
     }
+    @GetMapping("/admin")
+    public String getLecturers(Model model){
+        model.addAttribute("lecturers", lecturerService.getLecturers());
+        return "index";
+    }
 
     @GetMapping("/admin/lecturer/{id}/view/courses")
     public String getCoursesLecturedByLecturerId(@PathVariable String id , Model model, Authentication auth){

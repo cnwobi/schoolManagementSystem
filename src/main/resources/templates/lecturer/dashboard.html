@@ -17,7 +17,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="/css/materialize.min.css">
-
     <link rel="stylesheet" type="text/css" href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
 
 
@@ -28,13 +27,13 @@
 <body>
 
 <nav th:replace="common/header::common-navbar"/>
-
+<div class="page-title" th:text="${'Dashboard Overview'}">Lecturer's Dashboard</div>
 <div class="grid-container grid-parent grid-100 dashboard">
 
-    <h5>Lecturer's Dashboard</h5>
 
-    <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>
-    <aside class="grid-25 profile-aside">
+
+  <!--  <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>-->
+    <!--<aside class="grid-25 profile-aside">
 
         <table class="">
             <tr>
@@ -58,12 +57,13 @@
 
 
 
-    </aside>
-    <section class="grid-70">
+    </aside>-->
+    <section class="grid-100">
 <div class="course-tabs grid-100">
-    <ul class="grid-35 timeline">
+    <ul class="grid-70 timeline">
         <li class="left active" rel="current">Current Courses </li>
-        <li class="right  " rel="all_courses">Previous Courses</li>
+        <li class="left" rel="past">Previous Courses</li>
+        <li class="left  " rel="all_courses">All Courses</li>
     </ul>
 
 </div>
@@ -72,13 +72,13 @@
             <div class="header-dashboard color"> Your Classes</div>
 
             <div class="dashboard-main">
-
+<!--Start of all courses table -->
               <table class="course-table " id="all_courses">
 <tr>
     <th>Id</th>
     <th>Title</th>
-    <th>Capacity</th>
-    <th>Currently Enrolled</th>
+
+
     <th>Semester</th>
     <th>Year</th>
 
@@ -88,23 +88,25 @@
                        <td  class="course-title">
                            <a th:text="${courseSession.course.title}" href="#" > </a>
                        </td>
-                      <td th:text="${courseSession.capacity}"></td>
-                      <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
-                      <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
-                      <td th:text="${courseSession.semester}" ></td>
+
+
+
+                      <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
                       <td th:text="${courseSession.year}">knm</td>
 
                   </tr>
 
 
               </table>
+<!--End of all courses table-->
 
+                <!--Start of current courses table-->
                 <table class="course-table active" id="current">
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
                         <th>Capacity</th>
-                        <th>Currently Enrolled</th>
+                        <th>Enrolled</th>
                         <th>Semester</th>
                         <th>Year</th>
                         <th></th>
@@ -118,10 +120,38 @@
                         <td th:text="${courseSession.capacity}"></td>
                         <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
                         <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
-                        <td th:text="${courseSession.semester}" ></td>
+                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
                         <td th:text="${courseSession.year}">knm</td>
-                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit Capacity</a> </td>
+                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit </a> </td>
                         <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a></td>
+                    </tr>
+
+
+                </table>
+                <!-- End of current courses tables-->
+
+
+                <table class="course-table " id="past">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+
+
+                        <th>Semester</th>
+                        <th>Year</th>
+
+                    </tr>
+                    <tr th:each="courseSession,iterator:${pastCourses}">
+                        <td  th:text="${iterator.index+1}"></td>
+                        <td  class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#" > </a>
+                        </td>
+
+
+
+                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
+                        <td th:text="${courseSession.year}">knm</td>
+
                     </tr>
 
 
