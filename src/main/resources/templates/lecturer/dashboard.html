@@ -9,15 +9,15 @@
       width=device-width,
       initial-scale=1,
       minimum-scale=1,
-      maximum-scale=1
-    " />
+      maximum-scale=1,
+    "/>
     <meta charset="UTF-8">
-
 
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
+    <link rel="stylesheet" type="text/css"
+          href="/webjars/unsemantic/1.1.3/assets/stylesheets/unsemantic-grid-responsive.css">
 
 
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -31,8 +31,7 @@
 <div class="grid-container grid-parent grid-100 dashboard">
 
 
-
-  <!--  <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>-->
+    <!--  <div th:text="${'current semester '+ currentSemester +'Current year '+currentYear}"></div>-->
     <!--<aside class="grid-25 profile-aside">
 
         <table class="">
@@ -58,50 +57,51 @@
 
 
     </aside>-->
-    <section class="grid-100">
-<div class="course-tabs grid-100">
-    <ul class="grid-70 timeline">
-        <li class="left active" rel="current">Current Courses </li>
-        <li class="left" rel="past">Previous Courses</li>
-        <li class="left  " rel="all_courses">All Courses</li>
-    </ul>
+    <section class="grid-100 grid-parent">
+        <div class="course-tabs grid-100 grid-parent">
+            <ul class="grid-100 timeline">
+                <li class="left active" rel="profile">Profile</li>
+                <li class="left " rel="current">Current Courses</li>
+                <li class="left" rel="past">Previous Courses</li>
+                <li class="left  " rel="all_courses">All Courses</li>
 
-</div>
+            </ul>
+
+        </div>
 
         <article class="grid-100 classes">
             <div class="header-dashboard color"> Your Classes</div>
 
             <div class="dashboard-main">
-<!--Start of all courses table -->
-              <table class="course-table " id="all_courses">
-<tr>
-    <th>Id</th>
-    <th>Title</th>
+                <!--Start of all courses table -->
+                <table class="course-table " id="all_courses">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
 
 
-    <th>Semester</th>
-    <th>Year</th>
+                        <th>Semester</th>
+                        <th>Year</th>
 
-</tr>
-                  <tr th:each="courseSession,iterator:${coursesConducted}">
-                      <td  th:text="${iterator.index+1}"></td>
-                       <td  class="course-title">
-                           <a th:text="${courseSession.course.title}" href="#" > </a>
-                       </td>
-
-
-
-                      <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
-                      <td th:text="${courseSession.year}">knm</td>
-
-                  </tr>
+                    </tr>
+                    <tr th:each="courseSession,iterator:${coursesConducted}">
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#"> </a>
+                        </td>
 
 
-              </table>
-<!--End of all courses table-->
+                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}"></td>
+                        <td th:text="${courseSession.year}">knm</td>
+
+                    </tr>
+
+
+                </table>
+                <!--End of all courses table-->
 
                 <!--Start of current courses table-->
-                <table class="course-table active" id="current">
+                <table class="course-table " id="current">
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
@@ -113,24 +113,29 @@
                         <th></th>
                     </tr>
                     <tr th:each="courseSession,iterator:${currentCourses}">
-                        <td  th:text="${iterator.index+1}"></td>
-                        <td  class="course-title">
-                            <a th:text="${courseSession.course.title}" href="#" > </a>
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#"> </a>
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
-                        <td th:unless="${courseSession.enrollments.size()==0}" th:text="${courseSession.enrollments.size()} "></td>
+                        <td th:unless="${courseSession.enrollments.size()==0}"
+                            th:text="${courseSession.enrollments.size()} "></td>
                         <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
-                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
+                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}"></td>
                         <td th:text="${courseSession.year}">knm</td>
-                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit </a> </td>
-                        <td><a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View Students</a></td>
+                        <td>
+                            <a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/editCapacity'}">Edit </a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/lecturer/'+${courseSession.lecturer.id}+'/class/'+${courseSession.id}+'/students-list'}">View
+                                Students</a></td>
                     </tr>
 
 
                 </table>
                 <!-- End of current courses tables-->
 
-
+                <!--Start of past courses-->
                 <table class="course-table " id="past">
                     <tr>
                         <th>Id</th>
@@ -142,23 +147,50 @@
 
                     </tr>
                     <tr th:each="courseSession,iterator:${pastCourses}">
-                        <td  th:text="${iterator.index+1}"></td>
-                        <td  class="course-title">
-                            <a th:text="${courseSession.course.title}" href="#" > </a>
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#"> </a>
                         </td>
 
 
-
-                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}" ></td>
+                        <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}"></td>
                         <td th:text="${courseSession.year}">knm</td>
 
                     </tr>
 
 
                 </table>
+                <!--End of past course-->
+                <!--Star of dashboard profile-->
+                <div class="dash-profile grid-100 grid-parent active" id="profile">
+                    <div class="profile-pic grid-20">
+                        <img class=" profile-img " src="/images/passport.jpg">
+                    </div>
+                    <div class="grid-30">
+                        <div class="text">
+                            Username: <span th:text="${lecturer.userName}"></span>
+                        </div>
+                        <div class="text">
+                            Full Name: <span th:text="${lecturer.firstName +' '+ lecturer.surname}"></span>
+                        </div>
+                        <div class="text">
+                            Email: <span th:text="${lecturer.email}"></span>
+                        </div>
+                        <div class="text">
+                            Campus:<span th:text="${lecturer.campus}"></span>
+                        </div>
+                        <div class="text">
+                            Reset Password: <span><a href="#"> password</a></span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
 
             </div>
-                    </article>
+        </article>
 
     </section>
 
@@ -166,7 +198,6 @@
 </body>
 <script src="/webjars/jquery/3.3.1-1/jquery.js"></script>
 <script src="/js/dashboardScript.js"></script>
-
 
 
 </html>

@@ -1,11 +1,8 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
-import com.chukanwobi.schoolmanagementsystem.commands.AssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
-import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
-import com.chukanwobi.schoolmanagementsystem.services.EnrollmentService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -16,10 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import util.CurrentSemesterUtil;
 
-
-import java.time.Year;
 
 
 
@@ -31,13 +25,13 @@ public class LecturerController {
     private LecturerService lecturerService;
 
     private CourseConductionService conductionService;
-    private EnrollmentService enrollmentService;
 
 
-    public LecturerController(LecturerService lecturerService, CourseConductionService conductionService, EnrollmentService enrollmentService) {
+
+    public LecturerController(LecturerService lecturerService, CourseConductionService conductionService) {
         this.lecturerService = lecturerService;
         this.conductionService = conductionService;
-        this.enrollmentService = enrollmentService;
+
     }
 
     public LecturerCommand authenticatedLecturer() {
@@ -69,11 +63,8 @@ public class LecturerController {
 
         model.addAttribute("coursesConducted", conductionService.findCourseConductionByLecturerId(authenticatedLecturer().getId()));
         model.addAttribute("lecturer", lecturerService.findLecturerById(authenticatedLecturer().getId()));
-
-        model.addAttribute("currentSemester",CurrentSemesterUtil.getInstance().calculateCurrentSemester());
-        model.addAttribute("currentYear",Year.now().toString());
-        model.addAttribute("currentCourses",conductionService.returnCourseConductionByCurrentSemesterAndYear(authenticatedLecturer().getId()));
-        model.addAttribute("pastCourses",conductionService.returnPastCourses(authenticatedLecturer().getId()));
+        model.addAttribute("currentCourses", conductionService.findCurrentCourseConductionByLecturerId(authenticatedLecturer().getId()));
+        model.addAttribute("pastCourses", conductionService.findPastCoursesByLecturerId(authenticatedLecturer().getId()));
         return "lecturer/dashboard";
     }
 
@@ -90,41 +81,33 @@ public class LecturerController {
 
     @PostMapping("/lecturer/class/edit-capacity")
     public String postEditClassCapacityForm(@ModelAttribute CourseConductionCommand conductionCommand) {
-
         CourseConductionCommand courseConductionCommand = conductionService.editCapacityAndSave(conductionCommand);
         return "redirect:/lecturer/" + courseConductionCommand.getLecturer().getId() + "/view/courses";
     }
 
     @GetMapping("/lecturer/{lecturerId}/class/{classId}/students-list")
     public String ViewStudentsEnrolledInAClass(@PathVariable String lecturerId, @PathVariable String classId, Model model) {
-        if (isAuthenticatedId(Long.valueOf(lecturerId)))
-
-            model.addAttribute("courseConduction", conductionService.findCourseConductionById(Long.valueOf(classId)));
-
+        CourseConductionCommand courseConduction = conductionService.findCourseConductionById(Long.valueOf(classId));
+        if (isAuthenticatedId(courseConduction.getLecturer().getId()))
+            model.addAttribute("courseConduction", courseConduction);
         return "lecturer/class/students";
     }
 
-    @GetMapping("lecturer/{lecturerId}/class/{courseConductionId}/student/{studentId}/upload-graodes")
-    public String EditorUploadGradesa(@PathVariable String courseConductionId, @PathVariable String studentId, Model model) {
-        EnrollmentCommand command = enrollmentService.findEnrollmentByCourseConductionIdAndStudentId(Long.valueOf(courseConductionId), Long.valueOf(studentId));
-        if (isAuthenticatedId(Long.valueOf(command.getCourseConduction().getLecturer().getId())))
-            model.addAttribute("enrollment", command);
-        return "lecturer/class/upload-grades";
-    }
+
 
     @GetMapping("lecturer/class/{courseConductionId}/upload-grades")
     public String EditorUploadGrades(@PathVariable String courseConductionId, Model model) {
         CourseConductionCommand command = conductionService.findCourseConductionById(Long.valueOf(courseConductionId));
         if (isAuthenticatedId(Long.valueOf(command.getLecturer().getId())))
-model.addAttribute("courseConduction",command);
-
-       return "lecturer/class/upload-grades";
+            model.addAttribute("courseConduction", command);
+        return "lecturer/class/upload-grades";
     }
 
     @PostMapping("/lecturer/class/upload-grades")
     public String postUploadGrades(@ModelAttribute CourseConductionCommand conductionCommand) {
-lecturerService.uploadGrades(conductionCommand);
 
-        return "redirect:/lecturer/" + conductionCommand.getLecturer().getId() + "/class/"+conductionCommand.getId()+"/students-list";
+        lecturerService.uploadGrades(conductionCommand);
+
+        return "redirect:/lecturer/" + conductionCommand.getLecturer().getId() + "/class/" + conductionCommand.getId() + "/students-list";
     }
 }

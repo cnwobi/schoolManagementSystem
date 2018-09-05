@@ -6,7 +6,10 @@ import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
 import java.util.List;
 
 public interface EnrollmentService {
-EnrollmentCommand findEnrollmentByCourseConductionIdAndStudentId(Long CourseConductionId, Long StudentId);
 
+
+List<EnrollmentCommand> findEnrollmentsByStudentId(Long id);
+List<EnrollmentCommand> findPastEnrollmentsByStudentId(Long id);
+List<EnrollmentCommand> findCurrentEnrollmentsByStudentId(Long id);
 
 }

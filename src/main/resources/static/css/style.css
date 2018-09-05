@@ -449,8 +449,10 @@ button.submit-grades:active{
     font-size: .9vw;
     background-color: #2684FF;
     color: white;
-    margin-right: 1%;
-    padding: 1vw;
+  margin-right: .3vw;
+    padding: .5vw;
+    width :10vw;
+    text-align: center;
 
 }
 
@@ -459,21 +461,73 @@ button.submit-grades:active{
     color: white;
     display: inline-block;
 
+
 }
 .course-tabs li:hover{
     background-color: #0747A6;
 
 }
-.dashboard-main table{
+.dashboard-main table, .dashboard-main .dash-profile {
     display: none ;
 }
 .dashboard-main table.active{
     display: table ;
 }
+.dashboard-main .dash-profile.active,.profile-pic.active{
+    display: block;
+}
 div.page-title{
     font-weight: lighter;
     font-size: 2vw;
-    padding: 1vw;
+    padding: .8vw;
     margin-top: 10vh;
     margin-bottom: 1vh;
 }
+.profile-pic{
+
+}
+.profile-pic img{
+
+    margin: 1vw;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 50%;
+}
+
+.dash-profile div.grid-30{
+    font-weight: bolder;
+    font-family: Calibri;
+}
+
+.dash-profile div.grid-30 span{
+    display: inline-block;
+    float: right;
+    font-family: Calibri;
+    text-align: left;
+    font-weight: normal;
+    margin-left: 10px;
+}
+.text{
+    margin-bottom: 1vh;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.text a{
+    color: #0D47A1;
+}
+.text a:hover{
+    color: deeppink;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+

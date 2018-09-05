@@ -6,19 +6,29 @@
 <head th:replace="common/header::common-header"/>
 
 <nav th:replace="common/header::common-navbar"/>
-
+<div class="page-title" th:text="${'Dashboard Overview'}">Lecturer's Dashboard</div>
 <div class="grid-container grid-parent grid-100 dashboard">
-    <div class="username"><span>Chuka Nwobi [30327463] <a href="#">Logout</a></span></div>
-    <h1 th:text="${'Welcome '+student.firstName}">Welcome to Your Dash Board</h1>
-    <section class="grid-50">
 
+    <section class="grid-100">
+        <div class="course-tabs grid-100 grid-parent">
+            <ul class="grid-100 timeline">
+                <li class="left active" rel="profile">Profile</li>
+                <li class="left " rel="current">Enrolled Courses</li>
+                <li class="left" rel="past">Previously Enrolled</li>
+                <li class="left  " rel="all_courses">Available Courses</li>
+                <li class="left" rel="view_grades">View Grades</li>
+
+            </ul>
+
+        </div>
 
         <article class="grid-100 classes">
             <div class="header-dashboard color"> Your Grades</div>
 
             <div class="dashboard-main">
+                <!--Start of view Grades-->
 
-                <table class="highlight active">
+                <table class="highlight course-table " id="view_grades">
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
@@ -36,13 +46,120 @@
 
                         <td th:text="${enrollment.assessment.assessmentOne} +' %'"></td>
                         <td th:text="${enrollment.assessment.assessmentTwo}+ ' %'"></td>
-                        <td th:text="${enrollment.courseConduction.semester}"></td>
+                        <td th:text="${#strings.capitalize(enrollment.courseConduction.semester.toString().toLowerCase())}"></td>
 
                         <td th:text="${enrollment.courseConduction.year}"></td>
                     </tr>
 
 
                 </table>
+                <!--Start of view grades-->
+                <div class="dash-profile grid-100 grid-parent active" id="profile">
+                    <div class="profile-pic grid-20">
+                        <img class=" profile-img " src="/images/passport.jpg">
+                    </div>
+                    <div class="grid-30">
+                        <div class="text">
+                            Username: <span th:text="${student.username}"></span>
+                        </div>
+                        <div class="text">
+                            Full Name: <span th:text="${student.firstName +' '+ student.surname}"></span>
+                        </div>
+                        <div class="text">
+                            Email: <span th:text="${student.email}"></span>
+                        </div>
+                        <div class="text">
+                            Major:<span th:text="${student.major}"></span>
+                        </div>
+                        <div class="text">
+                            Reset Password: <span><a href="#"> password</a></span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <!--End of view grades-->
+
+                <!--Start of available courses-->
+
+                <table class="course-table " id="all_courses">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Capacity</th>
+                        <th>Available Seats</th>
+                        <th></th>
+
+                    </tr>
+                    <tr th:each="courseSession,iterator:${courses}">
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${courseSession.course.title}" href="#"> </a>
+                        </td>
+                        <td th:text="${courseSession.capacity}"></td>
+                        <td th:text="${courseSession.capacity - courseSession.enrollments.size()} "></td>
+                        <td><a>Enroll</a></td>
+
+
+                    </tr>
+
+
+                </table>
+                <!--End of available courses-->
+
+                <!--Find current enrollment-->
+
+                <table class="course-table " id="current">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Lecturer's Name</th>
+                        <th>Contact</th>
+
+                    </tr>
+                    <tr th:each="enrollment,iterator:${currentEnrollments}">
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${enrollment.courseConduction.course.title}" href="#"> </a>
+                        </td>
+                        <td th:text="${enrollment.courseConduction.lecturer.firstName+' '+enrollment.courseConduction.lecturer.surname}"></td>
+                        <td th:text="${enrollment.courseConduction.lecturer.email} "></td>
+
+
+                    </tr>
+
+
+                </table>
+                <!--End of find current enrollments-->
+
+                <!--Start of previously enrolled-->
+
+                <table class="course-table " id="past">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Departmental Code</th>
+                        <th>Lecturer's Name</th>
+                        <th>Contact</th>
+
+                    </tr>
+                    <tr th:each="enrollment,iterator:${pastEnrollments}">
+                        <td th:text="${iterator.index+1}"></td>
+                        <td class="course-title">
+                            <a th:text="${enrollment.courseConduction.course.title}" href="#"> </a>
+                        </td>
+                        <td th:text="${ enrollment.courseConduction.course.departmentalCode}"></td>
+                        <td th:text="${enrollment.courseConduction.lecturer.firstName+' '+enrollment.courseConduction.lecturer.surname}"></td>
+                        <td th:text="${enrollment.courseConduction.lecturer.email} "></td>
+
+
+                    </tr>
+
+
+                </table>
+                <!--End of previously enrolled-->
 
             </div>
         </article>
@@ -52,6 +169,6 @@
 
 </div>
 </body>
-<script src="/webjars/materializecss/1.0.0-rc.2/js/materialize.js"/>
-
+<script src="/webjars/jquery/3.3.1-1/jquery.js"></script>
+<script src="/js/dashboardScript.js"></script>
 </html>

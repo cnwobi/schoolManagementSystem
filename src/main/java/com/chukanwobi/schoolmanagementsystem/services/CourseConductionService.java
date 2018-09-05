@@ -12,7 +12,10 @@ public interface CourseConductionService {
     CourseConductionCommand findCourseConductionByIdAndLecturerId(Long CourseConductionId, Long lecturerId);
     CourseConductionCommand saveCourseConductionCommand(CourseConductionCommand conductionCommand);
     CourseConductionCommand editCapacityAndSave(CourseConductionCommand conductionCommand);
-    List<CourseConductionCommand> returnCourseConductionByCurrentSemesterAndYear(Long lecturerId);
-    List<CourseConductionCommand> returnPastCourses(Long lecturerId);
-    void uploadGrades(CourseConductionCommand courseConduction);
+    List<CourseConductionCommand> findCurrentCourseConductionByLecturerId(Long lecturerId);
+    List<CourseConductionCommand> findPastCoursesByLecturerId(Long lecturerId);
+    List<CourseConductionCommand> findAll();
+    List<CourseConductionCommand> findAllCurrentCourses();
+
+
 }

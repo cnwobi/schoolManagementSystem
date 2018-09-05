@@ -64,7 +64,7 @@ public class LecturerControllerTest {
         command = new LecturerCommand();
         command.setId(3l);
 
-        controller = new LecturerController(lecturerService, conductionService,enrollmentService);
+        controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
         conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter, converterLecturer,courseCommandConverter );
