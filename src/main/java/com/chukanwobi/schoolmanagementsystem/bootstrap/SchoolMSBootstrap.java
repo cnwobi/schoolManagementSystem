@@ -190,8 +190,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         Student student2 = studentList.get(2);
         Student student3 = studentList.get(3);
         Student student4 = studentList.get(4);
-    log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\nLogging student ......."+student.toString());
-    log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\nLoggin conducion 6"+courseConduction6.getCourse().toString()+"\n\n\n\n\n\n\n\n\n\n");
+
 
         enrollment1.addStudent(student);
         enrollment2.addStudent(student1);
@@ -202,9 +201,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
 
 
-        log.debug("Student.getusername:" + student.getUsername());
 
-        log.debug("Enrollements " + student.getEnrollments().size());
         log.debug("\n\n\n\n\n\n\n\n\n\n\nCourse Conduction:" + courseConduction1.toString());
         return new ArrayList<>(Arrays.asList(enrollment1, enrollment2, enrollment3, enrollment4, enrollment5, enrollment6));
     }

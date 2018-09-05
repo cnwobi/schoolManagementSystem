@@ -15,30 +15,40 @@
         <article class="grid-100 classes ">
             <div class="header-dashboard color"> Your Grades</div>
             <div class="dashboard-main">
-                <form>
+
+                <form th:object="${enrollmentNew}" th:action="@{/student/enrollStudent}" method="post">
                     <table class="highlight course-table active " id="view_grades">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:name="studentIdentity" id="studentIdentity" th:value="${authStudent.id}">
+                        <input type="hidden" th:name="courseConductionId" id="courseConductionId" th:value="${courseConductionCommand.id}">
                         <tr>
 
                             <th>Title</th>
                             <th>Lecturer</th>
-                            <th>Email</th>
+                            <th >Email</th>
                             <th> Prerequisites</th>
+
                         </tr>
                         <tr>
 
-                            <td th:text="${courseConduction.course.title}"></td>
-                            <td th:text="${courseConduction.lecturer.firstName+' '+courseConduction.lecturer.surname}"></td>
-                            <td th:text="${courseConduction.lecturer.email}"></td>
+                            <td th:text="${courseConductionCommand.course.title}"></td>
+                            <td th:text="${courseConductionCommand.lecturer.firstName+' '+courseConductionCommand.lecturer.surname}"></td>
+                            <td th:text="${courseConductionCommand.lecturer.email}"></td>
                             <td>
                                 <ul th:each="prerequisite,iterator:${course.prerequisitesCollection}">
                                     <li th:text="${iterator.index+1+'. '+prerequisite.title}"></li>
                                 </ul>
                             </td>
+<td>
+    <input type="text" th:field="*{courseConduction.lecturer.username}">
+</td>
+
 
 
                         </tr>
 
                     </table>
+                    <button  type="submit" class="submit-grades right"> Enroll </button>
                 </form>
             </div>
         </article>

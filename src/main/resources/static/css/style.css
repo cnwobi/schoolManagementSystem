@@ -519,7 +519,9 @@ div.page-title{
     color: deeppink;
     font-weight: bolder;
 }
-
+input[type="checkbox"]{
+    visibility: visible;
+}
 
 
 

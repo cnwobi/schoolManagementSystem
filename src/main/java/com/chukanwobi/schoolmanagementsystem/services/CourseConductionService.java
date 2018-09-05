@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
+import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Semester;
 
@@ -16,6 +17,6 @@ public interface CourseConductionService {
     List<CourseConductionCommand> findPastCoursesByLecturerId(Long lecturerId);
     List<CourseConductionCommand> findAll();
     List<CourseConductionCommand> findAllCurrentCourses();
-
+void enrollStudent(EnrollmentCommand command);
 
 }

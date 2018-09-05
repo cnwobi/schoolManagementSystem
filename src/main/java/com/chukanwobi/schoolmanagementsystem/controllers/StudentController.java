@@ -2,6 +2,7 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
+import com.chukanwobi.schoolmanagementsystem.models.Assessment;
 import com.chukanwobi.schoolmanagementsystem.models.Course;
 import com.chukanwobi.schoolmanagementsystem.models.DepartmentalCode;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
@@ -17,7 +18,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 
@@ -58,12 +61,19 @@ private CourseRepo courseRepo;
    public String enroll(@PathVariable String classId ,Model model) {
     CourseConductionCommand courseConductionCommand = conductionService.findCourseConductionById(Long.valueOf(classId));
     Optional<Course> optionalCourse = courseRepo.findById(courseConductionCommand.getCourse().getId());
-    model.addAttribute("courseConduction",courseConductionCommand);
-    model.addAttribute("enrollment", new EnrollmentCommand());
+    model.addAttribute("courseConductionCommand",courseConductionCommand);
+    model.addAttribute("enrollmentNew", new EnrollmentCommand(new Assessment()));
     model.addAttribute("course",optionalCourse.get());
+    model.addAttribute("authStudent",studentService.getAuthenticatedStudent());
     Boolean isEligible = studentService.hasEnrolledBefore(Long.valueOf(classId));
     model.addAttribute("eligibility",studentService.hasEnrolledBefore(Long.valueOf(classId)));
 
 return "student/enroll";
+}
+
+@PostMapping("student/enrollStudent")
+    public String postEnroll(@ModelAttribute EnrollmentCommand enrollmentCommand){
+enrollmentService.saveEnrollment(enrollmentCommand);
+        return "redirect:/student";
 }
 }
