@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
 
-<html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/header::common-header"/>
-
+<body>
 <nav th:replace="common/header::common-navbar"/>
 <div class="page-title" th:text="${'Dashboard Overview'}">Lecturer's Dashboard</div>
 <div class="grid-container grid-parent grid-100 dashboard">
@@ -83,7 +83,7 @@
                 <!--End of view grades-->
 
                 <!--Start of available courses-->
-
+              <form>
                 <table class="course-table " id="all_courses">
                     <tr>
                         <th>Id</th>
@@ -100,13 +100,14 @@
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
                         <td th:text="${courseSession.capacity - courseSession.enrollments.size()} "></td>
-                        <td><a>Enroll</a></td>
+                        <td><a href="#" th:href="@{'/student/class/'+${courseSession.id}+'/enroll'}">Enroll</a></td>
 
 
                     </tr>
 
 
                 </table>
+              </form>
                 <!--End of available courses-->
 
                 <!--Find current enrollment-->

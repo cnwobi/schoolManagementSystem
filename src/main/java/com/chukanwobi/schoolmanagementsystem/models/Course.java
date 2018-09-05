@@ -61,5 +61,12 @@ public class Course {
         return other instanceof Course;
     }
 
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", departmentalCode=" + departmentalCode +
+                '}';
+    }
 }

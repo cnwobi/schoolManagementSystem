@@ -144,4 +144,6 @@ public class CourseConductionServiceImpl implements CourseConductionService {
     public List<CourseConductionCommand> findAllCurrentCourses() {
         return filterCourseConductionByCurrentSemesterAndYear(findAll());
     }
+
+    
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header::common-header"/>
+<body>
+<nav th:replace="common/header::common-navbar"/>
+<div class="page-title" th:text="${'New Enrollment'}">Lecturer's Dashboard</div>
+
+<!--Start of container-->
+
+<div class="grid-container grid-parent grid-100 dashboard">
+    <!--Start of main section-->
+    <section class="grid-100 grid-parent">
+
+        <!--Start of article classes-->
+        <article class="grid-100 classes ">
+            <div class="header-dashboard color"> Your Grades</div>
+            <div class="dashboard-main">
+                <form>
+                    <table class="highlight course-table active " id="view_grades">
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Lecturer</th>
+                            <th>Email</th>
+                            <th> Prerequisites</th>
+                        </tr>
+                        <tr>
+
+                            <td th:text="${courseConduction.course.title}"></td>
+                            <td th:text="${courseConduction.lecturer.firstName+' '+courseConduction.lecturer.surname}"></td>
+                            <td th:text="${courseConduction.lecturer.email}"></td>
+                            <td>
+                                <ul th:each="prerequisite,iterator:${course.prerequisitesCollection}">
+                                    <li th:text="${iterator.index+1+'. '+prerequisite.title}"></li>
+                                </ul>
+                            </td>
+
+
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+        </article>
+
+
+    </section>
+    <!--ENd of main section-->
+
+</div>
+<!--end of div container-->
+
+</body>
+</html>

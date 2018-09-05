@@ -2,6 +2,7 @@ package com.chukanwobi.schoolmanagementsystem.services.security;
 
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
