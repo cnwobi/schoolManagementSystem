@@ -3,7 +3,8 @@
 <head th:replace="common/header::common-header"/>
 <body>
 <nav th:replace="common/header::common-navbar"/>
-<div class="page-title" th:text="${'New Enrollment'}">Lecturer's Dashboard</div>
+<div class="page-title" th:unless="${hasEnrolled}" th:text="${courseConductionCommand.course.title}">Lecturer's Dashboard</div>
+<div class="page-title" th:unless="${!hasEnrolled}" th:text="${'Already Enrolled'}"></div>
 
 <!--Start of container-->
 
@@ -17,7 +18,7 @@
             <div class="dashboard-main">
 
                 <form th:object="${enrollmentNew}" th:action="@{/student/enrollStudent}" method="post">
-                    <table class="highlight course-table active " id="view_grades">
+                    <table class="highlight course-table active " id="view_grades" th:unless="${hasEnrolled}">
                         <input type="hidden" th:field="*{id}">
                         <input type="hidden" th:name="studentIdentity" id="studentIdentity" th:value="${authStudent.id}">
                         <input type="hidden" th:name="courseConductionId" id="courseConductionId" th:value="${courseConductionCommand.id}">
@@ -39,16 +40,16 @@
                                     <li th:text="${iterator.index+1+'. '+prerequisite.title}"></li>
                                 </ul>
                             </td>
-<td>
-    <input type="text" th:field="*{courseConduction.lecturer.username}">
-</td>
 
 
 
                         </tr>
 
                     </table>
-                    <button  type="submit" class="submit-grades right"> Enroll </button>
+                    <button th:unless="${hasEnrolled}"  type="submit" class="submit-grades right"> Enroll </button>
+                    <div class="warning" th:unless="${!hasEnrolled}">
+                       You are already enrolled in <span th:text="${courseConductionCommand.course.title}"></span> for the semester!
+                    </div>
                 </form>
             </div>
         </article>

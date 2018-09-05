@@ -32,19 +32,17 @@ private LecturerToLecturerCommand converter;
 @Qualifier("Lecturer")
 @Autowired
 private UserDetailsService userDetailsService;
-private CourseConductionToCourseConductionCommand conductionConverter;
-private CourseConductionRepo courseConductionRepo;
+
 @Autowired
 private AssessmentRepo assessmentRepo;
 
     public LectureServiceImpl(LecturerRepository lecturerRepository,
-                              LecturerToLecturerCommand converter,
-                              CourseConductionToCourseConductionCommand                                       conductionConverter,
-                              CourseConductionRepo courseConductionRepo) {
+                              LecturerToLecturerCommand converter
+
+                            ) {
         this.lecturerRepository = lecturerRepository;
         this.converter = converter;
-        this.conductionConverter = conductionConverter;
-        this.courseConductionRepo = courseConductionRepo;
+
     }
 
     @Override
@@ -81,10 +79,9 @@ private AssessmentRepo assessmentRepo;
     public void uploadGrades(CourseConductionCommand conductionCommand){
     List<Assessment> assessments =  new ArrayList<>();
     conductionCommand.getEnrollments().forEach(enrollmentCommand ->assessments.add(enrollmentCommand.getAssessment()) );
-    List<Assessment> savedAssessments= new ArrayList<>();
 
-    assessmentRepo.saveAll(assessments).forEach(assessment -> savedAssessments.add(assessment));
-    savedAssessments.size();
+
+    assessmentRepo.saveAll(assessments);
 
 }
 

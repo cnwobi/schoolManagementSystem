@@ -65,8 +65,8 @@ private CourseRepo courseRepo;
     model.addAttribute("enrollmentNew", new EnrollmentCommand(new Assessment()));
     model.addAttribute("course",optionalCourse.get());
     model.addAttribute("authStudent",studentService.getAuthenticatedStudent());
-    Boolean isEligible = studentService.hasEnrolledBefore(Long.valueOf(classId));
-    model.addAttribute("eligibility",studentService.hasEnrolledBefore(Long.valueOf(classId)));
+
+    model.addAttribute("hasEnrolled",studentService.hasEnrolledBefore(Long.valueOf(classId)));
 
 return "student/enroll";
 }

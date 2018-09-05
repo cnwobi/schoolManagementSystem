@@ -522,10 +522,15 @@ div.page-title{
 input[type="checkbox"]{
     visibility: visible;
 }
+.warning{
+    text-align: center;
+}
 
-
-
-
+.warning span{
+    font-weight: bolder;
+    font-size: 1vw;
+    color: red;
+}
 
 
 
