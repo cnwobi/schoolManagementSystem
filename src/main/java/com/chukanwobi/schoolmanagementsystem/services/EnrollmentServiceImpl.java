@@ -1,6 +1,5 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
-import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.Assessment;
@@ -30,9 +29,12 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private EnrollmentToEnrollmentCommand enrollmentToEnrollmentCommandConverter;
     @Autowired
     private CourseConductionRepo courseConductionRepo;
-@Autowired
-private EnrollmentRepo enrollmentRepo;
-    private List<EnrollmentCommand> filterEnrollmetnsByCurrentSemesterAndYear(List<EnrollmentCommand> commandList) {
+    @Autowired
+    private EnrollmentRepo enrollmentRepo;
+
+    private List<EnrollmentCommand> filterEnrollmentsByCurrentSemesterAndYear(List<EnrollmentCommand> commandList) {
+        /*Filter any course conduction list passed as argument using the current year and semester...
+        * Please see CurrentSemesterUtil for the logic for the current semester*/
         List<EnrollmentCommand> currentEnrollments = new ArrayList<>();
         commandList.stream().filter(enrollmentCommand -> enrollmentCommand.getCourseConduction().getSemester() == CurrentSemesterUtil.getInstance().calculateCurrentSemester() && enrollmentCommand.getCourseConduction().getYear().toString().equalsIgnoreCase(Year.now().toString())).forEach(enrollmentCommand -> currentEnrollments.add(enrollmentCommand));
         return currentEnrollments;
@@ -67,7 +69,7 @@ private EnrollmentRepo enrollmentRepo;
 
     @Override
     public List<EnrollmentCommand> findCurrentEnrollmentsByStudentId(Long id) {
-        return filterEnrollmetnsByCurrentSemesterAndYear(findEnrollmentsByStudentId(id));
+        return filterEnrollmentsByCurrentSemesterAndYear(findEnrollmentsByStudentId(id));
     }
 
     @Override
@@ -76,10 +78,10 @@ private EnrollmentRepo enrollmentRepo;
         Optional<CourseConduction> optionalConduction = courseConductionRepo.findById(command.getCourseConductionId());
 
         if (!optionalConduction.isPresent()) {
-          throw new RuntimeException("Course was not found during enrollment");
+            throw new RuntimeException("Course was not found during enrollment");
         }
 
-        if(!optionalStudent.isPresent()){
+        if (!optionalStudent.isPresent()) {
             throw new RuntimeException("Student was not found during enrollment");
         }
 
