@@ -1,0 +1,113 @@
+$colors: (
+        primary: #0747A6,
+        primary-light:#6DADFF,
+        highlight_text:#FFF1D0,
+        accent:#dd1c1a,
+        color_other:#06AED5,
+);
+
+@function color($color-name) {
+  @return map_get($colors, $color-name)
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Raleway;
+}
+
+body, html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: url("/images/cool-background.png") no-repeat center center fixed;
+  overflow: hidden;
+  background-size: cover;
+  font-family: "Roboto Slab";
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+}
+
+button {
+  display: block;
+  height: 4vh;
+  width: 120px;
+  height: 30px;
+  margin: auto;
+  padding: auto;
+  border: none;
+  background: color(primary);
+  color: white;
+  border-radius: 23px;
+
+}
+
+button:hover {
+  background-color: lighten(color(primary), 30%);
+}
+
+.container-login {
+  position: absolute;
+
+  width: 100vw;
+  height: 100vh;
+
+  div.content {
+    background-color: rgba(255, 255, 255, 0.70);
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 20vh;
+    height: 45vh;
+    border-radius: 25px;
+    overflow: hidden;
+
+    div.input {
+      padding-top: 3vh;
+      h1 {
+        text-align: center;
+        color: color(primary);
+      }
+      input {
+        opacity: 1;
+        margin: auto;
+        margin-bottom: 10px;
+        display: block;
+        border: none;
+        height: 30px;
+        border-radius: 12px;
+        text-align: center;
+      }
+      input:focus{
+        border-radius: 12px;
+      }
+
+      input::placeholder {
+
+        padding: 12px;
+        color: color(primary);
+      }
+      button {
+        margin-top: 5vh;
+      }
+      button:hover {
+        color: #BC6979;
+      }
+
+    }
+  }
+
+  div.a-wrapper {
+    margin-top: 2vh;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: color(primary);
+    }
+    a:hover {
+      color: color(accent);
+    }
+  }
+
+}
