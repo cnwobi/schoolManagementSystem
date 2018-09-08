@@ -14,7 +14,7 @@ body, html {
 input, textarea, select, button {
   font-family: inherit; }
 
-button {
+.btn {
   display: block;
   height: 4vh;
   width: 120px;
@@ -24,7 +24,24 @@ button {
   border: none;
   background: #0747A6;
   color: white;
-  border-radius: 23px; }
+  border-radius: 23px;
+  outline: none; }
+
+.center-text {
+  text-align: center; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.alert {
+  color: red;
+  font-size: 4vw; }
+
+.alert-success {
+  color: green; }
 
 button:hover {
   background-color: #4e93f8; }
@@ -32,7 +49,8 @@ button:hover {
 .container-login {
   position: absolute;
   width: 100vw;
-  height: 100vh; }
+  height: 100vh;
+  /*Div content media queries*/ }
   .container-login div.content {
     background-color: rgba(255, 255, 255, 0.7);
     margin-left: 10vw;
@@ -40,7 +58,8 @@ button:hover {
     margin-top: 20vh;
     height: 45vh;
     border-radius: 25px;
-    overflow: hidden; }
+    overflow: hidden;
+    box-shadow: 10px 10px 20px rgba(255, 255, 255, 0.3); }
     .container-login div.content div.input {
       padding-top: 3vh; }
       .container-login div.content div.input h1 {
@@ -64,6 +83,19 @@ button:hover {
         margin-top: 5vh; }
       .container-login div.content div.input button:hover {
         color: #BC6979; }
+  @media (min-width: 431px) {
+    .container-login div.content {
+      width: 50vw;
+      margin: auto;
+      margin-top: 20vh; } }
+  @media (min-width: 769px) {
+    .container-login div.content {
+      width: 450px; } }
+  .container-login div.input div.alert, .container-login div.input div.alert-success {
+    margin-bottom: 1vh; }
+    @media (min-width: 431px) {
+      .container-login div.input div.alert, .container-login div.input div.alert-success {
+        font-size: 14px; } }
   .container-login div.a-wrapper {
     margin-top: 2vh;
     text-align: center; }

@@ -21,10 +21,14 @@
         <div class="input">
     <h1>Log In</h1>
             <form name="f" th:action="@{/login}" method="post">
+<div class="alert center-text" th:if="${param.error}" > Invalid Username or Password!</div>
+                <div th:if="${param.logout}" class="center-text alert-success">
+                    You have been logged out.
+                </div>
                 <input type="text" placeholder="Username" id="username" name="username">
 
                 <input type="password" placeholder="Password" id="password" name="password">
-                <button>Login</button>
+                <button class="btn">Login</button>
             </form>
             <div class="a-wrapper">
 <a href="#">forgot password?</a>

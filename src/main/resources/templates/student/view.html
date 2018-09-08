@@ -34,6 +34,7 @@
                         <th>Title</th>
 
                         <th> Task 1</th>
+                       <th></th>
                         <th> Task  2</th>
                         <th>Semester</th>
                         <th>Year</th>
@@ -45,7 +46,9 @@
                         </td>
 
                         <td th:text="${enrollment.assessment.assessmentOne} +' %'"></td>
+                        <td > <a href="#">View Feedback</a></td>
                         <td th:text="${enrollment.assessment.assessmentTwo}+ ' %'"></td>
+                        <td > <a href="#">View Feedback</a></td>
                         <td th:text="${#strings.capitalize(enrollment.courseConduction.semester.toString().toLowerCase())}"></td>
 
                         <td th:text="${enrollment.courseConduction.year}"></td>
