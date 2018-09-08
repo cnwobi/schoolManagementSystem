@@ -57,10 +57,10 @@
                 <td th:text="${enrollment.student.firstName}">John</td>
                 <td th:text="${enrollment.student.surname}">Doe</td>
                 <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
-                <td th:unless="${enrollment.assessment.assessmentOne<=0}" th:text="${enrollment.assessment.assessmentOne} +' %'"> </td>
-                <td th:unless="${enrollment.assessment.assessmentOne>0}" th:text="${'0 %'}"></td>
-                <td th:unless="${enrollment.assessment.assessmentTwo<=0}" th:text="${enrollment.assessment.assessmentTwo} +' %'"> </td>
-                <td th:unless="${enrollment.assessment.assessmentTwo>0}" th:text="${'0 %'}"></td>
+               <td th:each="assessment:${enrollment.assessments}">
+
+
+               </td>
 
 
             </tr>

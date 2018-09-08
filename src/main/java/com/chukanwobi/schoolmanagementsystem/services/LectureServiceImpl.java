@@ -78,7 +78,7 @@ private AssessmentRepo assessmentRepo;
 @Override
     public void uploadGrades(CourseConductionCommand conductionCommand){
     List<Assessment> assessments =  new ArrayList<>();
-    conductionCommand.getEnrollments().forEach(enrollmentCommand ->assessments.add(enrollmentCommand.getAssessment()) );
+    conductionCommand.getEnrollments().forEach(enrollmentCommand ->assessments.add(enrollmentCommand.getAssessments().get(0)) );
 
 
     assessmentRepo.saveAll(assessments);

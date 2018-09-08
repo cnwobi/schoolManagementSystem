@@ -7,8 +7,10 @@ import lombok.Data;
 
 public class AssessmentCommand {
     private Long id;
-    private Double assessmentOne;
-    private Double assessmentTwo;
+    private String title;
+    private String feedback;
+    private Double totalAchievableMarks;
+    private Double obtainedMarks;
     private Long enrollmentId;
 
 

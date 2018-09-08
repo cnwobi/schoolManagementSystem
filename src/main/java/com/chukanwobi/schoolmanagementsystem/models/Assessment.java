@@ -12,29 +12,23 @@ public class Assessment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
 
-    private Double assessmentOne;
-
-    private Double assessmentTwo;
-
-    @Lob
-    private String feedback1;
-    @Lob
-    private String feedback2;
-
-    @OneToOne
+    @ManyToOne
     private Enrollment enrollment;
+    private String feedback;
+    private Double totalAchievableMarks;
+    private Double obtainedMarks;
+
+
+
 
     public Assessment() {
     }
 
-    public Assessment(Double assessmentOne, Double assessmentTwo) {
-        if (assessmentOne > 100 || assessmentTwo > 100) {
-            throw new RuntimeException("Assessment one or two is more than 100%");
-        }
-        this.assessmentOne = assessmentOne;
-        this.assessmentTwo = assessmentTwo;
+    public Assessment(String title, Double totalAchievableMarks, Double obtainedMarks) {
+        this.title = title;
+        this.totalAchievableMarks = totalAchievableMarks;
+        this.obtainedMarks = obtainedMarks;
     }
-
-
 }

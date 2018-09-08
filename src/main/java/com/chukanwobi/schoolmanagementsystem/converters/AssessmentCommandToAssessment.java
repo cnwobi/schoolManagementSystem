@@ -18,8 +18,11 @@ private EnrollmentRepo enrollmentRepo;
         }
         Assessment assessment = new Assessment();
         assessment.setId(assessmentCommand.getId());
-        assessment.setAssessmentOne(assessment.getAssessmentOne());
-        assessment.setAssessmentTwo(assessment.getAssessmentTwo());
+        assessment.setTitle(assessmentCommand.getTitle());
+        assessment.setFeedback(assessmentCommand.getFeedback());
+        assessment.setTotalAchievableMarks(assessmentCommand.getTotalAchievableMarks());
+        assessment.setObtainedMarks(assessmentCommand.getObtainedMarks());
+
         assessment.setEnrollment(enrollmentRepo.findById(assessmentCommand.getEnrollmentId()).get());
 return assessment;
     }

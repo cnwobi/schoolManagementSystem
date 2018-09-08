@@ -22,7 +22,7 @@ public class EnrollmentToEnrollmentCommand implements Converter<Enrollment, Enro
         EnrollmentCommand command = new EnrollmentCommand();
         command.setId(enrollment.getId());
         command.setCourseConduction(enrollment.getCourseConduction());
-        command.setAssessment(enrollment.getAssessment());
+
         command.setStudent(enrollment.getStudent());
 
         return command;

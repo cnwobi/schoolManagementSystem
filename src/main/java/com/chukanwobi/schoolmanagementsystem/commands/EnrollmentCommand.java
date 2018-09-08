@@ -6,6 +6,8 @@ import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import lombok.*;
 
+import java.util.List;
+
 
 @Data
 public class EnrollmentCommand {
@@ -13,8 +15,7 @@ public class EnrollmentCommand {
     }
 
     public EnrollmentCommand(Assessment assessment) {
-        this.assessment = assessment;
-    }
+        assessments.add(assessment);    }
     private Long id;
     private Long courseConductionId;
     private Long studentIdentity;
@@ -22,7 +23,7 @@ public class EnrollmentCommand {
 
     private CourseConduction courseConduction;
     private Student student;
-    private Assessment assessment;
+    private List<Assessment> assessments;
 
 
 }

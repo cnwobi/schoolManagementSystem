@@ -3,9 +3,11 @@ package com.chukanwobi.schoolmanagementsystem.models;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
 @Getter
+@Entity
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +16,8 @@ public class Enrollment {
     private CourseConduction courseConduction;
     @ManyToOne
     private Student student;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Assessment assessment;
+    @OneToMany(mappedBy = "enrollment",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Assessment> assessments = new ArrayList<>();
 
     public Enrollment() {
     }
@@ -25,12 +27,12 @@ public class Enrollment {
     }
 
     public Enrollment(Assessment assessment) {
-        this.assessment = assessment;
+        addAssessment(assessment);
     }
 
     public Enrollment(Student student, Assessment assessment) {
         this.student = student;
-        this.assessment = assessment;
+        addAssessment(assessment);
     }
 
 
@@ -47,13 +49,18 @@ public class Enrollment {
         this.student = student;
     }
 
-    public void setAssessment(Assessment assessment) {
+   /* public void setAssessment(Assessment assessment) {
         this.assessment = assessment;
-    }
+    }*/
   public void addCourseConduction(CourseConduction courseConduction){
         courseConduction.getEnrollments().add(this);
         this.setCourseConduction(courseConduction);
 
+  }
+
+  public void addAssessment(Assessment assessment){
+        assessment.setEnrollment(this);
+        this.getAssessments().add(assessment);
   }
 
   public void addStudent(Student student){
@@ -68,4 +75,5 @@ public class Enrollment {
                /* ", student=" + student.getFirstName() +*/
                 '}';
     }
+
 }
