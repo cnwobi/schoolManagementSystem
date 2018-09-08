@@ -156,13 +156,15 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     }
 
     public List<Enrollment> enrollments() {
-        Enrollment enrollment1 = new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment2 = new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment3 = new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment4 = new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment5 =new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment6 = new Enrollment(new Assessment("Assessment1 1",30.0,null));
-        Enrollment enrollment7 =new Enrollment(new Assessment("Assessment1 1",30.0,null));
+        Enrollment enrollment1 = new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment2 = new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment3 = new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment4 = new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment5 =new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment6 = new Enrollment(new Assessment("Assessment 1",30.0,null));
+        Enrollment enrollment7 =new Enrollment(new Assessment("Assessment 1",30.0,null));
+
+        enrollment1.addAssessment(new Assessment("testing",50.0,null));
 
         List<CourseConduction> courseConductions = new ArrayList<>();
 

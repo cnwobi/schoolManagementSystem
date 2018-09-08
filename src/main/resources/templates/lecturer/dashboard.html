@@ -115,7 +115,7 @@
                     <tr th:each="courseSession,iterator:${currentCourses}">
                         <td th:text="${iterator.index+1}"></td>
                         <td class="course-title">
-                            <a th:text="${courseSession.course.title}" href="#"> </a>
+                            <a th:text="${courseSession.course.title}" th:href="@{'/lecturer/class/'+${courseSession.id}}"> </a>
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
                         <td th:unless="${courseSession.enrollments.size()==0}"

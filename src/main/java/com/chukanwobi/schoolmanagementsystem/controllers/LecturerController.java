@@ -110,4 +110,14 @@ public class LecturerController {
 
         return "redirect:/lecturer/" + conductionCommand.getLecturer().getId() + "/class/" + conductionCommand.getId() + "/students-list";
     }
+
+
+    @GetMapping("/lecturer/class/{courseConductionId}")
+    public String viewClassDetails(@PathVariable String courseConductionId,Model model){
+        CourseConductionCommand command = conductionService.findCourseConductionById(Long.valueOf(courseConductionId));
+        if (isAuthenticatedId(Long.valueOf(command.getLecturer().getId())))
+            model.addAttribute("courseConduction", command);
+
+        return "lecturer/class/details";
+    }
 }

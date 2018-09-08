@@ -21,6 +21,10 @@ public class EnrollmentCommandToEnrollment implements Converter<EnrollmentComman
         enrollment.setId(enrollmentCommand.getId());
         enrollment.setCourseConduction(enrollmentCommand.getCourseConduction());
         enrollment.setStudent(enrollmentCommand.getStudent());
+
+        if(enrollmentCommand.getAssessments().size()>0&& enrollmentCommand.getAssessments()!=null){
+            enrollmentCommand.getAssessments().forEach(assessment -> enrollment.getAssessments().add(assessment));
+        }
    return enrollment ;
     }
 }

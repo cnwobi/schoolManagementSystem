@@ -31,7 +31,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private CourseConductionRepo courseConductionRepo;
     @Autowired
     private EnrollmentRepo enrollmentRepo;
-
+    @Autowired
+    private StudentService studentService;
     private List<EnrollmentCommand> filterEnrollmentsByCurrentSemesterAndYear(List<EnrollmentCommand> commandList) {
         /*Filter any course conduction list passed as argument using the current year and semester...
         * Please see CurrentSemesterUtil for the logic for the current semester*/
@@ -93,5 +94,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         enrollmentRepo.save(enrollment);
 
 
+    }
+
+    @Override
+    public EnrollmentCommand findEnrollmentById(Long id) {
+        Student student = studentService.getAuthenticatedStudent();
+       Optional<Enrollment> optionalEnrollment = student.getEnrollments().stream().filter(enrollment1 -> enrollment1.getId()==id).findAny();
+       if(!optionalEnrollment.isPresent()){
+throw new RuntimeException("Enrollment with id :" + id+" was not found in your enrollment list");
+       }
+
+        return enrollmentToEnrollmentCommandConverter.convert(optionalEnrollment.get());
     }
 }

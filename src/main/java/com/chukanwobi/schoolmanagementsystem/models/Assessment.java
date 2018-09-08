@@ -18,7 +18,7 @@ public class Assessment {
     private Enrollment enrollment;
     private String feedback;
     private Double totalAchievableMarks;
-    private Double obtainedMarks;
+    private Double obtainedMarks ;
 
 
 
@@ -31,4 +31,13 @@ public class Assessment {
         this.totalAchievableMarks = totalAchievableMarks;
         this.obtainedMarks = obtainedMarks;
     }
+
+    public String getPercentage(){
+        if(obtainedMarks==null){
+            return "N/A";
+        }
+        return obtainedMarks/totalAchievableMarks * 100 + "%";
+    }
+
+
 }

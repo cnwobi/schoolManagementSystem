@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header::common-header"/>
+<body>
+<nav th:replace="common/header::common-navbar"/>
+<div class="page-title" th:text="${'Your grades'}">Lecturer's Dashboard</div>
+<div class="grid-container">
+<div class="grid-100">
+<table>
+<th>
+    Grade Item
+</th>
+
+
+
+
+<th>
+    Your grade
+</th>
+    <th>
+        Total Achievable Grade
+    </th>
+
+    <th> Calculate Percentage</th>
+    <th>Feedback</th>
+
+    <tr th:each="assement:${enrollment.assessments}">
+        <td th:text="${assement.title}"></td>
+        <td th:text="${assement.obtainedMarks}"></td>
+        <td th:text="${assement.totalAchievableMarks}"></td>
+       <td th:text="${assement.getPercentage()}"></td>
+        <td th:text="${assement.feedback}"></td>
+
+    </tr>
+
+</table>
+
+</div>
+
+
+
+</div>
+
+    <!--End of grid container-->
+
+
+</div>
+
+</body>
+</html>

@@ -12,5 +12,6 @@ List<EnrollmentCommand> findEnrollmentsByStudentId(Long id);
 List<EnrollmentCommand> findPastEnrollmentsByStudentId(Long id);
 List<EnrollmentCommand> findCurrentEnrollmentsByStudentId(Long id);
 void saveEnrollment(EnrollmentCommand enrollmentCommand);
+EnrollmentCommand findEnrollmentById(Long id);
 
 }

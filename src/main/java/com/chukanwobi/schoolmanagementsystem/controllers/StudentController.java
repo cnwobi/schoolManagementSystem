@@ -76,4 +76,12 @@ return "student/enroll";
 enrollmentService.saveEnrollment(enrollmentCommand);
         return "redirect:/student";
 }
+
+@GetMapping("student/grades/{enrollmentId}" )
+    public String viewGrades(@PathVariable String enrollmentId,Model model){
+
+       model.addAttribute("enrollment", enrollmentService.findEnrollmentById(Long.valueOf(enrollmentId)));
+
+        return "student/grades";
+}
 }

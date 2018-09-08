@@ -6,6 +6,7 @@ import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class EnrollmentCommand {
 
     private CourseConduction courseConduction;
     private Student student;
-    private List<Assessment> assessments;
+    private List<Assessment> assessments = new ArrayList<>();
 
 
 }
