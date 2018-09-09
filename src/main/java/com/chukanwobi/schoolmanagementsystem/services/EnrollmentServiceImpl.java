@@ -86,7 +86,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             throw new RuntimeException("Student was not found during enrollment");
         }
 
-        Enrollment enrollment = new Enrollment(new Assessment());
+        Enrollment enrollment = new Enrollment();
 
         enrollment.addCourseConduction(optionalConduction.get());
         enrollment.addStudent(optionalStudent.get());

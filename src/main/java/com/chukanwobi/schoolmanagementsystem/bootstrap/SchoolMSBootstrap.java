@@ -22,7 +22,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     private CourseConductionRepo courseConductionRepo;
     private EnrollmentRepo enrollmentRepo;
 
-    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo, EnrollmentRepo enrollmentRepo) {
+    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo, EnrollmentRepo enrollmentRepo ) {
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
@@ -36,9 +36,9 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseRepository.saveAll(getCoursesWithPrerequisites());
         courseConductionRepo.saveAll(getCourseConductions());
         enrollmentRepo.saveAll(enrollments());
-/*
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
-*/
+
+
 
     }
 

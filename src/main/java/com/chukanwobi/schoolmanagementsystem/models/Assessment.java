@@ -21,12 +21,10 @@ public class Assessment {
     private Double obtainedMarks ;
 
 
-
-
     public Assessment() {
     }
 
-    public Assessment(String title, Double totalAchievableMarks, Double obtainedMarks) {
+    public Assessment(String title, Double totalAchievableMarks, Double obtainedMs) {
         this.title = title;
         this.totalAchievableMarks = totalAchievableMarks;
         this.obtainedMarks = obtainedMarks;
