@@ -3,10 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConvert
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
-import com.chukanwobi.schoolmanagementsystem.models.Course;
-import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
-import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
-import com.chukanwobi.schoolmanagementsystem.models.Semester;
+import com.chukanwobi.schoolmanagementsystem.models.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
@@ -49,7 +46,12 @@ public class CourseConductionToCourseConductionCommandTest {
         COURSE.setTitle(TITLE);
         courseConduction.setCourse(COURSE);
         courseConduction.setLecturer(LECTURER);
-
+        Student student = new Student();
+        student.setFirstName("chuka");
+        Student student1 = new Student();
+        student1.setFirstName("james");
+        courseConduction.getStudents().add(student);
+        courseConduction.getStudents().add(student1);
 
 
 
@@ -63,6 +65,7 @@ public class CourseConductionToCourseConductionCommandTest {
         assertEquals(INTEGER_CAPACITY, command.getCapacity());
         assertEquals(COURSE.getId(), command.getCourse().getId());
         assertEquals(LECTURER.getId(), command.getLecturer().getId());
+        assertEquals(2,command.getStudentCommands().size());
 
 
     }
