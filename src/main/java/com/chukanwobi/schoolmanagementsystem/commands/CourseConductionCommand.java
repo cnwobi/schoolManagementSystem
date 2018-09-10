@@ -22,7 +22,7 @@ public class CourseConductionCommand {
     private CourseCommand course;
     private Year  year;
 
-
+    private Set<StudentCommand> studentCommands = new HashSet<>();
     public CourseConductionCommand() {
     }
 }
