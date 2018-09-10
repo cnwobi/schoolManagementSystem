@@ -4,6 +4,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Data
@@ -24,7 +25,7 @@ public class CourseConductionAssessment {
     private Calendar DueDate;
 
     private String title;
-    private Double totalAchievableMarks;
+    private BigDecimal totalAchievableMarks;
 
 
 
