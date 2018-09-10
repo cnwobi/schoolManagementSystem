@@ -22,7 +22,7 @@ public class CourseConductionCommand {
     private CourseCommand course;
     private Year  year;
 
-    private List<EnrollmentCommand> enrollments = new ArrayList<>();
+
     public CourseConductionCommand() {
     }
 }

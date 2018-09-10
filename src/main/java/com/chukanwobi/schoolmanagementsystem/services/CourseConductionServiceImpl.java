@@ -1,7 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
-import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
+import com.chukanwobi.schoolmanagementsystem.commands.StudentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionCommandToCourseConduction;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.exceptions.NotFoundException;
@@ -147,8 +147,7 @@ public class CourseConductionServiceImpl implements CourseConductionService {
     }
 
     @Override
-    public void enrollStudent(EnrollmentCommand command) {
-        EnrollmentCommand loga = command;
-log.debug(loga.toString());
+    public void enrollStudent(StudentCommand command) {
+
     }
 }

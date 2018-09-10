@@ -1,12 +1,10 @@
 package com.chukanwobi.schoolmanagementsystem.models;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Entity
@@ -17,6 +15,13 @@ public class CourseConductionAssessment {
     private Long id;
     @ManyToOne
     private CourseConduction courseConduction;
+
+    @OneToMany(mappedBy = "courseConductionAssessment",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
+
+
+    private Date openDate;
+    private Date DueDate;
 
     private String title;
     private Double totalAchievableMarks;

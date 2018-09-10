@@ -20,14 +20,14 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     private StudentRepository studentRepository;
     private CourseRepo courseRepository;
     private CourseConductionRepo courseConductionRepo;
-    private EnrollmentRepo enrollmentRepo;
 
-    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo, EnrollmentRepo enrollmentRepo ) {
+
+    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo ) {
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.courseConductionRepo = courseConductionRepo;
-        this.enrollmentRepo = enrollmentRepo;
+
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         studentRepository.saveAll(studentList());
         courseRepository.saveAll(getCoursesWithPrerequisites());
         courseConductionRepo.saveAll(getCourseConductions());
-        enrollmentRepo.saveAll(enrollments());
+
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
 
 
@@ -155,56 +155,5 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         return studentList;
     }
 
-    public List<Enrollment> enrollments() {
-        Enrollment enrollment1 = new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment2 = new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment3 = new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment4 = new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment5 =new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment6 = new Enrollment(new Assessment("Assessment 1",30.0,null));
-        Enrollment enrollment7 =new Enrollment(new Assessment("Assessment 1",30.0,null));
 
-        enrollment1.addAssessment(new Assessment("testing",50.0,null));
-
-        List<CourseConduction> courseConductions = new ArrayList<>();
-
-        courseConductionRepo.findAll().forEach(courseConduction -> courseConductions.add(courseConduction));
-        CourseConduction courseConduction1 = courseConductions.get(0);
-        CourseConduction courseConduction2 = courseConductions.get(1);
-        CourseConduction courseConduction3 = courseConductions.get(2);
-        CourseConduction courseConduction4 = courseConductions.get(3);
-        CourseConduction courseConduction5 = courseConductions.get(4);
-        CourseConduction courseConduction6= courseConductions.get(5);
-
-        enrollment1.addCourseConduction(courseConduction1);
-        enrollment2.addCourseConduction(courseConduction2);
-        enrollment3.addCourseConduction(courseConduction2);
-        enrollment4.addCourseConduction(courseConduction2);
-        enrollment5.addCourseConduction(courseConduction2);
-        enrollment6.addCourseConduction(courseConduction4);
-        enrollment7.addCourseConduction(courseConduction3);
-        List<Student> studentList = new ArrayList<>();
-        studentRepository.findAll().forEach(student -> studentList.add(student));
-        log.debug("\n\n\n\n\n\n\n\n\nThe student list size is: " + studentList.size());
-
-        Student student = studentList.get(0);
-        Student student1 = studentList.get(1);
-        Student student2 = studentList.get(2);
-        Student student3 = studentList.get(3);
-        Student student4 = studentList.get(4);
-
-
-        enrollment1.addStudent(student);
-        enrollment2.addStudent(student1);
-        enrollment3.addStudent(student2);
-        enrollment4.addStudent(student3);
-        enrollment5.addStudent(student4);
-        enrollment6.addStudent(student);
-
-
-
-
-        log.debug("\n\n\n\n\n\n\n\n\n\n\nCourse Conduction:" + courseConduction1.toString());
-        return new ArrayList<>(Arrays.asList(enrollment1, enrollment2, enrollment3, enrollment4, enrollment5, enrollment6));
-    }
 }

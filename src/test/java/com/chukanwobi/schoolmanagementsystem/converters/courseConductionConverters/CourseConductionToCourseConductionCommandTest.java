@@ -2,16 +2,16 @@ package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConvert
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
-import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
-import com.chukanwobi.schoolmanagementsystem.models.*;
+import com.chukanwobi.schoolmanagementsystem.models.Course;
+import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
+import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
+import com.chukanwobi.schoolmanagementsystem.models.Semester;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,12 +28,12 @@ public class CourseConductionToCourseConductionCommandTest {
     private static final Long COURSE_ID= 4l;
     private static final String TITLE= "some title";
     private static final Year YEAR = Year.of(2011);
-    private static final List<Enrollment> ENROLLMENTS = new ArrayList<>();
+
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        converter = new CourseConductionToCourseConductionCommand(new EnrollmentToEnrollmentCommand(),new LecturerToLecturerCommand(),new CourseToCourseCommand());
+        converter = new CourseConductionToCourseConductionCommand(new LecturerToLecturerCommand(),new CourseToCourseCommand());
 
     }
 
@@ -51,15 +51,7 @@ public class CourseConductionToCourseConductionCommandTest {
         courseConduction.setLecturer(LECTURER);
 
 
-        Enrollment enrollment = new Enrollment();
-        enrollment.setId(1l);
-        Enrollment enrollment1 = new Enrollment();
-        enrollment1.setId(2l);
-        ENROLLMENTS.add(enrollment);
-        ENROLLMENTS.add(enrollment1);
 
-
-        courseConduction.setEnrollments(ENROLLMENTS);
 
         CourseConductionCommand command = converter.convert(courseConduction);
 
@@ -71,7 +63,6 @@ public class CourseConductionToCourseConductionCommandTest {
         assertEquals(INTEGER_CAPACITY, command.getCapacity());
         assertEquals(COURSE.getId(), command.getCourse().getId());
         assertEquals(LECTURER.getId(), command.getLecturer().getId());
-        assertEquals(ENROLLMENTS.size(), command.getEnrollments().size());
 
 
     }

@@ -1,6 +1,5 @@
 package com.chukanwobi.schoolmanagementsystem.commands;
 
-import com.chukanwobi.schoolmanagementsystem.models.Enrollment;
 import lombok.Data;
 
 @Data

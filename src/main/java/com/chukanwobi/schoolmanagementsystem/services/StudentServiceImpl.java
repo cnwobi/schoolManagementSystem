@@ -34,7 +34,7 @@ private CourseConductionService conductionService;
     @Override
     public Boolean hasEnrolledBefore(Long courseConductionId) {
 
-     return    getAuthenticatedStudent().getEnrollments().stream().anyMatch(enrollment -> enrollment.getCourseConduction().getCourse().getTitle().equalsIgnoreCase(conductionService.findCourseConductionById(courseConductionId).getCourse().getTitle()));
+     return    null;
 
     }
 }

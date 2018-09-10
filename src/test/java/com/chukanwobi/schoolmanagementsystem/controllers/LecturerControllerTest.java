@@ -1,16 +1,13 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
-import com.chukanwobi.schoolmanagementsystem.commands.CourseCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
-import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentToEnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
-import com.chukanwobi.schoolmanagementsystem.services.EnrollmentService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,10 +36,7 @@ public class LecturerControllerTest {
     LecturerService lecturerService;
     @Mock
     CourseConductionService conductionService;
-    @Mock
-    EnrollmentService enrollmentService;
-    @Mock
-    EnrollmentToEnrollmentCommand enrollmentCommandConverter;
+
     LecturerController controller;
     @Mock
     LecturerToLecturerCommand converterLecturer;
@@ -67,7 +61,7 @@ public class LecturerControllerTest {
         controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
-        conductionConverter = new CourseConductionToCourseConductionCommand(enrollmentCommandConverter, converterLecturer,courseCommandConverter );
+        conductionConverter = new CourseConductionToCourseConductionCommand( converterLecturer,courseCommandConverter );
     }
 
     @Test

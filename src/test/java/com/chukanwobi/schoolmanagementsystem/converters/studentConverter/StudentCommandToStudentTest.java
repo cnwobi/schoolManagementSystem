@@ -1,16 +1,12 @@
 package com.chukanwobi.schoolmanagementsystem.converters.studentConverter;
 
-import com.chukanwobi.schoolmanagementsystem.commands.EnrollmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.StudentCommand;
-import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentCommandToEnrollment;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class StudentCommandToStudentTest {
     private StudentCommandToStudent studentCommandToStudentConverter;
@@ -21,11 +17,11 @@ public class StudentCommandToStudentTest {
     private static final String FIRSTNAME= "first";
     private static final String MAJOR= "some major";
     private static final String SURNAME = "surname";
-    private static final List<EnrollmentCommand> ENROLLMENT_COMMAND_LIST= new ArrayList<>();
+
 
     @Before
     public void setUp() throws Exception {
-        studentCommandToStudentConverter = new StudentCommandToStudent(new EnrollmentCommandToEnrollment());
+        studentCommandToStudentConverter = new StudentCommandToStudent();
     }
 
     @Test
@@ -43,12 +39,7 @@ public class StudentCommandToStudentTest {
         studentCommand.setMajor(MAJOR);
         studentCommand.setPassword(STRING_PASSWORD);
         studentCommand.setId(LONG_ID);
-        EnrollmentCommand enrollmentCommand = new EnrollmentCommand();
-        EnrollmentCommand enrollmentCommand1 = new EnrollmentCommand();
 
-        ENROLLMENT_COMMAND_LIST.add(enrollmentCommand);
-        ENROLLMENT_COMMAND_LIST.add(enrollmentCommand1);
-      studentCommand.setEnrollmentList(ENROLLMENT_COMMAND_LIST);
 
         Student student = studentCommandToStudentConverter.convert(studentCommand);
             assertEquals(LONG_ID,student.getId());
@@ -58,6 +49,6 @@ public class StudentCommandToStudentTest {
     assertEquals(MAJOR,student.getMajor());
     assertEquals(STRING_PASSWORD,student.getPassword());
     assertEquals(STRING_EMAIL,student.getEmail());
-    assertEquals(ENROLLMENT_COMMAND_LIST.size(),student.getEnrollments().size());
+
     }
 }

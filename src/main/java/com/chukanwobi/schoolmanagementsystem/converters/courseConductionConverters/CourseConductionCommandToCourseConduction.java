@@ -1,9 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters;
 
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
-import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseCommandToCourse;
-import com.chukanwobi.schoolmanagementsystem.converters.enrollmentConverters.EnrollmentCommandToEnrollment;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerCommandToLecturer;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import org.springframework.core.convert.converter.Converter;
@@ -11,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CourseConductionCommandToCourseConduction implements Converter<CourseConductionCommand,CourseConduction> {
-    private EnrollmentCommandToEnrollment enrollmentCommandConverter;
+
     private LecturerCommandToLecturer commandToLecturerConverter;
     private CourseCommandToCourse commandToCourseConverter;
 
-    public CourseConductionCommandToCourseConduction(EnrollmentCommandToEnrollment enrollmentCommandConverter, LecturerCommandToLecturer commandToLecturerConverter, CourseCommandToCourse commandToCourseConverter) {
-        this.enrollmentCommandConverter = enrollmentCommandConverter;
+    public CourseConductionCommandToCourseConduction( LecturerCommandToLecturer commandToLecturerConverter, CourseCommandToCourse commandToCourseConverter) {
+
         this.commandToLecturerConverter = commandToLecturerConverter;
         this.commandToCourseConverter = commandToCourseConverter;
     }
@@ -35,10 +33,7 @@ public class CourseConductionCommandToCourseConduction implements Converter<Cour
        courseConduction.setSemester(conductionCommand.getSemester());
        courseConduction.setCapacity(conductionCommand.getCapacity());
 
-       if(conductionCommand.getEnrollments()!=null&& conductionCommand.getEnrollments().size()>0){
-           conductionCommand.getEnrollments().forEach(enrollmentCommand -> courseConduction.getEnrollments().add(enrollmentCommandConverter.convert(enrollmentCommand)));
 
-       }
         return courseConduction;
     }
 }

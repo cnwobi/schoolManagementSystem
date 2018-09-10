@@ -26,10 +26,17 @@ public class Student implements UserDetails {
     private String password;
     private Semester currentSemester;
 
+    @ManyToMany(mappedBy = "students")
+    private Set<CourseConduction> conductionSet = new HashSet<>();
+
+
+
+
+
 
 
     @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    private List<Enrollment> enrollments = new ArrayList<>();
+    private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
 
 
     public Student() {
@@ -45,9 +52,12 @@ public class Student implements UserDetails {
 
 
     }
-    public Student addEnrollment(Enrollment enrollment){
-        enrollments.add(enrollment);
-        enrollment.setStudent(this);
+
+
+
+    public Student enrollCourseConduction(CourseConduction courseConduction){
+        conductionSet.add(courseConduction);
+        courseConduction.getStudents().add(this);
         return this;
     }
     @Override

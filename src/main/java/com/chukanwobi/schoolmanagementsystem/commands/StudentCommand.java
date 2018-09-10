@@ -19,5 +19,5 @@ public class StudentCommand {
     private String major;
     private String password;
 
-   private List<EnrollmentCommand> enrollmentList = new ArrayList<>();
+
 }
