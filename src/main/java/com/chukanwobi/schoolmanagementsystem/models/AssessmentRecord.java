@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 @Entity
 @Setter
 @Getter
@@ -14,8 +15,10 @@ public class AssessmentRecord {
     @Lob
     private String feedback;
     private Double obtainedMarks;
-@ManyToOne
-private Student student;
-@ManyToOne
+    @ManyToOne
+    private Student student;
+    @ManyToOne
     private CourseConductionAssessment courseConductionAssessment;
+    private Integer numberOfTries;
+    private Boolean success;
 }

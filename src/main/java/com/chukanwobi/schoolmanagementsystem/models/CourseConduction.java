@@ -55,7 +55,7 @@ public class CourseConduction {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "courseConduction",cascade = CascadeType.ALL)
-    private List<CourseConductionAssessment>courseConductionAssessments = new ArrayList<>();
+    private Set<CourseConductionAssessment>courseConductionAssessments = new HashSet<>();
 
 
 

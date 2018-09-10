@@ -1,6 +1,8 @@
 package com.chukanwobi.schoolmanagementsystem.converters.studentConverter;
 
 import com.chukanwobi.schoolmanagementsystem.commands.StudentCommand;
+import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
+import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,15 +20,22 @@ public class StudentCommandToStudentTest {
     private static final String MAJOR= "some major";
     private static final String SURNAME = "surname";
 
+    private static final String LECTURER_1_NAME ="dennis";
+    private static final String LECTURER_2_NAME = "chuka";
 
+    private static final Lecturer LECTURER_1 = new Lecturer();
+    private static final Lecturer LECTURER_2 = new Lecturer();
     @Before
     public void setUp() throws Exception {
         studentCommandToStudentConverter = new StudentCommandToStudent();
+        LECTURER_1.setFirstName(LECTURER_1_NAME);
+        LECTURER_2.setFirstName(LECTURER_2_NAME);
     }
 
     @Test
     public void testReturnNullGivenNull(){
         assertNull(studentCommandToStudentConverter.convert(null));
+
     }
 
     @Test
@@ -41,8 +50,10 @@ public class StudentCommandToStudentTest {
         studentCommand.setId(LONG_ID);
 
 
+
+
         Student student = studentCommandToStudentConverter.convert(studentCommand);
-            assertEquals(LONG_ID,student.getId());
+        assertEquals(LONG_ID,student.getId());
         assertEquals(STRING_USERNAME,student.getUsername());
      assertEquals(FIRSTNAME,student.getFirstName());
     assertEquals(SURNAME,student.getSurname());

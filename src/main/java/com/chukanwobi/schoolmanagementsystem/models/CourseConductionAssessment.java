@@ -20,8 +20,8 @@ public class CourseConductionAssessment {
     private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
 
 
-    private Date openDate;
-    private Date DueDate;
+    private Calendar openDate;
+    private Calendar DueDate;
 
     private String title;
     private Double totalAchievableMarks;
