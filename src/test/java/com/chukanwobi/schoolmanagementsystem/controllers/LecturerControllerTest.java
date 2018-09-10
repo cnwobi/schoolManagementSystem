@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Lecturer;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
@@ -61,7 +62,7 @@ public class LecturerControllerTest {
         controller = new LecturerController(lecturerService, conductionService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         converterLecturer = new LecturerToLecturerCommand();
-        conductionConverter = new CourseConductionToCourseConductionCommand( converterLecturer,courseCommandConverter );
+        conductionConverter = new CourseConductionToCourseConductionCommand(new StudentToStudentCommand(), converterLecturer,courseCommandConverter );
     }
 
     @Test

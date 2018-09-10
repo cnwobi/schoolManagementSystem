@@ -102,7 +102,7 @@
                             <a th:text="${courseSession.course.title}" href="#"> </a>
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
-                        <td th:text="${courseSession.capacity - courseSession.enrollments.size()} "></td>
+                        <td th:text="${courseSession.capacity - courseSession.st} "></td>
                         <td><a href="#" th:href="@{'/student/class/'+${courseSession.id}+'/enroll'}">Enroll</a></td>
 
 

@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConvert
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class CourseConductionToCourseConductionCommandTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        converter = new CourseConductionToCourseConductionCommand(new LecturerToLecturerCommand(),new CourseToCourseCommand());
+        converter = new CourseConductionToCourseConductionCommand(new StudentToStudentCommand(),new LecturerToLecturerCommand(),new CourseToCourseCommand());
 
     }
 

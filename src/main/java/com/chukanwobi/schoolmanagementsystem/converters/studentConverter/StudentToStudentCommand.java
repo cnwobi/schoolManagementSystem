@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StudentToStudentCommand implements Converter<Student,StudentCommand> {
-private final CourseConductionToCourseConductionCommand toCourseConductionCommandConverter;
 
-    public StudentToStudentCommand(CourseConductionToCourseConductionCommand toCourseConductionCommandConverter) {
-        this.toCourseConductionCommandConverter = toCourseConductionCommandConverter;
-    }
 
     @Override
     public StudentCommand convert(Student student) {
@@ -31,7 +27,7 @@ private final CourseConductionToCourseConductionCommand toCourseConductionComman
         command.setUsername(student.getUsername());
 
         if(student.getConductionSet()!=null && student.getConductionSet().size()>0){
-            student.getConductionSet().forEach(courseConduction -> command.getConductionSet().add(toCourseConductionCommandConverter.convert(courseConduction)));
+            student.getConductionSet().forEach(courseConduction -> command.getConductionSet().add(courseConduction));
         }
 
                return command;

@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.converters.courseConductionConvert
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -14,13 +15,13 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
 
 
 
-
+private StudentToStudentCommand studentConverter;
 
     private LecturerToLecturerCommand lecturerConverter;
     private CourseToCourseCommand courseToCourseConverter;
 
-    public CourseConductionToCourseConductionCommand( LecturerToLecturerCommand lecturerConverter, CourseToCourseCommand courseToCourseConverter) {
-
+    public CourseConductionToCourseConductionCommand(StudentToStudentCommand studentConverter, LecturerToLecturerCommand lecturerConverter, CourseToCourseCommand courseToCourseConverter) {
+        this.studentConverter = studentConverter;
         this.lecturerConverter = lecturerConverter;
         this.courseToCourseConverter = courseToCourseConverter;
     }
@@ -40,6 +41,9 @@ public class CourseConductionToCourseConductionCommand implements Converter<Cour
         command.setLecturer(lecturerConverter.convert(courseConduction.getLecturer()));
         command.setSemester(courseConduction.getSemester());
         command.setYear(courseConduction.getYear());
+        if(courseConduction.getStudents()!=null&& courseConduction.getStudents().size()>0){
+            courseConduction.getStudents().forEach(student -> command.getStudentCommands().add(studentConverter.convert(student)));
+        }
 
         return command;
     }

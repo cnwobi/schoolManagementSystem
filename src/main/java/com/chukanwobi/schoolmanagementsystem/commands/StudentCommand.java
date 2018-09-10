@@ -22,5 +22,5 @@ public class StudentCommand {
     private String major;
     private String password;
 
-    private Set<CourseConductionCommand> conductionSet = new HashSet<>();
+    private Set<CourseConduction> conductionSet = new HashSet<>();
 }

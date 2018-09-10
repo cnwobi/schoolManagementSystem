@@ -31,7 +31,7 @@ public class StudentToStudentCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        converter = new StudentToStudentCommand( new CourseConductionToCourseConductionCommand(new LecturerToLecturerCommand(),new CourseToCourseCommand()));
+   converter = new StudentToStudentCommand();
         LECTURER_1.setFirstName(LECTURER_1_NAME);
         LECTURER_2.setFirstName(LECTURER_2_NAME);
 

@@ -4,12 +4,14 @@ import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionAssessment
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseToCourseCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerToLecturerCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentToStudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.AssessmentRecord;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConductionAssessment;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -25,7 +27,7 @@ private static final String TITLE = "Some title";
 private static final Long ID_1_ASS = 2l;
     private static final Long ID_2_ASS = 3l;
     private static final Long ID_1_COURSE_CONDUCTION = 4l;
-private static final Double TOTAL_ACHIEVABLE_MARKS = 35.0;
+private static final BigDecimal TOTAL_ACHIEVABLE_MARKS = new BigDecimal(35.0);
 
 private static final AssessmentRecord ASSESSMENT_RECORD_1 = new AssessmentRecord();
 
@@ -36,7 +38,7 @@ private static  final CourseConduction COURSE_CONDUCTION =  new CourseConduction
         ASSESSMENT_RECORD_1.setId(ID_1_ASS);
         ASSESSMENT_RECORD_2.setId(ID_2_ASS);
         COURSE_CONDUCTION.setId(ID_1_COURSE_CONDUCTION);
-converter = new CourseConductionAssessmentToCourseConductionAssessmentCommand(new CourseConductionToCourseConductionCommand(new LecturerToLecturerCommand(),new CourseToCourseCommand()));
+converter = new CourseConductionAssessmentToCourseConductionAssessmentCommand(new CourseConductionToCourseConductionCommand(new StudentToStudentCommand(),new LecturerToLecturerCommand(),new CourseToCourseCommand()));
     }
 @Test
     public void returnNullWhenGivenNull(){
