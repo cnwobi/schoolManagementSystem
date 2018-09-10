@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import java.util.HashSet;
@@ -27,6 +28,6 @@ public class CourseConductionAssessmentCommand {
     private Calendar DueDate;
 
     private String title;
-    private Double totalAchievableMarks;
+    private BigDecimal totalAchievableMarks;
 
 }
