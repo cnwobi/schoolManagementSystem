@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Setter
@@ -14,7 +15,7 @@ public class AssessmentRecord {
     private Long id;
     @Lob
     private String feedback;
-    private Double obtainedMarks;
+    private BigDecimal obtainedMarks;
     @ManyToOne
     private Student student;
     @ManyToOne
