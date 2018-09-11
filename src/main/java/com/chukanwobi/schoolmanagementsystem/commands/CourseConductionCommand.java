@@ -6,11 +6,8 @@ import lombok.Data;
 
 import java.time.Year;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Data
 public class CourseConductionCommand {
@@ -23,6 +20,12 @@ public class CourseConductionCommand {
     private Year  year;
 
     private Set<StudentCommand> studentCommands = new HashSet<>();
+
+
     public CourseConductionCommand() {
+    }
+
+    public Set<StudentCommand> studentsSortedByFirstName(){
+      return   studentCommands.stream().sorted(Comparator.comparing(StudentCommand::getFirstName)).collect(Collectors.toSet());
     }
 }
