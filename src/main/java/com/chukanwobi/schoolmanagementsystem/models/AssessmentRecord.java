@@ -22,4 +22,11 @@ public class AssessmentRecord {
     private CourseConductionAssessment courseConductionAssessment;
     private Integer numberOfTries;
     private Boolean success;
+
+    public AssessmentRecord(CourseConductionAssessment courseConductionAssessment) {
+        this.courseConductionAssessment = courseConductionAssessment;
+    }
+
+    public AssessmentRecord() {
+    }
 }

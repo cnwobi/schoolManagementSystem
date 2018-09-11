@@ -68,7 +68,8 @@ return "student/enroll";
 
 @GetMapping("student/grades/{enrollmentId}" )
     public String viewGrades(@PathVariable String enrollmentId,Model model){
-
+    Student student = studentService.getAuthenticatedStudent();
+    model.addAttribute(student);
 
 
         return "student/grades";

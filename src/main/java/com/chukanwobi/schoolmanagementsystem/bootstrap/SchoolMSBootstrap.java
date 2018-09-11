@@ -50,10 +50,10 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         Student student1 = new Student("jhoover", "Jonathan", "Hoover", "j.hoover@fbi.gov.us", "Espionage", bCryptPasswordEncoder.encode("password"));
 
         Student student2 = new Student("mford", "Mark", "Ford", "m.ford@mcm.org.au", "Computer Science", bCryptPasswordEncoder.encode("password"));
-        Student student3 = new Student("aread", "Andrew", "Read", "a.read@mit.edu.au", "Architecture", "password");
-        Student student4 = new Student("shanity", "Shawn", "Hannity", "s.hannity@foxnews.com", "Journalism", "password");
-        Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", "password");
-        Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", "password");
+        Student student3 = new Student("aread", "Andrew", "Read", "a.read@mit.edu.au", "Architecture", bCryptPasswordEncoder.encode("password"));
+        Student student4 = new Student("shanity", "Shawn", "Hannity", "s.hannity@foxnews.com", "Journalism", bCryptPasswordEncoder.encode("password"));
+        Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", bCryptPasswordEncoder.encode("password"));
+        Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", bCryptPasswordEncoder.encode("password"));
 
 
         List<CourseConduction> courseConductions = new ArrayList<>();
@@ -175,10 +175,10 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         Student student1 = new Student("jhoover", "Jonathan", "Hoover", "j.hoover@fbi.gov.us", "Espionage", bCryptPasswordEncoder.encode("password"));
 
         Student student2 = new Student("mford", "Mark", "Ford", "m.ford@mcm.org.au", "Computer Science", bCryptPasswordEncoder.encode("password"));
-        Student student3 = new Student("aread", "Andrew", "Read", "a.read@mit.edu.au", "Architecture", "password");
-        Student student4 = new Student("shanity", "Shawn", "Hannity", "s.hannity@foxnews.com", "Journalism", "password");
-        Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", "password");
-        Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", "password");
+        Student student3 = new Student("aread", "Andrew", "Read", "a.read@mit.edu.au", "Architecture", bCryptPasswordEncoder.encode("password"));
+        Student student4 = new Student("shanity", "Shawn", "Hannity", "s.hannity@foxnews.com", "Journalism", bCryptPasswordEncoder.encode("password"));
+        Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", bCryptPasswordEncoder.encode("password"));
+        Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", bCryptPasswordEncoder.encode("password"));
 
         Set<Student> studentList = new HashSet<>(Arrays.asList(student1, student2, student3, student4, student5, student6, student7));
         return studentList;

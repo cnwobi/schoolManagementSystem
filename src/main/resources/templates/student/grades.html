@@ -27,11 +27,11 @@
     <th> Calculate Percentage</th>
     <th>Feedback</th>
 
-    <tr th:each="assement:${enrollment.assessments}">
-        <td th:text="${assement.title}"></td>
-        <td th:text="${assement.obtainedMarks}"></td>
-        <td th:text="${assement.totalAchievableMarks}"></td>
-       <td th:text="${assement.getPercentage()}"></td>
+    <tr th:each="assement:${student.assessmentRecords}">
+        <td th:text="${assement.courseConductionAssessment.title}"></td>
+        <td th:text="${assement.feedback}"></td>
+        <td th:text="${assement.courseConductionAssessment.totalAchievableMarks}"></td>
+
         <td th:text="${assement.feedback}"></td>
 
     </tr>

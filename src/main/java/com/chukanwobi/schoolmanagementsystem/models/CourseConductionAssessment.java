@@ -28,11 +28,11 @@ public class CourseConductionAssessment {
     private BigDecimal totalAchievableMarks;
 
 
-    public CourseConductionAssessment addAssessmentRecord(AssessmentRecord assessmentRecord){
+    /*public CourseConductionAssessment addAssessmentRecord(AssessmentRecord assessmentRecord){
         assessmentRecord.setCourseConductionAssessment(this);
         assessmentRecords.add(assessmentRecord);
         return this;
-    }
+    }*/
 
 
 }

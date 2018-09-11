@@ -24,6 +24,8 @@ public class CourseConductionAssessmentCommandToCourseConductionAssessment imple
 
         courseConductionAssessment.setCourseConduction(courseConductionRepo.findById(command.getCourseConductionCommand().getId()).orElseThrow(()-> new RuntimeException("CourseConduction not found")));
 
+
+        courseConductionAssessment.setTotalAchievableMarks(command.getTotalAchievableMarks());
         courseConductionAssessment.setDueDate(command.getDueDate());
         courseConductionAssessment.setOpenDate(command.getOpenDate());
         courseConductionAssessment.setTitle(command.getTitle());
