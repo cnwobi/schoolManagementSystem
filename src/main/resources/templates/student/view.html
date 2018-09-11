@@ -123,13 +123,13 @@
                         <th>Contact</th>
 
                     </tr>
-                    <tr th:each="enrollment,iterator:${currentEnrollments}">
+                    <tr th:each="enrollment,iterator:${student.conductionSet}">
                         <td th:text="${iterator.index+1}"></td>
                         <td class="course-title">
-                            <a th:text="${enrollment.courseConduction.course.title}" href="#"> </a>
+                            <a th:text="${enrollment.course.title}" href="#"> </a>
                         </td>
-                        <td th:text="${enrollment.courseConduction.lecturer.firstName+' '+enrollment.courseConduction.lecturer.surname}"></td>
-                        <td th:text="${enrollment.courseConduction.lecturer.email} "></td>
+                        <td th:text="${enrollment.lecturer.firstName+' '+enrollment.lecturer.surname}"></td>
+                        <td th:text="${enrollment.lecturer.email} "></td>
 
 
                     </tr>
@@ -149,14 +149,14 @@
                         <th>Contact</th>
 
                     </tr>
-                    <tr th:each="enrollment,iterator:${pastEnrollments}">
+                <!--    <tr th:each="enrollment,iterator:${pastEnrollments}">
                         <td th:text="${iterator.index+1}"></td>
                         <td class="course-title">
                             <a th:text="${enrollment.courseConduction.course.title}" href="#"> </a>
                         </td>
                         <td th:text="${ enrollment.courseConduction.course.departmentalCode}"></td>
                         <td th:text="${enrollment.courseConduction.lecturer.firstName+' '+enrollment.courseConduction.lecturer.surname}"></td>
-                        <td th:text="${enrollment.courseConduction.lecturer.email} "></td>
+                        <td th:text="${enrollment.courseConduction.lecturer.email} "></td>-->
 
 
                     </tr>

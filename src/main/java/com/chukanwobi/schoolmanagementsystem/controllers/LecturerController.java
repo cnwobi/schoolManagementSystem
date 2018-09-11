@@ -3,7 +3,6 @@ package com.chukanwobi.schoolmanagementsystem.controllers;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionAssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
-import com.chukanwobi.schoolmanagementsystem.models.CourseConductionAssessment;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionAssessmentService;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;

@@ -6,4 +6,5 @@ public interface StudentService {
     Student getAuthenticatedStudent();
     Boolean hasEnrolledBefore(Long courseConductionId);
 
+
 }

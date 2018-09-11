@@ -16,5 +16,6 @@ public interface CourseConductionService {
     List<CourseConductionCommand> findAll();
     List<CourseConductionCommand> findAllCurrentCourses();
 void enrollStudent(StudentCommand studentCommand);
+    List<CourseConductionCommand> findCourseConductionsByStudentId(Long studentId);
 
 }

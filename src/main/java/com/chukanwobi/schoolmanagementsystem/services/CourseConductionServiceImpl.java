@@ -6,7 +6,9 @@ import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverte
 import com.chukanwobi.schoolmanagementsystem.converters.courseConductionConverters.CourseConductionToCourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.exceptions.NotFoundException;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
+import com.chukanwobi.schoolmanagementsystem.models.Student;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
+import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 @Slf4j
 @Transactional
@@ -24,7 +28,7 @@ public class CourseConductionServiceImpl implements CourseConductionService {
     private CourseConductionRepo courseConductionRepo;
     private CourseConductionToCourseConductionCommand conductionConverter;
     private CourseConductionCommandToCourseConduction commandToCourseConductionConverter;
-
+private StudentRepository studentRepository;
 
     private CurrentSemesterUtil currentSemesterUtil;
 
@@ -81,6 +85,14 @@ public class CourseConductionServiceImpl implements CourseConductionService {
                 .forEach(courseConductionCommand -> conductionCommandList1.add(courseConductionCommand));
         return conductionCommandList1;
     }
+    @Override
+
+    public List<CourseConductionCommand> findCourseConductionsByStudentId(Long studentId){
+        List<CourseConductionCommand> conductionCommandList = new ArrayList<>();
+Student student = studentRepository.findById(Long.valueOf(studentId)).orElseThrow(() -> new RuntimeException("student not found"));
+
+student.getConductionSet().forEach(courseConduction -> conductionCommandList.add(conductionConverter.convert(courseConduction)));
+   return conductionCommandList; }
 
 
     @Override
