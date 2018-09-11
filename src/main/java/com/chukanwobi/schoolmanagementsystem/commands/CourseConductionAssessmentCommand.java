@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -23,8 +24,9 @@ public class CourseConductionAssessmentCommand {
 
     private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
 
-
+@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar openDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar DueDate;
 
     private String title;

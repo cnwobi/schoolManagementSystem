@@ -41,27 +41,25 @@
                 <th>First Name</th>
                 <th>Surname</th>
                 <th>Email</th>
-                <th>Assessment 1</th>
-                <th>Assessment 2</th>
+                <th>Major</th>
+
 <th></th>
 
 
             </tr>
             </thead>
-            <tr th:each="enrollment,iterator:${courseConduction.enrollments}">
+            <tr th:each="student,iterator:${courseConduction.studentsSortedByFirstName()}">
                 <td th:text="${iterator.index+1}">1</td>
-                <td ><img th:unless ="${enrollment.student.image !=null}"  src="/images/no-image-icon.png">
+                <td ><img th:unless ="${student.image!=null}"  src="/images/no-image-icon.png">
 
                 </td>
 
-                <td th:text="${enrollment.student.firstName}">John</td>
-                <td th:text="${enrollment.student.surname}">Doe</td>
-                <td th:text="${enrollment.student.email}">j.doe@yahoo.com</td>
-               <td th:each="assessment:${enrollment.assessments}">
+                <td th:text="${student.firstName}">John</td>
+                <td th:text="${student.surname}">Doe</td>
+                <td th:text="${student.email}">j.doe@yahoo.com</td>
 
-
-               </td>
-
+                <!--Think the logic later-->
+               <td th:text="${student.major}"></td>
 
             </tr>
 

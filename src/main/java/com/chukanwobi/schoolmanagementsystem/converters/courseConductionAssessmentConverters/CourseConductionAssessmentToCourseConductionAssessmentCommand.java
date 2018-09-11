@@ -6,6 +6,9 @@ import com.chukanwobi.schoolmanagementsystem.models.CourseConductionAssessment;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 @Component
 public class CourseConductionAssessmentToCourseConductionAssessmentCommand implements Converter<CourseConductionAssessment,CourseConductionAssessmentCommand> {
     private final CourseConductionToCourseConductionCommand toCourseConductionCommandConverter;
@@ -22,6 +25,7 @@ public class CourseConductionAssessmentToCourseConductionAssessmentCommand imple
      }
      CourseConductionAssessmentCommand command = new CourseConductionAssessmentCommand();
      command.setId(courseConductionAssessment.getId());
+
      command.setOpenDate(courseConductionAssessment.getOpenDate());
      command.setDueDate(courseConductionAssessment.getDueDate());
      command.setTitle(courseConductionAssessment.getTitle());

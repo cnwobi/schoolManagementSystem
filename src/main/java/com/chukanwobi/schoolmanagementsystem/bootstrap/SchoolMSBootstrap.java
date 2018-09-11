@@ -9,9 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -32,7 +30,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        studentRepository.saveAll(studentList());
+      //  studentRepository.saveAll(studentList());
         courseRepository.saveAll(getCoursesWithPrerequisites());
         courseConductionRepo.saveAll(getCourseConductions());
 
@@ -44,6 +42,20 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
 
     private List<CourseConduction> getCourseConductions() {
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        Student student7 = new Student("eokoli", "Okoli", "Emeka", "e.okoli@gmail.com", "Health Sports", bCryptPasswordEncoder.encode("password"));
+
+        Student student1 = new Student("jhoover", "Jonathan", "Hoover", "j.hoover@fbi.gov.us", "Espionage", bCryptPasswordEncoder.encode("password"));
+
+        Student student2 = new Student("mford", "Mark", "Ford", "m.ford@mcm.org.au", "Computer Science", bCryptPasswordEncoder.encode("password"));
+        Student student3 = new Student("aread", "Andrew", "Read", "a.read@mit.edu.au", "Architecture", "password");
+        Student student4 = new Student("shanity", "Shawn", "Hannity", "s.hannity@foxnews.com", "Journalism", "password");
+        Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", "password");
+        Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", "password");
+
+
         List<CourseConduction> courseConductions = new ArrayList<>();
         List<Lecturer> lecturers = new ArrayList<>();
         lecturerRepository.findAll().iterator()
@@ -52,6 +64,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         List<Course> courses = new ArrayList<>();
 
         courseRepository.findAll().iterator().forEachRemaining(course -> courses.add(course));
+
 
         CourseConduction courseConduction = new CourseConduction();
         courseConduction.setCapacity(60);
@@ -64,11 +77,20 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
         CourseConduction courseConduction1 = new CourseConduction();
         courseConduction1.setCapacity(150);
-        courseConduction1.setYear(Year.of(2017));
+        courseConduction1.setYear(Year.of(2018));
         courseConduction1.setSemester(Semester.SECOND);
         courseConduction1.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId() == 2).findFirst().get());
         courseConduction1.setCourse(courses.stream().filter(course -> course.getId() == 2).findFirst().get());
+        courseConduction1.addStudent(student1);
+        courseConduction1.addStudent(student2);
+        courseConduction1.addStudent(student3);
+        courseConduction1.addStudent(student4);
+        courseConduction1.addStudent(student5);
+        courseConduction1.addStudent(student6);
+        courseConduction1.addStudent(student7);
         courseConductions.add(courseConduction1);
+
+
 
 
         CourseConduction courseConduction2 = new CourseConduction();
@@ -77,6 +99,13 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction2.setYear(Year.of(2018));
         courseConduction2.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId() == 2).findFirst().get());
         courseConduction2.setCourse(courses.stream().filter(course -> course.getId() == 2).findFirst().get());
+        courseConduction2.addStudent(student1);
+        courseConduction2.addStudent(student2);
+        courseConduction2.addStudent(student3);
+        courseConduction2.addStudent(student4);
+        courseConduction2.addStudent(student5);
+        courseConduction2.addStudent(student6);
+        courseConduction2.addStudent(student7);
         courseConductions.add(courseConduction2);
 
         CourseConduction courseConduction3 = new CourseConduction();
@@ -138,7 +167,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         return courseHashSet;
     }
 
-    public List<Student> studentList() {
+    public Set<Student> studentList() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         Student student7 = new Student("eokoli", "Okoli", "Emeka", "e.okoli@gmail.com", "Health Sports", bCryptPasswordEncoder.encode("password"));
@@ -151,7 +180,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         Student student5 = new Student("dtrump", "Donald", "Trump", "d.trump@gmail.com", "Mechanical Engineering", "password");
         Student student6 = new Student("rlarossa", "Rebecca", "Larossa", "r.larossa@thegrange.edu.au", "Teaching", "password");
 
-        List<Student> studentList = new ArrayList<>(Arrays.asList(student1, student2, student3, student4, student5, student6, student7));
+        Set<Student> studentList = new HashSet<>(Arrays.asList(student1, student2, student3, student4, student5, student6, student7));
         return studentList;
     }
 

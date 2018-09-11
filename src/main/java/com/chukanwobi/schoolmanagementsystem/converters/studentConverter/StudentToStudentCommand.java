@@ -29,7 +29,9 @@ public class StudentToStudentCommand implements Converter<Student,StudentCommand
         if(student.getConductionSet()!=null && student.getConductionSet().size()>0){
             student.getConductionSet().forEach(courseConduction -> command.getConductionSet().add(courseConduction));
         }
-
+if(student.getAssessmentRecords()!=null && student.getAssessmentRecords().size()>0){
+            student.getAssessmentRecords().forEach(assessmentRecord -> command.getAssessmentRecords().add(assessmentRecord));
+}
                return command;
     }
 }

@@ -35,6 +35,8 @@ public class Student implements UserDetails {
 
 
 
+
+
     @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
 
@@ -58,6 +60,12 @@ public class Student implements UserDetails {
     public Student enrollCourseConduction(CourseConduction courseConduction){
         conductionSet.add(courseConduction);
         courseConduction.getStudents().add(this);
+        return this;
+    }
+
+    public Student addAssessmentRecord(AssessmentRecord assessmentRecord){
+        assessmentRecord.setStudent(this);
+        assessmentRecords.add(assessmentRecord);
         return this;
     }
     @Override

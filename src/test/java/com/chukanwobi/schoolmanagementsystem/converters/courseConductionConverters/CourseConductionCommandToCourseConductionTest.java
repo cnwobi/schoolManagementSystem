@@ -5,6 +5,7 @@ import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.converters.courseConverters.CourseCommandToCourse;
 import com.chukanwobi.schoolmanagementsystem.converters.lecturerConverters.LecturerCommandToLecturer;
+import com.chukanwobi.schoolmanagementsystem.converters.studentConverter.StudentCommandToStudent;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.Semester;
 import org.junit.Before;
@@ -31,7 +32,7 @@ public class CourseConductionCommandToCourseConductionTest {
 
     @Before
     public void setUp() throws Exception {
-converter = new CourseConductionCommandToCourseConduction(new LecturerCommandToLecturer(),new CourseCommandToCourse());
+converter = new CourseConductionCommandToCourseConduction(new LecturerCommandToLecturer(),new CourseCommandToCourse(),new StudentCommandToStudent());
 
     }
 @Test

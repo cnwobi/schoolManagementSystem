@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionAssessmentCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConductionAssessment;
@@ -12,16 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 @Slf4j
+
 public class LecturerController {
 
 
@@ -119,9 +116,11 @@ public class LecturerController {
 
 
     @PostMapping("/lecturer/class/create-assessment")
-    public String createClassAssessmentAndAddItToAllStudents(@ModelAttribute CourseConductionAssessment courseConductionAssessment){
-assessmentService.saveCourseConductionAssessmentAndAddToAllStudentsInClass(courseConductionAssessment);
-return "redirect:/lecturer/class/"+courseConductionAssessment.getCourseConduction().getId();
+    public String createClassAssessmentAndAddItToAllStudents(@ModelAttribute CourseConductionAssessmentCommand courseConductionAssessmentCommand){
+assessmentService.saveCourseConductionAssessmentAndAddToAllStudentsInClass(courseConductionAssessmentCommand);
+
+
+return "redirect:/lecturer/class/"+courseConductionAssessmentCommand.getCourseConductionCommand().getId();
     }
 
 
@@ -131,7 +130,9 @@ return "redirect:/lecturer/class/"+courseConductionAssessment.getCourseConductio
         CourseConductionCommand command = conductionService.findCourseConductionById(Long.valueOf(courseConductionId));
         if (isAuthenticatedId(Long.valueOf(command.getLecturer().getId())))
             model.addAttribute("courseConduction", command);
-        model.addAttribute("classAssessment",new CourseConductionAssessment());
+        CourseConductionAssessmentCommand command1 = new CourseConductionAssessmentCommand();
+        command1.setCourseConductionCommand(command);
+        model.addAttribute("classAssessment",command1);
 
         return "lecturer/class/details";
     }

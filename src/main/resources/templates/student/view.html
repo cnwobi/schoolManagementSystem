@@ -36,16 +36,16 @@
                         <th>Year</th>
                         <th>Grades</th>
                     </tr>
-                    <tr th:each="enrollment,iterator:${student.enrollments}">
+                    <tr th:each="enrollment,iterator:${student.conductionSet}">
                         <td  th:text="${iterator.index+1}"></td>
                         <td  class="course-title">
-                            <a th:text="${enrollment.courseConduction.course.title}" href="#" > </a>
+                            <a th:text="${enrollment.course.title}" href="#" > </a>
                         </td>
 
 
-                        <td th:text="${#strings.capitalize(enrollment.courseConduction.semester.toString().toLowerCase())}"></td>
+                        <td th:text="${#strings.capitalize(enrollment.semester.toString().toLowerCase())}"></td>
 
-                        <td th:text="${enrollment.courseConduction.year}"></td>
+                        <td th:text="${enrollment.year}"></td>
                         <td>
                             <a href="#" th:href="@{'/student/grades/'+${enrollment.id}}" th:text="${'View Grades'}">View Details</a>
 
@@ -102,7 +102,7 @@
                             <a th:text="${courseSession.course.title}" href="#"> </a>
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
-                        <td th:text="${courseSession.capacity - courseSession.st} "></td>
+                        <td th:text="${courseSession.capacity - courseSession.studentCommands.size()} "></td>
                         <td><a href="#" th:href="@{'/student/class/'+${courseSession.id}+'/enroll'}">Enroll</a></td>
 
 

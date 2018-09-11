@@ -118,9 +118,9 @@
                             <a th:text="${courseSession.course.title}" th:href="@{'/lecturer/class/'+${courseSession.id}}"> </a>
                         </td>
                         <td th:text="${courseSession.capacity}"></td>
-                        <td th:unless="${courseSession.st==0}"
-                            th:text="${courseSession.enrollments.size()} "></td>
-                        <td th:unless="${courseSession.enrollments.size()>0}" th:text="${'None'}"></td>
+                        <td th:unless="${courseSession.studentCommands.size()==0}"
+                            th:text="${courseSession.studentCommands.size()} "></td>
+                        <td th:unless="${courseSession.studentCommands.size()}" th:text="${'None'}"></td>
                         <td th:text="${#strings.capitalize(courseSession.semester.toString().toLowerCase())}"></td>
                         <td th:text="${courseSession.year}">knm</td>
                         <td>

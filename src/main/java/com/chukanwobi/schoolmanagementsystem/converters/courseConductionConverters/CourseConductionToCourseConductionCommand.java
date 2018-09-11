@@ -45,6 +45,9 @@ private StudentToStudentCommand studentConverter;
             courseConduction.getStudents().forEach(student -> command.getStudentCommands().add(studentConverter.convert(student)));
         }
 
+         if(courseConduction.getCourseConductionAssessments()!=null&&courseConduction.getCourseConductionAssessments().size()>0){
+            courseConduction.getCourseConductionAssessments().forEach(courseConductionAssessment -> command.getCourseConductionAssessments().add(courseConductionAssessment));
+         }
         return command;
     }
 }

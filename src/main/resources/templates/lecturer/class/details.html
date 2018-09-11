@@ -51,20 +51,34 @@
 
     <article class="grid-100 classes">
         <div class="header-dashboard color"> Your Classes</div>
-       <div class="content">
+       <div class="content " >
+           <div class="grid-20">
+           <div>Assessments List</div>
+               <ul th:each="assessment:${courseConduction.courseConductionAssessments}">
+                   <li th:text="${assessment.title}"></li>
+               </ul>
 
-           <form th:object="${classAssessment}" method="post" th:action="@{/lecturer/class/create-assessment}" >
+           </div>
+
+           <form th:object="${classAssessment}" method="post" th:action="@{/lecturer/class/create-assessment} " class="grid-80" >
                <input type="hidden" th:field="*{id}">
 
-               <input type="hidden" th:name="courseConduction.id" id="courseConductionId" th:value="${courseConduction.id}">
+               <input type="hidden" th:name="courseConductionCommand.id" id="courseConductionId" th:value="${courseConduction.id}">
                <div >Creating new Assessment</div>
                <label>Assessment Title</label>
-               <input type="text" th:field="*{title}">
+               <input required type="text" th:field="*{title}">
 
                <label> Maximum Obtainable marks</label>
                <input type="number" th:field="*{totalAchievableMarks}">
+
+               <label>Open date</label>
+               <input  type="date" th:field="*{openDate}">
+               <label>Due date</label>
+               <input  type="date" th:field="*{dueDate}">
                <button>Submit</button>
            </form>
+
+
        </div>
     </article>
 </div>

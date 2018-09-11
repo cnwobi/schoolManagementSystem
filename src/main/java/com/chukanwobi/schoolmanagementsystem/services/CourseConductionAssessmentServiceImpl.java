@@ -1,5 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.services;
 
+import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionAssessmentCommand;
+import com.chukanwobi.schoolmanagementsystem.converters.courseConductionAssessmentConverters.CourseConductionAssessmentCommandToCourseConductionAssessment;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConductionAssessment;
 import com.chukanwobi.schoolmanagementsystem.repositories.CourseConductionRepo;
@@ -12,16 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class CourseConductionAssessmentServiceImpl implements CourseConductionAssessmentService {
     @Autowired
     private CourseConductionRepo conductionRepo;
+    @Autowired
+
+    private CourseConductionAssessmentCommandToCourseConductionAssessment converter;
 
 
     @Override
-    public void saveCourseConductionAssessmentAndAddToAllStudentsInClass(CourseConductionAssessment assessment) {
-CourseConduction courseConduction = conductionRepo.findById(assessment.getCourseConduction().getId()).get();
+    public void saveCourseConductionAssessmentAndAddToAllStudentsInClass(CourseConductionAssessmentCommand assessment) {
+CourseConduction courseConduction = conductionRepo.findById(assessment.getCourseConductionCommand().getId()).get();
 
+CourseConductionAssessment assessment1 = converter.convert(assessment);
+courseConduction.addCourseConductionAssessment(assessment1);
 /*
 courseConduction.getEnrollments().forEach(enrollment -> enrollment.addAssessment(new Assessment(assessment.getTitle(),assessment.getTotalAchievableMarks(),null)));*/
 
-        courseConduction.addCourseConductionAssessment(assessment);
+
 conductionRepo.save(courseConduction);
     }
 

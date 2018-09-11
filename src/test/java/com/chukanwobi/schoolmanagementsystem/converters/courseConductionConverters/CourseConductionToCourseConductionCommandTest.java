@@ -30,7 +30,7 @@ public class CourseConductionToCourseConductionCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+
         converter = new CourseConductionToCourseConductionCommand(new StudentToStudentCommand(),new LecturerToLecturerCommand(),new CourseToCourseCommand());
 
     }

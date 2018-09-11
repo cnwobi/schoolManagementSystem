@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.commands;
 
+import com.chukanwobi.schoolmanagementsystem.models.AssessmentRecord;
 import com.chukanwobi.schoolmanagementsystem.models.CourseConduction;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,7 @@ public class StudentCommand {
     private String password;
 
     private Set<CourseConduction> conductionSet = new HashSet<>();
+
+    private Set<AssessmentRecord> assessmentRecords =  new HashSet<>();
+
 }

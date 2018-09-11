@@ -21,11 +21,13 @@ public class CourseConductionCommand {
 
     private Set<StudentCommand> studentCommands = new HashSet<>();
 
+    private Set<CourseConductionAssessment>courseConductionAssessments = new HashSet<>();
+
 
     public CourseConductionCommand() {
     }
 
-    public Set<StudentCommand> studentsSortedByFirstName(){
-      return   studentCommands.stream().sorted(Comparator.comparing(StudentCommand::getFirstName)).collect(Collectors.toSet());
+    public List<StudentCommand> studentsSortedByFirstName(){
+      return   studentCommands.stream().sorted(Comparator.comparing(StudentCommand::getFirstName)).collect(Collectors.toList());
     }
 }
