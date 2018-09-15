@@ -14,7 +14,12 @@ import java.util.*;
 @Slf4j
 @Component
 public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEvent> {
-    private LecturerRepository lecturerRepository;
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+    }
+
+    /*  private LecturerRepository lecturerRepository;
     private StudentRepository studentRepository;
     private CourseRepo courseRepository;
     private CourseConductionRepo courseConductionRepo;
@@ -182,7 +187,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
 
         Set<Student> studentList = new HashSet<>(Arrays.asList(student1, student2, student3, student4, student5, student6, student7));
         return studentList;
-    }
+    }*/
 
 
 }
