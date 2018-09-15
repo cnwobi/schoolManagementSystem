@@ -1,6 +1,7 @@
 package com.chukanwobi.schoolmanagementsystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
@@ -15,6 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 
 public class SpringConfig extends WebSecurityConfigurerAdapter {
+@Autowired
+@Qualifier("customUserDetails")
+    private UserDetailsService userDetailsService;
+
+
 
     private static final String[] PUBLIC_MATCHERS = {
             "/webjars/**",
@@ -63,7 +70,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("password")).roles("ADMIN").and()
+        /*auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("password")).roles("ADMIN").and()
                 .withUser("denco").password(passwordEncoder().encode("password")).roles("LECTURER").and()
                 .withUser("fabian").password(passwordEncoder().encode("password")).roles("LECTURER")
                 .and()
@@ -77,7 +84,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("rlarossa").password(passwordEncoder().encode("password")).roles("STUDENT")
         .and()
-                .withUser("jhoover").password(passwordEncoder().encode("password")).roles("STUDENT");
-    }
+                .withUser("jhoover").password(passwordEncoder().encode("password")).roles("STUDENT");*/
+
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()); }
 
 }

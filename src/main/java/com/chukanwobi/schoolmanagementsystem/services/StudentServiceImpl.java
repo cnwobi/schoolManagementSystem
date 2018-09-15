@@ -20,7 +20,7 @@ import java.util.Set;
 @Transactional
 public class StudentServiceImpl implements StudentService {
     @Autowired
-    @Qualifier("student")
+    @Qualifier("customUserDetails")
     private UserDetailsService studentDetails;
 @Autowired
 private CourseConductionService conductionService;

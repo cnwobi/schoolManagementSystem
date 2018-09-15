@@ -25,6 +25,7 @@ public class Student implements UserDetails {
     private String major;
     private String password;
     private Semester currentSemester;
+    private String role = "STUDENT";
 
     @ManyToMany(mappedBy = "students")
     private Set<CourseConduction> conductionSet = new HashSet<>();
@@ -42,6 +43,7 @@ public class Student implements UserDetails {
 
 
     public Student() {
+        role = "STUDENT";
     }
 
     public Student(String username, String firstName, String surname, String email, String major, String password) {

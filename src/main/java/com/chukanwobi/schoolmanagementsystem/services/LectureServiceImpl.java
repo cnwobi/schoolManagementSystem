@@ -18,15 +18,15 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@Transactional
+
 public class LectureServiceImpl implements LecturerService {
 
 private LecturerRepository lecturerRepository;
 private LecturerToLecturerCommand converter;
-@Qualifier("Lecturer")
-@Autowired
-private UserDetailsService userDetailsService;
 
+    @Autowired
+    @Qualifier("customUserDetails")
+    private UserDetailsService userDetailsService;
 
 
     public LectureServiceImpl(LecturerRepository lecturerRepository,

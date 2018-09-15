@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.models;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-
+@Qualifier("lecturer")
 public class Lecturer implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +28,13 @@ public class Lecturer implements UserDetails {
     private String email;
     private String campus;
     private String password;
+    private String role;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "lecturer")
     private List<CourseConduction> coursesConducted = new ArrayList<>();
 
     public Lecturer() {
+        role = "LECTURER";
     }
 
 

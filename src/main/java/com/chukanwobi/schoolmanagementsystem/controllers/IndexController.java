@@ -47,16 +47,16 @@ public class IndexController {
 
     @GetMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request){
-        if (request.isUserInRole("LECTURER")){
+        if (request.isUserInRole("ROLE_LECTURER")){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
             return "redirect:/lecturer/"+command.getId()+"/view/courses";
 
         }
-        if(request.isUserInRole("ADMIN")){
+        if(request.isUserInRole("ROLE_ADMIN")){
             return "redirect:/admin";
         }
-        if(request.isUserInRole("STUDENT")){
+        if(request.isUserInRole("ROLE_STUDENT")){
             return "redirect:/student/";
         }
       return "/error";
