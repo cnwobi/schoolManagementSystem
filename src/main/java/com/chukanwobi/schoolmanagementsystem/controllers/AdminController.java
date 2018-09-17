@@ -1,5 +1,6 @@
 package com.chukanwobi.schoolmanagementsystem.controllers;
 
+import com.chukanwobi.schoolmanagementsystem.commands.LecturerCommand;
 import com.chukanwobi.schoolmanagementsystem.services.CourseConductionService;
 import com.chukanwobi.schoolmanagementsystem.services.LecturerService;
 import org.springframework.security.core.Authentication;
@@ -37,6 +38,11 @@ private CourseConductionService conductionService;
         }
         return "/error";
     }
+  @GetMapping("/admin/lecturer/new")
+    public String newLecturerForm(Model model){
+        model.addAttribute("lecturer",new LecturerCommand());
 
+        return "admin/lecturer/new";
+  }
 
 }

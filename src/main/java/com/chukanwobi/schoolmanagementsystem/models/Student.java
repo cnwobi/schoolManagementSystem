@@ -18,6 +18,7 @@ public class Student implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private Byte[] image;
+    @Column(nullable = false,unique = true)
     private String username;
     private String firstName;
     private String surname;

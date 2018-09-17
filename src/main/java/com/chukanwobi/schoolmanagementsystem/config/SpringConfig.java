@@ -21,6 +21,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 @Qualifier("customUserDetails")
     private UserDetailsService userDetailsService;
 
+@Autowired
+private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     private static final String[] PUBLIC_MATCHERS = {
@@ -64,10 +66,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().frameOptions().disable();
     }
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         /*auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("password")).roles("ADMIN").and()
@@ -86,6 +85,6 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
         .and()
                 .withUser("jhoover").password(passwordEncoder().encode("password")).roles("STUDENT");*/
 
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()); }
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder); }
 
 }

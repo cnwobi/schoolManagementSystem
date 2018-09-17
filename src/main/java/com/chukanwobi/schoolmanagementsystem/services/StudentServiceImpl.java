@@ -3,6 +3,7 @@ package com.chukanwobi.schoolmanagementsystem.services;
 import com.chukanwobi.schoolmanagementsystem.commands.CourseConductionCommand;
 import com.chukanwobi.schoolmanagementsystem.commands.StudentCommand;
 import com.chukanwobi.schoolmanagementsystem.models.Student;
+import com.chukanwobi.schoolmanagementsystem.repositories.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,11 +24,13 @@ public class StudentServiceImpl implements StudentService {
     @Qualifier("customUserDetails")
     private UserDetailsService studentDetails;
 @Autowired
+    private StudentRepository studentRepository;
+@Autowired
 private CourseConductionService conductionService;
     @Override
     public Student getAuthenticatedStudent() {
 
-        Student student = (Student) studentDetails.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Student student = studentRepository.findStudentByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(()-> new RuntimeException("Student not found"));
         return student;
     }
 

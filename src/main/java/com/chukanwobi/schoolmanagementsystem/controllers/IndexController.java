@@ -29,13 +29,13 @@ public class IndexController {
 
     @GetMapping({"", "/", "/index"})
     public String getIndex(HttpServletRequest request) {
-        if (request.isUserInRole("LECTURER")){
+        if (request.isUserInRole("ROLE_LECTURER")){
             return "redirect:/lecturer/";
         }
-        if(request.isUserInRole("ADMIN")){
+        if(request.isUserInRole("ROLE_ADMIN")){
             return "redirect:/admin";
         }
-        if(request.isUserInRole("STUDENT")){
+        if(request.isUserInRole("ROLE_STUDENT")){
             return "redirect:/student";
         }
         return "/error";
@@ -47,16 +47,16 @@ public class IndexController {
 
     @GetMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request){
-        if (request.isUserInRole("ROLE_LECTURER")){
+        if (request.isUserInRole("LECTURER")){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             LecturerCommand command = lecturerService.findLecturerByUsername(auth.getName());
             return "redirect:/lecturer/"+command.getId()+"/view/courses";
 
         }
-        if(request.isUserInRole("ROLE_ADMIN")){
+        if(request.isUserInRole("ADMIN")){
             return "redirect:/admin";
         }
-        if(request.isUserInRole("ROLE_STUDENT")){
+        if(request.isUserInRole("STUDENT")){
             return "redirect:/student/";
         }
       return "/error";

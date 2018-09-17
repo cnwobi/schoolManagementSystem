@@ -4,54 +4,82 @@ package com.chukanwobi.schoolmanagementsystem.bootstrap;
 import com.chukanwobi.schoolmanagementsystem.models.*;
 import com.chukanwobi.schoolmanagementsystem.repositories.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
 import java.time.Year;
 import java.util.*;
 
 @Slf4j
 @Component
 public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEvent> {
-  */
-/*  @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-    }*//*
 
 
       private LecturerRepository lecturerRepository;
     private StudentRepository studentRepository;
     private CourseRepo courseRepository;
     private CourseConductionRepo courseConductionRepo;
+private AdminRepository adminRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo ) {
+    public SchoolMSBootstrap(LecturerRepository lecturerRepository, StudentRepository studentRepository, CourseRepo courseRepository, CourseConductionRepo courseConductionRepo, AdminRepository adminRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.courseConductionRepo = courseConductionRepo;
-
+        this.adminRepository = adminRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-      //  studentRepository.saveAll(studentList());
+    // studentRepository.saveAll(studentList());
+        lecturerRepository.saveAll(addLecturer());
         courseRepository.saveAll(getCoursesWithPrerequisites());
         courseConductionRepo.saveAll(getCourseConductions());
-
+adminRepository.saveAll(admins());
         log.debug("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading bootstrap data\n\n\n\n\n\n\n\n\n\n\n");
 
 
+
+    }
+private List<Admin> admins(){
+
+        Admin admin = new Admin("admin",bCryptPasswordEncoder.encode("Oandoberry1"),true,true
+        ,true,true);
+    Admin admin2 = new Admin("admin2",bCryptPasswordEncoder.encode("Oandoberry1"),true,true
+            ,true,true);
+
+    return new ArrayList<>(Arrays.asList(admin,admin2));
+}
+    private List<Lecturer> addLecturer(){
+
+
+
+
+
+
+
+        Lecturer lecturer = new Lecturer("fabian","Fabian","Onyeka","f.onyeuka@futo.co.ng","FUTO",bCryptPasswordEncoder.encode("password"),null);
+
+Lecturer lecturer1 = new Lecturer("denco","Dennis","Ezechi","d.ezechi@futo.co.ng","FUTMINNA",bCryptPasswordEncoder.encode("password"),null);
+
+
+        return new ArrayList<>(Arrays.asList(lecturer,lecturer1));
 
     }
 
 
     private List<CourseConduction> getCourseConductions() {
 
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+
 
         Student student7 = new Student("eokoli", "Okoli", "Emeka", "e.okoli@gmail.com", "Health Sports", bCryptPasswordEncoder.encode("password"));
 
@@ -139,7 +167,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
         courseConduction5.setSemester(Semester.SECOND);
         courseConduction5.setYear(Year.of(2018));
         courseConduction5.setLecturer(lecturers.stream().filter(lecturer -> lecturer.getId() == 2).findFirst().get());
-        courseConduction5.setCourse(courses.stream().filter(course -> course.getId() == 6).findFirst().get());
+        courseConduction5.setCourse(courses.stream().filter(course -> course.getId() == 2).findFirst().get());
         courseConductions.add(courseConduction5);
 
 
@@ -176,7 +204,7 @@ public class SchoolMSBootstrap implements ApplicationListener<ContextRefreshedEv
     }
 
     public Set<Student> studentList() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
 
         Student student7 = new Student("eokoli", "Okoli", "Emeka", "e.okoli@gmail.com", "Health Sports", bCryptPasswordEncoder.encode("password"));
 

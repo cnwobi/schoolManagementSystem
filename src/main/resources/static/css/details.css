@@ -1,0 +1,24 @@
+article div.content {
+  margin: 5vw; }
+  article div.content div {
+    font-weight: bolder;
+    text-align: center; }
+  article div.content label {
+    display: block !important;
+    margin: auto !important;
+    text-align: center; }
+  article div.content input {
+    width: 17vw !important;
+    display: block;
+    border-radius: 14px !important;
+    height: 5vh !important;
+    padding-left: 2vw !important;
+    margin: auto !important; }
+  article div.content button {
+    display: block;
+    margin: auto;
+    margin-top: 12px;
+    width: 130px;
+    border-radius: 12px; }
+
+/*# sourceMappingURL=details.css.map */

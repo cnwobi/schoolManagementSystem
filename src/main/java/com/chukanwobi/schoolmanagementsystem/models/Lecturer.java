@@ -37,6 +37,15 @@ public class Lecturer implements UserDetails {
         role = "LECTURER";
     }
 
+    public Lecturer(String username, String firstName, String surname, String email, String campus, String password, String role) {
+        this.username = username;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.email = email;
+        this.campus = campus;
+        this.password = password;
+        this.role = role;
+    }
 
     public Lecturer addCoursesConducted(CourseConduction courseConduction){
         courseConduction.setLecturer(this);

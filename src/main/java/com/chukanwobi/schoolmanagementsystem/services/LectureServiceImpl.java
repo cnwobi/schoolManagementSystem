@@ -24,9 +24,6 @@ public class LectureServiceImpl implements LecturerService {
 private LecturerRepository lecturerRepository;
 private LecturerToLecturerCommand converter;
 
-    @Autowired
-    @Qualifier("customUserDetails")
-    private UserDetailsService userDetailsService;
 
 
     public LectureServiceImpl(LecturerRepository lecturerRepository,
@@ -63,7 +60,7 @@ private LecturerToLecturerCommand converter;
     @Override
     public LecturerCommand findLecturerByUsername(String username) {
 
-      Lecturer lecturer = (Lecturer)userDetailsService.loadUserByUsername(username);
+      Lecturer lecturer = lecturerRepository.findLecturerByUsername(username).orElseThrow(()->new RuntimeException("Lecturer not found"));
 
       return converter.convert(lecturer);
 
